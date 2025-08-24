@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>بحث</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-primary-50 text-slate-900 font-arabic">
+<main class="max-w-6xl mx-auto px-3 py-8">
+  <h1 class="text-xl font-bold mb-4">بحث</h1>
+  <div class="grid md:grid-cols-4 gap-4">
+    <aside class="rounded-lg border p-3 bg-white">
+      <input id="q" class="w-full rounded-lg px-3 py-2 border mb-3" placeholder="ابحث…" />
+      <div class="text-xs font-semibold mb-2">تصفية</div>
+      <label class="block text-sm"><input type="checkbox" class="align-middle ml-1" checked data-type="articles"/> مقالات</label>
+      <label class="block text-sm"><input type="checkbox" class="align-middle ml-1" checked data-type="theses"/> رسائل ماجستير</label>
+      <label class="block text-sm"><input type="checkbox" class="align-middle ml-1" checked data-type="authors"/> كتّاب</label>
+    </aside>
+    <div class="md:col-span-3 grid gap-4" id="results"></div>
+  </div>
+</main>
+
+<footer class="bg-primary-900 text-white">
+  <div class="max-w-6xl mx-auto px-3 py-6 text-sm">© <span id="y"></span> مجلة الفكر</div>
+</footer>
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+
+const MOCK = {
+  articles:[
+    {title:'تحولات الاقتصاد العالمي', excerpt:'اتجاهات التجارة…', link:'article.html', img:'https://placehold.co/200x140'},
+    {title:'إعادة تشكيل العلاقات', excerpt:'خرائط التحالفات…', link:'article.html', img:'https://placehold.co/200x140'}
+  ],
+  theses:[
+    {title:'أثر السياسات المالية', excerpt:'ملخص مختصر…', link:'theses.html', img:'https://placehold.co/200x140'}
+  ],
+  authors:[
+    {title:'أحمد علي ✓', excerpt:'باحث سياسي (موثّق)', link:'verified/profile-ahmad.html', img:'https://placehold.co/200x140'},
+    {title:'سارة محمد ✓', excerpt:'اقتصاد كلي (موثّق)', link:'verified/profile-sarah.html', img:'https://placehold.co/200x140'},
+    {title:'حسن كامل', excerpt:'كاتب مستقل', link:'verified/profile-hassan.html', img:'https://placehold.co/200x140'},
+    {title:'دينا نعيم', excerpt:'مهتمة بالمجتمع الرقمي', link:'verified/profile-dina.html', img:'https://placehold.co/200x140'}
+  ]
+};
+const q=document.getElementById('q'); const res=document.getElementById('results');
+const checks=[...document.querySelectorAll('input[type=checkbox][data-type]')];
+function render(){
+  const term=(q.value||'').toLowerCase(); res.innerHTML='';
+  checks.forEach(ch=>{
+    const type=ch.dataset.type; if(!ch.checked) return;
+    MOCK[type].filter(x=> x.title.toLowerCase().includes(term)).forEach(x=>{
+      const el=document.createElement('a');
+      el.href=x.link; el.className='rounded-lg overflow-hidden border bg-white flex gap-3';
+      el.innerHTML='<img src="'+x.img+'" class="w-28 h-28 object-cover hidden sm:block"/>'+
+                   '<div class="p-3 text-sm"><div class="font-semibold mb-1">'+x.title+'</div>'+
+                   '<p class="text-slate-600 line-clamp-2">'+x.excerpt+'</p></div>';
+      res.appendChild(el);
+    });
+  });
+}
+q.addEventListener('input',render); checks.forEach(c=> c.addEventListener('change',render)); render();
+</script>
+</body>
+</html>

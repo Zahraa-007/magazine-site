@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>المجلة | نسخة مبسَّطة</title>
-  <!-- Tailwind CDN -->
+  <title>المجلة | نسخة مبسطة</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      // نهاري فقط (لا يوجد darkMode)
       theme: {
         extend: {
           colors: {
@@ -26,28 +24,23 @@
       }
     }
   </script>
-  <style>
-    html{scroll-behavior:smooth}
-  </style>
+  <style>html{scroll-behavior:smooth}</style>
 </head>
 <body class="bg-primary-50 text-slate-900 font-arabic">
-  <!-- Top bar (نهاري فقط) -->
+  <!-- شريط علوي + تحكم حجم الخط -->
   <div class="bg-primary-900 text-white text-sm">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-3 py-2">
       <div class="flex items-center gap-2"><span class="inline-block w-1.5 h-1.5 rounded-full bg-amberish"></span><span>مجلة فكر مبسطة</span></div>
-      <div class="flex items-center gap-2">
-        <!-- تحكم كامل بحجم الخط -->
-        <div class="flex items-center gap-1">
-          <button id="fontMinus" class="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20" aria-label="تصغير">-</button>
-          <span id="fontSizeLabel">100%</span>
-          <button id="fontPlus" class="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20" aria-label="تكبير">+</button>
-          <button id="fontReset" class="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20" aria-label="إرجاع">افتراضي</button>
-        </div>
+      <div class="flex items-center gap-1">
+        <button id="fontMinus" class="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20" aria-label="تصغير">-</button>
+        <span id="fontSizeLabel">100%</span>
+        <button id="fontPlus" class="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20" aria-label="تكبير">+</button>
+        <button id="fontReset" class="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20" aria-label="إرجاع">افتراضي</button>
       </div>
     </div>
   </div>
 
-  <!-- Header / Nav (مختصر) -->
+  <!-- هيدر وتنقل -->
   <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
     <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3">
@@ -57,27 +50,18 @@
       <nav class="hidden md:flex items-center gap-5 text-sm">
         <a href="#events" class="hover:text-primary-900">الفعاليات</a>
         <a href="#latest" class="hover:text-primary-900">أحدث</a>
-        <a href="#sections" class="hover:text-primary-900">الأقسام</a>
-        <a href="#about" class="hover:text-primary-900">عنّا</a>
+        <a href="sections/index.html" class="hover:text-primary-900">الأقسام</a>
+        <a href="verified/index.html" class="hover:text-primary-900">الموثقون</a>
+        <a href="about.html" class="hover:text-primary-900">عنّا</a>
       </nav>
-      <button id="btnMenu" class="md:hidden p-2 rounded-lg bg-fog" aria-label="القائمة">☰</button>
-    </div>
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-black/5">
-      <div class="px-3 py-2 space-y-2 text-sm">
-        <a href="#events" class="block">الفعاليات</a>
-        <a href="#latest" class="block">أحدث</a>
-        <a href="#sections" class="block">الأقسام</a>
-        <a href="#about" class="block">عنّا</a>
-      </div>
+      <a href="search.html" class="text-sm bg-fog px-3 py-2 rounded-lg">بحث</a>
     </div>
   </header>
 
   <main id="home">
-    <!-- \u279C قسم الفعاليات في البداية: بانر كبير (2028x2028 أو متجاوب) -->
+    <!-- بانر فعاليات -->
     <section id="events" class="max-w-6xl mx-auto px-3 pt-6">
       <div class="bg-white rounded-2xl shadow-soft overflow-hidden">
-        <!-- صورة كبيرة مربعة؛ تتقلص تلقائياً على الشاشات الصغيرة -->
         <figure class="relative">
           <img src="https://placehold.co/2028x2028" alt="بانر الفعاليات" class="w-full h-auto object-cover"/>
           <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
@@ -88,28 +72,10 @@
             </div>
           </figcaption>
         </figure>
-        <!-- يمكن لاحقًا إضافة شبكة بطاقات لفعاليات متعددة -->
-        <div class="p-4 grid gap-3 sm:grid-cols-3">
-          <article class="rounded-xl border border-black/5 p-4">
-            <div class="text-xs text-slate-500">15 أيلول 2025 • النجف</div>
-            <h3 class="font-semibold mt-1">ندوة الفكر السياسي</h3>
-            <p class="text-sm text-slate-600 mt-1">محاور في الدولة والمواطنة والتمثيل.</p>
-          </article>
-          <article class="rounded-xl border border-black/5 p-4">
-            <div class="text-xs text-slate-500">28 أيلول 2025 • بغداد</div>
-            <h3 class="font-semibold mt-1">ورشة الاقتصاد المعرفي</h3>
-            <p class="text-sm text-slate-600 mt-1">سلاسل القيمة والمهارات الجديدة.</p>
-          </article>
-          <article class="rounded-xl border border-black/5 p-4">
-            <div class="text-xs text-slate-500">10 تشرين الأول 2025 • كربلاء</div>
-            <h3 class="font-semibold mt-1">حوار مجتمعي</h3>
-            <p class="text-sm text-slate-600 mt-1">التكنولوجيا والهوية الثقافية.</p>
-          </article>
-        </div>
       </div>
     </section>
 
-    <!-- شريط أدوات مبسّط: بحث + فلتر -->
+    <!-- أدوات: بحث/فلتر -->
     <section class="max-w-6xl mx-auto px-3 pt-6">
       <div class="grid gap-3 sm:grid-cols-3">
         <input id="q" type="search" placeholder="ابحث في العناوين…" class="sm:col-span-2 rounded-xl px-4 py-2 bg-white border border-black/5 focus:outline-none focus:ring-2 focus:ring-amberish"/>
@@ -124,7 +90,7 @@
       <p id="count" class="text-xs text-slate-500 mt-2">—</p>
     </section>
 
-    <!-- مقالة مميزة (مختصرة) -->
+    <!-- مقالة مميزة -->
     <section class="max-w-6xl mx-auto px-3 py-6">
       <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
         <img src="https://placehold.co/1200x420" alt="صورة" class="w-full h-56 object-cover"/>
@@ -133,7 +99,7 @@
             <span class="inline-block w-2 h-2 rounded-full bg-vermilion"></span>
             <span>سياسة</span><span>•</span><time datetime="2025-08-10">10 آب 2025</time><span>•</span><span>8 دقائق</span>
           </div>
-          <a href="#" class="text-primary-900 hover:underline">اقرأ الآن →</a>
+          <a href="article.html" class="text-primary-900 hover:underline">اقرأ الآن →</a>
         </div>
         <div class="px-4 pb-5">
           <h2 class="text-xl font-bold">عنوان مختصر للمقالة المميزة</h2>
@@ -152,82 +118,82 @@
             <div class="p-4">
               <div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="inline-block w-2 h-2 bg-amberish rounded-full"></span>اقتصاد</div>
               <h4 class="font-semibold">تحولات الاقتصاد العالمي</h4>
-              <p class="text-sm text-slate-600 mt-1 line-clamp-2">لمحة سريعة عن الاتجاهات المؤثرة في التجارة وسلاسل التوريد…</p>
-              <a href="#" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
+              <p class="text-sm text-slate-600 mt-1 line-clamp-2">لمحة سريعة عن الاتجاهات المؤثرة…</p>
+              <a href="article.html" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
             </div>
           </article>
-
           <article class="card bg-white rounded-2xl shadow-soft overflow-hidden" data-section="سياسة" data-title="إعادة تشكيل العلاقات">
             <img src="https://placehold.co/800x420" class="w-full h-40 object-cover" alt=""/>
             <div class="p-4">
               <div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="inline-block w-2 h-2 bg-vermilion rounded-full"></span>سياسة</div>
               <h4 class="font-semibold">إعادة تشكيل العلاقات</h4>
-              <p class="text-sm text-slate-600 mt-1 line-clamp-2">تغيّرات سريعة في خرائط التحالفات وموازين القوى…</p>
-              <a href="#" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
+              <p class="text-sm text-slate-600 mt-1 line-clamp-2">تغيرات سريعة في خرائط التحالفات…</p>
+              <a href="article.html" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
             </div>
           </article>
-
           <article class="card bg-white rounded-2xl shadow-soft overflow-hidden" data-section="مجتمع" data-title="تكنولوجيا المجتمع">
             <img src="https://placehold.co/800x420" class="w-full h-40 object-cover" alt=""/>
             <div class="p-4">
               <div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="inline-block w-2 h-2 bg-skyish rounded-full"></span>مجتمع</div>
               <h4 class="font-semibold">تكنولوجيا المجتمع</h4>
-              <p class="text-sm text-slate-600 mt-1 line-clamp-2">كيف تغيّر الأدوات الرقمية أنماط التواصل والخدمات…</p>
-              <a href="#" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
+              <p class="text-sm text-slate-600 mt-1 line-clamp-2">كيف تغيّر الأدوات الرقمية أنماط التواصل…</p>
+              <a href="article.html" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- الأقسام الفكرية: أكبر + صورة لكل قسم -->
-    <section id="sections" class="py-10">
-      <div class="max-w-6xl mx-auto px-3">
-        <h3 class="text-xl font-semibold mb-5">الأقسام الفكرية</h3>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- استخدم data-img لتبديل الصورة لاحقًا إن رغبت -->
-          <a href="#latest" class="group relative overflow-hidden rounded-2xl bg-white shadow-soft border border-black/5 p-0">
-            <img src="https://placehold.co/800x1000?text=سياسة" alt="الفكر السياسي" class="h-48 w-full object-cover group-hover:scale-[1.02] transition"/>
-            <div class="p-4">
-              <div class="text-sm text-slate-500 mb-1">الفكر السياسي</div>
-              <h4 class="text-lg font-bold">مقالات سياسية</h4>
-            </div>
-          </a>
-          <a href="#latest" class="group relative overflow-hidden rounded-2xl bg-white shadow-soft border border-black/5 p-0">
-            <img src="https://placehold.co/800x1000?text=اقتصاد" alt="الفكر الاقتصادي" class="h-48 w-full object-cover group-hover:scale-[1.02] transition"/>
-            <div class="p-4">
-              <div class="text-sm text-slate-500 mb-1">الفكر الاقتصادي</div>
-              <h4 class="text-lg font-bold">مقالات اقتصادية</h4>
-            </div>
-          </a>
-          <a href="#latest" class="group relative overflow-hidden rounded-2xl bg-white shadow-soft border border-black/5 p-0">
-            <img src="https://placehold.co/800x1000?text=مجتمع" alt="الفكر المجتمعي" class="h-48 w-full object-cover group-hover:scale-[1.02] transition"/>
-            <div class="p-4">
-              <div class="text-sm text-slate-500 mb-1">الفكر المجتمعي</div>
-              <h4 class="text-lg font-bold">مقالات مجتمعية</h4>
-            </div>
-          </a>
-          <a href="#latest" class="group relative overflow-hidden rounded-2xl bg-white shadow-soft border border-black/5 p-0">
-            <img src="https://placehold.co/800x1000?text=عام" alt="مقالات عامة" class="h-48 w-full object-cover group-hover:scale-[1.02] transition"/>
-            <div class="p-4">
-              <div class="text-sm text-slate-500 mb-1">مقالات عامة</div>
-              <h4 class="text-lg font-bold">مختارات عامة</h4>
-            </div>
-          </a>
+    <!-- حسابات موثّقة (مضمنة بالموقع) -->
+   <section id="verified" class="py-8">
+  <div class="max-w-6xl mx-auto px-3">
+    <h3 class="text-lg font-semibold mb-4">حسابات</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
+      <!-- أحمد علي (موثّق) -->
+      <a href="verified/profile-ahmad.html" class="group rounded-xl overflow-hidden border bg-white hover:shadow transition">
+        <div class="relative">
+          <img src="https://placehold.co/1200x240?text=غلاف" alt="غلاف أحمد علي" class="w-full h-24 object-cover"/>
+          <img src="https://placehold.co/80x80?text=أ" alt="أحمد علي" class="absolute -bottom-6 right-3 w-12 h-12 rounded-full border-2 border-white shadow"/>
         </div>
-      </div>
-    </section>
+        <div class="p-3 pt-8 text-sm">
+          <div class="font-semibold flex items-center gap-2">
+            أحمد علي
+            <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-amberish/20 text-amberish">موثّق ✓</span>
+          </div>
+          <div class="text-slate-500 mt-1 line-clamp-1">باحث في العلوم السياسية</div>
+        </div>
+      </a>
 
-    <!-- عن المجلة (مختصر) -->
+      <!-- حساب عادي (غير موثّق) -->
+      <a href="verified/profile-hassan.html" class="group rounded-xl overflow-hidden border bg-white hover:shadow transition">
+        <div class="relative">
+          <img src="https://placehold.co/1200x240?text=غلاف" alt="غلاف حسن كامل" class="w-full h-24 object-cover"/>
+          <img src="https://placehold.co/80x80?text=ح" alt="حسن كامل" class="absolute -bottom-6 right-3 w-12 h-12 rounded-full border-2 border-white shadow"/>
+        </div>
+        <div class="p-3 pt-8 text-sm">
+          <div class="font-semibold flex items-center gap-2">
+            حسن كامل
+            <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">غير موثّق</span>
+          </div>
+          <div class="text-slate-500 mt-1 line-clamp-1">كاتب مستقل</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+    <!-- نبذة -->
     <section id="about" class="bg-fog py-8">
       <div class="max-w-5xl mx-auto px-3">
         <h3 class="text-lg font-semibold mb-2">نبذة مختصرة</h3>
         <p class="text-sm text-slate-700">منصة مبسطة لعرض مقالات سياسية واقتصادية ومجتمعية. التصميم خفيف، القراءة واضحة، والمحتوى أمامك بدون تشتيت.</p>
+        <div class="mt-3"><a href="about.html" class="text-sm text-primary-900 hover:underline">المزيد عنّا →</a></div>
       </div>
     </section>
   </main>
 
-  <!-- Footer (مختصر) -->
+  <!-- فوتر -->
   <footer class="bg-primary-900 text-white">
     <div class="max-w-6xl mx-auto px-3 py-6 grid md:grid-cols-3 gap-6 text-sm">
       <div>
@@ -242,7 +208,8 @@
         <ul class="space-y-2">
           <li><a class="hover:underline" href="#events">الفعاليات</a></li>
           <li><a class="hover:underline" href="#latest">أحدث المقالات</a></li>
-          <li><a class="hover:underline" href="#sections">الأقسام</a></li>
+          <li><a class="hover:underline" href="sections/index.html">الأقسام</a></li>
+          <li><a class="hover:underline" href="verified/index.html">الحسابات الموثّقة</a></li>
         </ul>
       </div>
       <div>
@@ -255,67 +222,23 @@
     </div>
   </footer>
 
-  <!-- زر رجوع للأعلى -->
-  <button id="toTop" class="fixed bottom-4 left-4 hidden rounded-full px-3 py-2 bg-slate-900 text-white text-sm shadow-soft/50">للأعلى ↑</button>
-
   <script>
-    // السنة
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // قائمة الهاتف
-    const btnMenu = document.getElementById('btnMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    btnMenu.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    // تحكم حجم الخط
+    const FONT_KEY='fontSizePercent', lbl=document.getElementById('fontSizeLabel');
+    function applyFont(){ const s=parseInt(localStorage.getItem(FONT_KEY)||'100'); document.body.style.fontSize=s+'%'; lbl.textContent=s+'%'; }
+    function setFont(v){ localStorage.setItem(FONT_KEY, String(Math.max(50, Math.min(200, v)))); applyFont(); }
+    document.getElementById('fontMinus').onclick=()=>setFont((+localStorage.getItem(FONT_KEY)||100)-10);
+    document.getElementById('fontPlus').onclick =()=>setFont((+localStorage.getItem(FONT_KEY)||100)+10);
+    document.getElementById('fontReset').onclick=()=>setFont(100); applyFont();
 
-    // فلترة بسيطة + بحث لحظي
-    const q = document.getElementById('q');
-    const sel = document.getElementById('sel');
-    const cards = Array.from(document.querySelectorAll('.card'));
-    const count = document.getElementById('count');
-
-    function applyFilter(){
-      const term = q.value.trim().toLowerCase();
-      const sec = sel.value;
-      let shown = 0;
-      cards.forEach(c => {
-        const t = (c.dataset.title || '').toLowerCase();
-        const s = c.dataset.section || '';
-        const ok = (!sec || s === sec) && (!term || t.includes(term));
-        c.style.display = ok ? '' : 'none';
-        if(ok) shown++;
-      });
-      count.textContent = shown ? `المعروض: ${shown}` : 'لا توجد نتائج مطابقة.';
-    }
-    q.addEventListener('input', applyFilter);
-    sel.addEventListener('change', applyFilter);
-    applyFilter();
-
-    // زر للأعلى يظهر بعد تمرير بسيط
-    const toTop = document.getElementById('toTop');
-    addEventListener('scroll', () => {
-      toTop.classList.toggle('hidden', scrollY < 200);
-    });
-    toTop.addEventListener('click', () => scrollTo({top:0,behavior:'smooth'}));
-
-    // تحكم كامل بحجم الخط (50% - 200%)
-    const fontMinus = document.getElementById('fontMinus');
-    const fontPlus  = document.getElementById('fontPlus');
-    const fontReset = document.getElementById('fontReset');
-    const fontLabel = document.getElementById('fontSizeLabel');
-    const FONT_KEY = 'fontSizePercent';
-
-    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-    function setSize(v){ localStorage.setItem(FONT_KEY, String(clamp(v,50,200))); applyFontSize(); }
-    function applyFontSize(){
-      const size = parseInt(localStorage.getItem(FONT_KEY) || '100');
-      document.body.style.fontSize = size + '%';
-      fontLabel.textContent = size + '%';
-    }
-
-    fontMinus.addEventListener('click', ()=> setSize((parseInt(localStorage.getItem(FONT_KEY) || '100')) - 10));
-    fontPlus.addEventListener('click',  ()=> setSize((parseInt(localStorage.getItem(FONT_KEY) || '100')) + 10));
-    fontReset.addEventListener('click', ()=> setSize(100));
-    applyFontSize();
+    // فلترة كروت "أحدث"
+    const q=document.getElementById('q'), sel=document.getElementById('sel'), cards=[...document.querySelectorAll('.card')], count=document.getElementById('count');
+    function applyFilter(){ const term=(q.value||'').toLowerCase(); const sec=sel.value; let shown=0;
+      cards.forEach(c=>{ const t=(c.dataset.title||'').toLowerCase(); const s=c.dataset.section||''; const ok=(!sec||s===sec)&&(!term||t.includes(term)); c.style.display=ok?'':'none'; if(ok) shown++; });
+      count.textContent = shown ? 'المعروض: '+shown : 'لا توجد نتائج مطابقة.'; }
+    q.addEventListener('input',applyFilter); sel.addEventListener('change',applyFilter); applyFilter();
   </script>
 </body>
 </html>
