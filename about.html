@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>عن المجلة</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -55,15 +56,77 @@
   </header>
 
 <main class="max-w-screen-md mx-auto px-3 py-8 space-y-4">
-  <h1 class="text-xl font-bold text-primary-900">عن المجلة</h1>
-  <p class="text-sm leading-7">رؤيتنا: محتوى معرفي مختصر ودقيق وسهل الوصول.</p>
-  <div>
-    <h2 class="font-semibold mb-2">فريق العمل</h2>
-    <ul class="text-sm list-disc pr-5 text-slate-600">
-      <li>التحرير: اسم 1</li>
-      <li>التنسيق: اسم 2</li>
-    </ul>
-  </div>
+ <section class="intro-section">
+   <video class="intro_vid" autoplay muted loop>
+     <source src="vid.mp4" type="video/mp4">
+     This video is not available
+   </video>
+   
+   <div class="intro-text">
+     <h1>نستطيع بناء عالم افضل معا</h1>
+     <p>احلامك اغلى من ان تتخلى عنها لاجل بعض اللهو</p>
+   </div>
+ </section>
+ <section class="cards-section">
+   <div class="card">
+     <img src="1.png" alt="image">
+     <p>شرح موجز عن القسم</p>
+     <a href="" target="_blank">اضغط للمزيد</a>
+   </div>
+   <div class="card">
+     <img src="1.png" alt="image">
+     <p>شرح موجز عن القسم</p>
+     <a href="" target="_blank">اضغط للمزيد</a>
+   </div>
+   <div class="card">
+     <img src="1.png" alt="image">
+     <p>شرح موجز عن القسم</p>
+     <a href="" target="_blank">اضغط للمزيد</a>
+   </div>
+ </section>
+ 
+ <section class="how-to-impact">
+   <h2>كيف نصنع التاثير</h2>
+   <nav class="impact-links">
+     <a href="" target="display_frame">بيانات </a>
+     <a href="" target="display_frame">بيانات</a>
+     <a href="" target="display_frame">بيانات</a>
+     <a href="" target="display_frame">بيانات</a>
+     <a href="" target="display_frame">بيانات</a>
+   </nav>
+   <iframe title="cards_container" name="display_frame"></iframe>
+ </section>
+ 
+ <section class="our-hope">
+   <h2>عنوان فرعي </h2>
+   <p>
+     كلام يخص الصفحة المعنية بالعنوان الفرعي
+   </p>
+   <a href="">انقر للمزيد</a>
+ </section>
+ 
+ <dev class="footer">
+   <h2>فريق العمل</h2>
+   <div class="team-table">
+     <div class="team-row">
+       <span>Name</span><span>Name</span><span>Name</span><span>Name</span>
+     </div>
+     <div class="team-row">
+       <span><a href=""><i class="fab fa-linkedin" style="font-size:24px; color:#0A66C2;"></i></a></span>
+       <span><a href=""><i class="fab fa-linkedin" style="font-size:24px; color:#0A66C2;"></i></a></span>
+       <span><a href=""><i class="fab fa-linkedin" style="font-size:24px; color:#0A66C2;"></i></a></span>
+       <span><a href=""><i class="fab fa-linkedin" style="font-size:24px; color:#0A66C2;"></i></a></span>
+     </div>
+   </div>
+   <div class="our-partner">
+     <h2>شركائنا</h2>
+     <a href="#" class="co-logo"><img src="1.png" alt="company logo"></a>
+     <a href="#" class="co-logo"><img src="1.png" alt="company logo"></a>
+     <a href="#" class="co-logo"><img src="1.png" alt="company logo"></a>
+     <a href="#" class="co-logo"><img src="1.png" alt="company logo"></a>
+     
+   </div>
+   </div>
 </main>
 
   <footer class="bg-primary-900 text-white mt-12">
