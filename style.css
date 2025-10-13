@@ -22,6 +22,7 @@ body {
     object-fit: cover;
     display: block;
     vertical-align: top;
+    border: ;
 }
 
 .intro-text {

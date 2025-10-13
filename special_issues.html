@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجلة الفكر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
+        }
+        
+        body {
+            
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+        }
+        
+        .merriweather-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: var(--hg-blue);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        .btn-fancy {
+            background-color: #eba337;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .btn-fancy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 1023px) {
+            .mobile-menu-container {
+                display: none;
+            }
+            
+            .mobile-menu-open .mobile-menu-container {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+                z-index: 50;
+            }
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0a2342;
+        }
+        
+        .search-cart {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-form {
+            position: relative;
+        }
+        
+        .search-form input {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 200px;
+        }
+        
+        .search-form button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+        }
+        
+        .cart-icon,
+        .user-icon {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            padding: 15px 0;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        
+        nav ul li a.active {
+            color: #0a2342;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <html lang="ar" dir="rtl">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>مجلة الفكر</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    
+    <body class="bg-[#fffdf6]">
+        
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
+            <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between" dir="rtl">
+                
+                <!-- Logo / Title -->
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    
+                    
+                    <img src="logo.png" alt="شعار الموقع" width="70" height="auto">
+                    <span class="text-base font-semibold">IRAQI YOURTH RESEARCH</span>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="flex space-x-6 space-x-reverse text-black font-medium">
+                    <a href="sections/index.html" class="hover:text-primary-900">الأقسام الفكرية</a>
+                    <a href="verified/index.html" class="hover:text-primary-900">الموثقون</a>
+                    <a href="about.html" class="hover:text-primary-900">عنّا</a>
+                    <a href="theses.html" class="hover:text-primary-900">رسائل الماجستير</a>
+                </nav>
+                
+                <!-- Search Button -->
+                <button class="bg-gray-100 text-black px-3 py-1.5 rounded-lg hover:bg-gray-200">
+                    بحث
+                </button>
+            </div>
+        </header>
+        
+    </body>
+    
+    <main class="main-container px-4 sm:px-8 py-8">
+        <!-- Main Article Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+            <!-- Small Articles on the left -->
+            <div class="space-y-6 flex flex-col">
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-end">
+                    <div class="flex flex-col sm:flex-row">
+                        <img src="https://placehold.co/150x250/07234a/ffffff" alt="G for Gory Ghost" class="w-full sm:w-28 sm:h-auto h-36 object-cover">
+                        <div class="p-4 flex flex-col justify-center flex-grow">
+                            <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline">
+                                عنوان المقال الاول
+                            </a>
+                            <p class="mt-1 text-gray-500 text-sm">
+                                حجي عن المقال وحجي حجي حجي الكثير من الكلام
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-end">
+                    <div class="flex flex-col sm:flex-row">
+                        <img src="https://placehold.co/150x250/07234a/ffffff" alt="Viewing art like an expert" class="w-full sm:w-28 sm:h-auto h-36 object-cover">
+                        <div class="p-4 flex flex-col justify-center flex-grow">
+                            <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline">
+                                عنوان مقال ثاني
+                            </a>
+                            <p class="mt-1 text-gray-500 text-sm">
+                                حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                            </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Article on the right -->
+            <div class="col-span-1 lg:col-span-2 relative bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+                <img src="https://placehold.co/1000x500/07234a/07234a" alt="AI Predicts Therapies" class="w-full h-80 object-cover">
+                <div class="p-6 flex-grow flex flex-col justify-end">
+                    <a href="#" class="merriweather-font text-2xl md:text-3xl font-bold text-gray-900 hover:text-blue-700 hover-underline">
+                        عنوان المقاله
+                    </a>
+                    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+                        حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- New Four Articles Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=1" alt="Article 1" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">عنوان</a>
+                    <p class="text-gray-600 text-sm">حجيجيجييي</p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=2" alt="Article 2" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">عنوان</a>
+                    <p class="text-gray-600 text-sm">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي</p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=3" alt="Article 3" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">حجي</a>
+                    <p class="text-gray-600 text-sm">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                    </p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline ">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=4" alt="Article 4" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">عنوان</a>
+                    <p class="text-gray-600 text-sm">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View All Articles Section -->
+        <div class="mt-12 text-center">
+            <a href="#" class="btn-fancy">
+                عرض جميع المقالات
+            </a>
+        </div>
+        
+        <!-- Event Results Section -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6 text-right">نتائج الفعاليات</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
+            <div class="col-span-1 lg:col-span-3 bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+                <img src="https://placehold.co/1000x600/07234a/ffffff?text=Environmental+Event+Results" alt="Environmental Event Results" class="w-full h-96 object-cover">
+                <div class="p-6">
+                    <a href="#" class="merriweather-font text-2xl md:text-3xl font-bold text-gray-900 hover:text-blue-700 hover-underline text-right">
+                        نتائج فعاليه مسابقه البيئه
+                    </a>
+                    <p class="mt-4 text-gray-600 text-lg leading-relaxed text-right">
+                        حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                    </p>
+                </div>
+            </div>
+            <div class="space-y-6 flex flex-col lg:col-span-1">
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-start">
+                    <div class="p-4">
+                        <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline text-right">
+                            <h3 class="merriweather-font font-bold text-lg hover:text-blue-700 hover-underline text-right">
+                                فعاليه قادمه/ او نتيجه فعاليه
+                            </h3>
+                        </a>
+                        <p class="mt-1 text-gray-500 text-sm text-right">
+                            حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-start">
+                    <div class="p-4">
+                        <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline text-right">
+                            <h3 class="merriweather-font font-bold text-lg hover:text-blue-700 hover-underline text-right">
+                                فعاليه قادمه/ او نتيجه فعاليه
+                            </h3>
+                        </a>
+                        <p class="mt-1 text-gray-500 text-sm text-right">
+                            حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Three Articles Grid -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6">فعاليات قادمه</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white shadow-lg rounded-xl p-6">
+                <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-2">
+                    <span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>الاثنين, 2:00PM</span>
+                </div>
+                <a href="#" class="merriweather-font font-bold text-xl hover:text-blue-700 hover-underline">
+                    اسم الفعاليه يمكن او ايشي
+                </a>
+                <p class="mt-2 text-sm text-gray-500">
+                    <a href="#">الموقع مثلا</a>
+                </p>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl p-6">
+                <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-2">
+                    <span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>الخميس, 4:00PM</span>
+                </div>
+                <a href="#" class="merriweather-font font-bold text-xl hover:text-blue-700 hover-underline">
+                    اسم الفعاليه
+                </a>
+                <p class="mt-2 text-sm text-gray-500">
+                    <a href="#">موقع الفعاليه</a>
+                </p>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl p-6">
+                <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-2">
+                    <span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>اربعاء, 11:00AM</span>
+                </div>
+                <a href="#" class="merriweather-font font-bold text-xl hover:text-blue-700 hover-underline">
+                    اسم الفعاليه
+                </a>
+                <p class="mt-2 text-sm text-gray-500">
+                    <a href="#">موقعهه</a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Orange Long Articles Section -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6 text-right">مقالات / كولكشنات</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Article 1 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    كولكشن الصيف مثلا</h3>
+                <p class="text-sm text-white mt-2">حجي حجي حيجيججييي</p>
+            </a>
+            <!-- Article 2 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    عنوان</h3>
+                <p class="text-sm text-white mt-2">حجي حجي حجيجيجييي كلام</p>
+            </a>
+            <!-- Article 3 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    كلام او كولكشن شي</h3>
+                <p class="text-sm text-white mt-2">حجي حجي كلام كلام كلمامام</p>
+            </a>
+            <!-- Article 4 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    مجموعه الخريف</h3>
+                <p class="text-sm text-white mt-2">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي</p>
+            </a>
+        </div>
+        
+        <!-- News & Classified Articles Section -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6 text-right">أخبار</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Politics -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">سياسة
+                </h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Politics" alt="Politics article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">تحليل</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">تأثير الانتخابات على
+                            الاقتصاد العالمي</h4>
+                        <p class="text-xs text-gray-500 mt-1">دراسة تحليلية لنتائج الانتخابات الأخيرة وتأثيرها على
+                            الأسواق المالية.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">خبر عاجل</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">قانون جديد يهدف إلى تنظيم
+                        تكنولوجيا الذكاء الاصطناعي</h4>
+                    <p class="text-xs text-gray-500 mt-1">المشرعون يدرسون مشروع قانون جديد لضمان الاستخدام الأخلاقي
+                        للذكاء الاصطناعي.</p>
+                </a>
+            </div>
+            
+            <!-- Technology -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">
+                    تكنولوجيا</h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Technology" alt="Technology article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">تقرير</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">السيارات الكهربائية: هل هي
+                            مستقبل النقل؟</h4>
+                        <p class="text-xs text-gray-500 mt-1">نظرة فاحصة على التطورات في صناعة السيارات الكهربائية
+                            وتأثيرها على البيئة.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">مقابلة</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">مخترع الروبوتات الطائرة يتحدث عن
+                        تحدياته</h4>
+                    <p class="text-xs text-gray-500 mt-1">لقاء حصري مع المخترع الشاب الذي يقود ثورة في مجال الطيران.</p>
+                </a>
+            </div>
+            
+            <!-- Health -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">صحة</h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Health" alt="Health article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">إرشادات</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">نصائح للحفاظ على صحتك
+                            العقلية أثناء العمل عن بعد</h4>
+                        <p class="text-xs text-gray-500 mt-1">خبراء يقدمون استراتيجيات بسيطة للتعامل مع التوتر والإرهاق.
+                        </p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">بحث جديد</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">دراسة تكشف عن علاقة بين النوم
+                        الجيد والذاكرة القوية</h4>
+                    <p class="text-xs text-gray-500 mt-1">اكتشف العلماء كيف يؤثر نمط نومك على قدراتك المعرفية.</p>
+                </a>
+            </div>
+            
+            <!-- Economy -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">اقتصاد
+                </h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Economy" alt="Economy article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">تحليل مالي</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">توقعات النمو الاقتصادي للعام
+                            القادم</h4>
+                        <p class="text-xs text-gray-500 mt-1">خبراء الاقتصاد يتوقعون اتجاهات الأسواق العالمية في ضوء
+                            التغيرات الأخيرة.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">ريادة أعمال</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">كيف تبدأ مشروعًا صغيرًا ناجحًا
+                    </h4>
+                    <p class="text-xs text-gray-500 mt-1">نصائح وإرشادات للمبتدئين في عالم ريادة الأعمال.</p>
+                </a>
+            </div>
+            
+            <!-- Arts -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">فن</h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Arts" alt="Arts article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">مراجعة</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">معرض "ألوان من الشرق": رحلة
+                            عبر الزمن</h4>
+                        <p class="text-xs text-gray-500 mt-1">مراجعة نقدية لأحدث المعارض الفنية التي تعرض أعمالًا
+                            مستوحاة من التراث الشرقي.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">مقابلة فنية</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">النحات العالمي يتحدث عن مصدر
+                        إلهامه</h4>
+                    <p class="text-xs text-gray-500 mt-1">مقابلة حصرية مع أحد أشهر النحاتين في العالم وتاريخه الفني.</p>
+                </a>
+            </div>
+            
+            <!-- Science -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">علوم
+                </h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Science" alt="Science article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">اكتشاف جديد</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">علماء يكتشفون كوكبًا جديدًا
+                            خارج المجموعة الشمسية</h4>
+                        <p class="text-xs text-gray-500 mt-1">تفاصيل حول الكوكب المكتشف حديثًا وخصائصه الفريدة.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">بحث علمي</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">تطورات في مجال الطب الجزيئي</h4>
+                    <p class="text-xs text-gray-500 mt-1">كيف يمكن للعلاجات الجزيئية أن تحدث ثورة في مكافحة الأمراض
+                        المستعصية.</p>
+                </a>
+            </div>
+            
+        </div>
+        
+    </main>
+    
+    <!-- Footer Section -->
+    <footer class="bg-[#0a2342] text-white py-10" dir="rtl">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+            
+            <!-- Subscribe Section -->
+            <div>
+                <h3 class="font-bold mb-4">اشترك</h3>
+                <form class="flex space-x-2 space-x-reverse">
+                    <input type="email" placeholder="بريدك" class="px-4 py-2 rounded-lg text-black flex-1 focus:outline-none" />
+                    <button type="submit" class="bg-[#e79c25] text-white px-4 py-2 rounded-lg hover:bg-[#d1861d]">
+                        إرسال
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Links Section -->
+            <div>
+                <h3 class="font-bold mb-4">روابط</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:underline" href="sections/index.html">الأقسام</a></li>
+                    <li><a class="hover:underline" href="theses.html">رسائل الماجستير</a></li>
+                    <li><a class="hover:underline" href="about.html">عنّا</a></li>
+                    <li><a class="hover:underline" href="special_issues.html">الاصدارات الخاصة</a></li>
+                    <li><a class="hover:underline" href="contact.html">تواصل معنا</a></li>
+                    <li><a class="hover:underline" href="verified/index.html">الحسابات الموثّقة</a></li>
+                </ul>
+            </div>
+            
+            <!-- Logo + Copyright -->
+            <div class="flex flex-col items-center md:items-end space-y-2">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-10 h-10 rounded-full bg-[#0a2342] border border-white/30 flex items-center justify-center text-white font-bold">
+                        ؟؟
+                    </div>
+                    <span class="font-bold">مجلة الفكر</span>
+                </div>
+                <p class="text-sm text-gray-300">© 2025</p>
+            </div>
+            
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const body = document.body;
+            
+            mobileMenuButton.addEventListener('click', () => {
+                body.classList.toggle('mobile-menu-open');
+            });
+        });
+    </script>
+</body>
+
+</html>
