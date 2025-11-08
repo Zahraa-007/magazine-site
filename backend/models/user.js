@@ -19,7 +19,7 @@ export const User = sequelize.define("User", {
         type: DataTypes.TEXT,
     },
     role: {
-        type: DataTypes.ENUM("guest", "author", "verified", "moderator", "admin", "support"),
+        type: DataTypes.ENUM("guest", "author", "verified", "moderator", "admin", "support","auditor"),
         defaultValue: "guest",
     },
     is_verified: {

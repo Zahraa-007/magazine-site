@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db.js';
-//import { User } from './user.js';
-//import { Article } from './article.js';
+import { User } from './user.js';
+import { Article } from './article.js';
 
 export const Comment = sequelize.define('Comment', {
   id: {
@@ -23,5 +23,5 @@ export const Comment = sequelize.define('Comment', {
   updatedAt: false,
 });
 
-//Comment.belongsTo(User, { foreignKey: 'user_id' });
-//Comment.belongsTo(Article, { foreignKey: 'article_id' });
+Comment.belongsTo(User, { foreignKey: 'user_id' });
+Comment.belongsTo(Article, { foreignKey: 'article_id' });
