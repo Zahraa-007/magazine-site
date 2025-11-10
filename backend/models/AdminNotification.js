@@ -1,7 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
-//import { User } from "./User.js";
-
+import { User } from './user.js';
 export const AdminNotification = sequelize.define("AdminNotification", {
   id: {
     type: DataTypes.INTEGER,

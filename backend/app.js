@@ -9,8 +9,7 @@ import complaintAttachmentRoutes from "./routes/complaintAttachmentRoutes.js";
 import adminNotificationRoutes from "./routes/adminNotificationRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
-
-
+import articleRoutes from './routes/articles.js';
 
 
 const app = express();
@@ -24,6 +23,8 @@ app.use("/api/complaint-attachments", complaintAttachmentRoutes);
 app.use("/api/admin-notifications", adminNotificationRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use('/api/articles', articleRoutes);
+
 
 
 app.use("/api", contactRoutes);
@@ -31,7 +32,7 @@ app.get("/", (req, res) => {
     res.send("Magazine Backend Running ✅");
 });
 
-await sequelize.sync({ alter: true });
+await sequelize.sync({ force: true });
 
 export default app;
 
