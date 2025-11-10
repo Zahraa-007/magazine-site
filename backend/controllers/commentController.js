@@ -1,6 +1,6 @@
-const Comment = require('../models/comment'); // CommonJS import
+import { Comment } from '../models/comment.js';
 
-exports.createComment = async (req, res) => {
+export const createComment = async (req, res) => {
   try {
     const newComment = await Comment.create(req.body);
     res.status(201).json(newComment);
@@ -10,7 +10,7 @@ exports.createComment = async (req, res) => {
   }
 };
 
-exports.getAllComments = async (req, res) => {
+export const getAllComments = async (req, res) => {
   try {
     const comments = await Comment.findAll();
     res.json(comments);

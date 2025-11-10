@@ -1,8 +1,8 @@
-const { Article } = require('../models');
-const { Op } = require('sequelize');
+import { Article } from '../models/article.js';
+import { Op } from 'sequelize';
 
 // إنشاء مقال جديد
-exports.createArticle = async (req, res) => {
+export const createArticle = async (req, res) => {
   try {
     const article = await Article.create(req.body);
     res.status(201).json(article);
@@ -12,7 +12,7 @@ exports.createArticle = async (req, res) => {
 };
 
 // عرض جميع المقالات
-exports.getAllArticles = async (req, res) => {
+export const getAllArticles = async (req, res) => {
   try {
     const articles = await Article.findAll({
       order: [['createdAt', 'DESC']]
@@ -24,7 +24,7 @@ exports.getAllArticles = async (req, res) => {
 };
 
 // عرض مقال واحد وزيادة عدد المشاهدات
-exports.getArticleById = async (req, res) => {
+export const getArticleById = async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
     if (!article) return res.status(404).json({ error: 'Article not found' });
@@ -40,7 +40,7 @@ exports.getArticleById = async (req, res) => {
 };
 
 // تعديل مقال
-exports.updateArticle = async (req, res) => {
+export const updateArticle = async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
     if (!article) return res.status(404).json({ error: 'Article not found' });
@@ -53,7 +53,7 @@ exports.updateArticle = async (req, res) => {
 };
 
 // حذف مقال
-exports.deleteArticle = async (req, res) => {
+export const deleteArticle = async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
     if (!article) return res.status(404).json({ error: 'Article not found' });
@@ -66,7 +66,7 @@ exports.deleteArticle = async (req, res) => {
 };
 
 // تغيير الحالة (draft ↔ published)
-exports.changeStatus = async (req, res) => {
+export const changeStatus = async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
     if (!article) return res.status(404).json({ error: 'Article not found' });

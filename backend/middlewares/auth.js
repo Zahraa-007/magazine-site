@@ -3,7 +3,7 @@
 // محاكاة نظام صلاحيات بسيط لأغراض الاختبار
 // في المستقبل يمكن استبداله بـ JWT أو OAuth
 
-module.exports = (roleRequired) => {
+const authorize = (roleRequired) => {
   return (req, res, next) => {
     // افتراضياً نقرأ الدور من الهيدر أو باراميتر
     const userRole = req.headers['x-user-role'] || 'guest'; // guest | author | admin
@@ -21,3 +21,5 @@ module.exports = (roleRequired) => {
     }
   };
 };
+
+export default authorize;
