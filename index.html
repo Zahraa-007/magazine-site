@@ -39,31 +39,62 @@
       <div class="flex items-center gap-2">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-amberish"></span><span>IYR</span>
       </div>
-      
-    </div>
+         </div>
   </div>
   
   <!-- هيدر وتنقل -->
-  <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
-    <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3">
-        <img src="logo.png" alt="شعار الموقع" width="70" height="auto">
-        <span class="text-base font-semibold">IRAQI YOURTH RESEARCH</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-5 text-sm">
-        <a href="#events" class="hover:text-primary-900">الفعاليات</a>
-        <a href="#latest" class="hover:text-primary-900">الأحدث</a>
-        <a href="sections/index.html" class="hover:text-primary-900">الأقسام الفكرية</a>
-        <a href="verified/index.html" class="hover:text-primary-900">الموثقون</a>
-        <a href="about.html" class="hover:text-primary-900">عنّا</a>
-        <a href="Categorized-articles/index.html" class="hover:text-primary-900">قسم المقالات المصنفة</a>
-        <a href="theses.html" class="hover:text-primary-900">رسائل الماجستير</a>
-        <a href="special_issues.html" class="hover:text-primary-900">الاصدارات الخاصة</a>
-      </nav>
-      <a href="search.html" class="text-sm bg-fog px-3 py-2 rounded-lg">بحث</a>
-    </div>
-  </header>
-  
+<header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <a href="#home" class="flex items-center gap-2">
+      <img src="logo.png" alt="شعار الموقع" width="60" class="rounded" />
+      <span class="text-lg font-bold tracking-wide">IRAQI YOUTH RESEARCH</span>
+    </a>
+
+    <button id="menuToggle" class="md:hidden p-2 rounded hover:bg-gray-100 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="#events" class="hover:text-gray-700">الفعاليات</a>
+      <a href="#latest" class="hover:text-gray-700">الأحدث</a>
+      <a href="sections/index.html" class="hover:text-gray-700">الأقسام الفكرية</a>
+      <a href="verified/index.html" class="hover:text-gray-700">الموثقون</a>
+      <a href="about.html" class="hover:text-gray-700">عنّا</a>
+      <a href="Categorized-articles/index.html" class="hover:text-gray-700">المقالات المصنفة</a>
+      <a href="theses.html" class="hover:text-gray-700">رسائل الماجستير</a>
+      <a href="special_issues.html" class="hover:text-gray-700">الإصدارات الخاصة</a>
+    </nav>
+
+    <a href="search.html" class="hidden md:block bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200">بحث</a>
+  </div>
+
+  <nav id="mobileMenu" class="md:hidden hidden border-t border-gray-200 bg-white shadow-lg py-4 px-4 space-y-4 text-base font-medium">
+
+    <a href="#events" class="block py-2 px-2 rounded hover:bg-gray-100">الفعاليات</a>
+    <a href="#latest" class="block py-2 px-2 rounded hover:bg-gray-100">الأحدث</a>
+    <a href="sections/index.html" class="block py-2 px-2 rounded hover:bg-gray-100">الأقسام الفكرية</a>
+    <a href="verified/index.html" class="block py-2 px-2 rounded hover:bg-gray-100">الموثقون</a>
+    <a href="about.html" class="block py-2 px-2 rounded hover:bg-gray-100">عنّا</a>
+    <a href="Categorized-articles/index.html" class="block py-2 px-2 rounded hover:bg-gray-100">المقالات المصنفة</a>
+    <a href="theses.html" class="block py-2 px-2 rounded hover:bg-gray-100">رسائل الماجستير</a>
+    <a href="special_issues.html" class="block py-2 px-2 rounded hover:bg-gray-100">الإصدارات الخاصة</a>
+
+    <a href="search.html" class="block bg-gray-100 py-2 px-3 rounded-lg text-center hover:bg-gray-200">بحث</a>
+  </nav>
+</header>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
   <main id="home">
     <!-- بانر فعاليات -->
     <section id="events" class="max-w-6xl mx-auto px-3 pt-6">
@@ -97,35 +128,43 @@
     </section>
     
     <!-- مقالة مميزة -->
-    <section class="max-w-6xl mx-auto px-3 py-6">
-      <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
-        <img src="https://placehold.co/1200x420" alt="صورة" class="w-full h-56 object-cover" />
-        <div class="p-4 flex items-center justify-between text-sm">
-          <div class="flex items-center gap-2 text-slate-600">
-            <span class="inline-block w-2 h-2 rounded-full bg-vermilion"></span>
-            <span>سياسة</span><span>•</span><time datetime="2025-08-10">10 آب 2025</time><span>•</span><span>8 دقائق</span>
-          </div>
-          <a href="articl.html" class="text-primary-900 hover:underline">اقرأ الآن →</a>
-        </div>
-        <div class="px-4 pb-5">
-          <h2 class="text-xl font-bold">عنوان مختصر للمقالة المميزة</h2>
-          <p class="text-sm text-slate-600 mt-1">وصف موجز جدًا يشجّع على القراءة بدون تشتيت.</p>
-        </div>
-      </article>
-    </section>
+
+   <section class="max-w-6xl mx-auto px-3 py-6">
+  <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+    <img src="policy.jpg" alt="سياسة الوصول المفتوح" class="w-full h-56 object-cover" />
+    <div class="p-4 flex items-center justify-between text-sm">
+      <div class="flex items-center gap-2 text-slate-600">
+        <span class="inline-block w-2 h-2 rounded-full bg-vermilion"></span>
+        <span>سياسة</span><span>•</span>
+        <time datetime="2025-11-11">11 تشرين الثاني 2025</time><span>•</span>
+        <span>7 دقائق</span>
+      </div>
+      <a href="articlsExampls/policyEx.html" class="text-primary-900 hover:underline">اقرأ الآن →</a>
+    </div>
+    <div class="px-4 pb-5">
+      <h2 class="text-xl font-bold">سياسة ونموذج الوصول المفتوح</h2>
+      <p class="text-sm text-slate-600 mt-1">
+        تعرف على مفهوم الوصول المفتوح في النشر العلمي والسياسات التي تدعم الشفافية والمشاركة المجتمعية في العلوم.
+      </p>
+    </div>
+  </article>
+</section>
+
     
     <!-- أحدث المقالات -->
     <section id="latest" class="bg-fog py-8">
       <div class="max-w-6xl mx-auto px-3">
         <h3 class="text-lg font-semibold mb-4">أحدث المقالات</h3>
         <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <article class="card bg-white rounded-2xl shadow-soft overflow-hidden" data-section="اقتصاد" data-title="تحولات الاقتصاد العالمي">
-            <img src="https://placehold.co/800x420" class="w-full h-40 object-cover" alt="" />
+
+          <article class="card bg-white rounded-2xl shadow-soft overflow-hidden" data-section="عام" data-title="استكشاف الزيوت العطرية">
+            <img src="oil.png" class="w-full h-40 object-cover" alt="" />
             <div class="p-4">
-              <div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="inline-block w-2 h-2 bg-amberish rounded-full"></span>اقتصاد</div>
-              <h4 class="font-semibold">تحولات الاقتصاد العالمي</h4>
-              <p class="text-sm text-slate-600 mt-1 line-clamp-2">لمحة سريعة عن الاتجاهات المؤثرة…</p>
-              <a href="articl.html" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
+              <div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="inline-block w-2 h-2 bg-amberish rounded-full"></span>عام</div>
+              <h4 class="font-semibold">دراسة الزيوت العطرية</h4>
+              <p class="text-sm text-slate-600 mt-1 line-clamp-2"> طالب في كلية الطب يبلغ من العمر 19 عامًا، شغوف باستكشاف العلوم بمختلف فروعها</p>
+              <a href="articlsExampls/general.html" class="mt-3 inline-flex items-center gap-1 text-primary-900 hover:underline text-sm">اقرأ المزيد →</a>
+
             </div>
           </article>
           <article class="card bg-white rounded-2xl shadow-soft overflow-hidden" data-section="سياسة" data-title="إعادة تشكيل العلاقات">
@@ -151,40 +190,45 @@
     </section>
     
     <!-- حسابات موثّقة (مضمنة بالموقع) -->
-    <section id="verified" class="py-8">
-      <div class="max-w-6xl mx-auto px-3">
-        <h3 class="text-lg font-semibold mb-4">حسابات</h3>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
-          <!-- أحمد علي (موثّق) -->
-          <a href="verified/profile-ahmad.html" class="group rounded-xl overflow-hidden border bg-white hover:shadow transition">
-            <div class="relative">
-              <img src="https://placehold.co/1200x240?text=غلاف" alt="غلاف أحمد علي" class="w-full h-24 object-cover" />
-              <img src="https://placehold.co/80x80?text=أ" alt="أحمد علي" class="absolute -bottom-6 right-3 w-12 h-12 rounded-full border-2 border-white shadow" />
-            </div>
-            <div class="p-3 pt-8 text-sm">
-              <div class="font-semibold flex items-center gap-2">
-                أحمد علي
-                <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-amberish/20 text-amberish">موثّق ✓</span>
-              </div>
-              <div class="text-slate-500 mt-1 line-clamp-1">باحث في العلوم السياسية</div>
-            </div>
-          </a>
-          
-          <!-- حساب عادي (غير موثّق) -->
-          <a href="verified/profile-hassan.html" class="group rounded-xl overflow-hidden border bg-white hover:shadow transition">
-            <div class="relative">
-              <img src="https://placehold.co/1200x240?text=غلاف" alt="غلاف حسن كامل" class="w-full h-24 object-cover" />
-              <img src="https://placehold.co/80x80?text=ح" alt="حسن كامل" class="absolute -bottom-6 right-3 w-12 h-12 rounded-full border-2 border-white shadow" />
-            </div>
-            <div class="p-3 pt-8 text-sm">
-              <div class="font-semibold flex items-center gap-2">
-                حسن كامل
-                <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">غير موثّق</span>
-              </div>
-              <div class="text-slate-500 mt-1 line-clamp-1">كاتب مستقل</div>
-            </div>
-          </a>
+
+<section id="verified" class="py-8">
+  <div class="max-w-6xl mx-auto px-3">
+    <h3 class="text-lg font-semibold mb-4">حسابات</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
+      <!-- أحمد علي (موثّق) -->
+      <a href="personalPages/ahmad.html" class="group rounded-xl overflow-hidden border bg-white hover:shadow transition">
+        <div class="relative">
+          <img src="https://placehold.co/1200x240?text=غلاف" alt="غلاف أحمد علي" class="w-full h-24 object-cover" />
+          <img src="https://placehold.co/80x80?text=أ" alt="أحمد علي" class="absolute -bottom-6 right-3 w-12 h-12 rounded-full border-2 border-white shadow" />
         </div>
+        <div class="p-3 pt-8 text-sm">
+          <div class="font-semibold flex items-center gap-2">
+            أحمد علي
+            <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-amberish/20 text-amberish">موثّق ✓</span>
+          </div>
+          <div class="text-slate-500 mt-1 line-clamp-1">باحث في العلوم السياسية</div>
+        </div>
+      </a>
+      
+      <!-- حساب عادي (غير موثّق) -->
+      <a href="personalPages/prPage.html" class="group rounded-xl overflow-hidden border bg-white hover:shadow transition">
+        <div class="relative">
+          <img src="https://placehold.co/1200x240?text=غلاف" alt="غلاف حسن كامل" class="w-full h-24 object-cover" />
+          <img src="https://placehold.co/80x80?text=ح" alt="حسن كامل" class="absolute -bottom-6 right-3 w-12 h-12 rounded-full border-2 border-white shadow" />
+        </div>
+        <div class="p-3 pt-8 text-sm">
+          <div class="font-semibold flex items-center gap-2">
+            حسن كامل
+            <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">غير موثّق</span>
+          </div>
+          <div class="text-slate-500 mt-1 line-clamp-1">كاتب مستقل</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+        </div>
+
       </div>
     </section>
     
