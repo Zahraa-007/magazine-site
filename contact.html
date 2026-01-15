@@ -1,111 +1,2545 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تواصل معنا</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { 50: '#f8f4ec', 900: '#07234a' },
-            skyish: '#5ea3cc',
-            amberish: '#eba337',
-            vermilion: '#d25227',
-            fog: '#f6f7f9'
-          },
-          fontFamily: {
-            arabic: ['"DG Modal3at"', 'Tahoma', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial']
-          },
-          boxShadow: { soft: '0 8px 24px -10px rgb(0 0 0 / 0.18)' }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - مجلة الفكر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
         }
-      }
-    }
-  </script>
-  <style>
-    html {
-      scroll-behavior: smooth
-    }
-  </style>
-  
+        
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .merriweather-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: var(--hg-blue);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        .btn-fancy {
+            background-color: #eba337;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .btn-fancy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ================= NEW HEADER STYLES ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* FIRST ROW (ICONS + TITLE + LOGO) */
+        .top-header {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .center-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        /* SEARCH ICON */
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        /* MENU ICON */
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SECOND ROW – ARABIC CATEGORIES UNDER TITLE */
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        /* ================= DRAWER ================= */
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #467ca2; }
+        .dot-orange { background: #EBA337; }
+
+        /* ================= SEARCH BAR ================= */
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #0b2344;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= NEW FOOTER STYLES ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        /* Brand section */
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* THREE COLUMNS */
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        /* Column styling - FIXED ALIGNMENT */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center; /* Center align items in mobile */
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+        }
+        
+        /* EXACTLY LIKE SPECIAL EDITIONS BUTTON STYLES */
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+            transition: all 0.3s ease; /* Added for smoother hover effect */
+        }
+        
+        /* Hover effect - SAME AS SPECIAL EDITIONS - MODIFIED: REMOVED DOT */
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15); /* Increased opacity for better visibility */
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2); /* Added subtle glow effect */
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bottom copyright */
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* Tablet adjustments - IMPORTANT: FIXED ALIGNMENT FOR DESKTOP */
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 40px 60px;
+                max-height: none;
+            }
+            
+            .brand {
+                text-align: right;
+                width: 25%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align to right */
+            }
+            
+            .brand-title {
+                justify-content: flex-end;
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+            }
+            
+            .brand-title img {
+                width: 55px;
+                height: 55px;
+            }
+            
+            /* FIXED COLUMNS ALIGNMENT */
+            .columns-row {
+                width: 45%;
+                margin-bottom: 0;
+                gap: 20px;
+                display: flex;
+                align-items: flex-start; /* Align columns at top */
+                justify-content: space-between;
+            }
+            
+            .footer-column {
+                flex: 1;
+                text-align: right; /* Right align in desktop */
+                align-items: flex-end; /* Align items to right */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 16px;
+                text-align: right; /* Right align in desktop */
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            
+            .footer-item {
+                font-size: 14px;
+                margin: 5px 0;
+                padding: 10px 8px;
+                text-align: right; /* Right align in desktop */
+                width: 100%; /* Ensure full width */
+            }
+            
+            /* KEY CHANGE: ALIGN SUBSCRIBE SECTION PROPERLY */
+            .subscribe-section {
+                width: 30%;
+                text-align: right;
+                padding-top: 0;
+                border-top: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align entire section to the right */
+                margin-right: 20px;
+            }
+            
+            /* KEY CHANGE: ALIGN TITLE WITH SUBSCRIPTION BAR */
+            .subscribe-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+                padding-right: 0; /* Remove any padding that might cause misalignment */
+                align-self: flex-end; /* Ensure it aligns with the container */
+            }
+            
+            /* KEY CHANGE: ALIGN CONTAINER WITH TITLE */
+            .subscribe-container {
+                justify-content: flex-end; /* Align to right */
+                width: 100%;
+                max-width: 100%; /* Ensure it takes full width of parent */
+                padding-right: 0; /* Remove any padding */
+            }
+            
+            .subscribe-input {
+                height: 38px;
+                font-size: 14px;
+                max-width: 220px; /* Same as original */
+            }
+            
+            .subscribe-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .copyright {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* For very small screens */
+        @media (max-width: 360px) {
+            .columns-row {
+                gap: 8px;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 12px;
+            }
+            
+            .footer-item {
+                font-size: 11px;
+                padding: 6px 3px;
+            }
+            
+            .subscribe-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subscribe-input, .subscribe-button {
+                width: 100%;
+            }
+        }
+
+        /* Mobile responsive for header */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+        }
+
+        /* ================= NEW CONTACT HERO STYLES ================= */
+        .contact-hero {
+            background: linear-gradient(135deg, #0b2344 0%, #07234a 100%);
+            border-radius: 25px;
+            padding: 70px 40px;
+            margin: 30px auto;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,40 50,50 T100,50" stroke="rgba(235,163,55,0.1)" stroke-width="2" fill="none"/><path d="M0,30 Q25,20 50,30 T100,30" stroke="rgba(255,255,255,0.05)" stroke-width="2" fill="none"/><path d="M0,70 Q25,60 50,70 T100,70" stroke="rgba(255,255,255,0.05)" stroke-width="2" fill="none"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .contact-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .contact-hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #f29c1f, #ffcc80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            color: #e6f2ff;
+        }
+        
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-icon-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .contact-icon-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #f29c1f;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(242, 156, 31, 0.3);
+        }
+        
+        .contact-icon-item:hover .contact-icon-circle {
+            background: rgba(242, 156, 31, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(242, 156, 31, 0.3);
+        }
+        
+        .contact-icon-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        /* Contact Grid Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-form-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-form-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0b2344;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        
+        .contact-form-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: right;
+            line-height: 1.5;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 8px;
+            text-align: right;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            color: #333;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+            text-align: right;
+            direction: rtl;
+        }
+        
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #eba337;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230b2344' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 20px center;
+            background-size: 16px;
+            padding-left: 50px;
+        }
+        
+        .form-button {
+            background: #eba337;
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .form-button:hover {
+            background: #e68a1a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(235, 163, 55, 0.3);
+        }
+        
+        .form-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .form-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-message.success {
+            background: rgba(46, 204, 113, 0.1);
+            color: #27ae60;
+            border: 1px solid #27ae60;
+        }
+        
+        .form-message.error {
+            background: rgba(231, 76, 60, 0.1);
+            color: #c0392b;
+            border: 1px solid #c0392b;
+        }
+        
+        /* Contact Info Section */
+        .contact-info-section {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-info-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-info-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0b2344;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+        
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .contact-info-card {
+            background: #f8f4ec;
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-align: right;
+        }
+        
+        .contact-info-card:hover {
+            background: white;
+            border-color: #eba337;
+            transform: translateX(-10px);
+            box-shadow: 0 10px 25px rgba(235, 163, 55, 0.15);
+        }
+        
+        .contact-info-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(235, 163, 55, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #eba337;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-info-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0b2344;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info-content {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .contact-info-content a {
+            color: #eba337;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-content a:hover {
+            color: #e68a1a;
+            text-decoration: underline;
+        }
+        
+        /* Office Hours */
+        .office-hours {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+        
+        .office-hours-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b2344;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        
+        .hours-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.95rem;
+        }
+        
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            color: #0b2344;
+            font-weight: 600;
+        }
+        
+        .time {
+            color: #555;
+        }
+        
+        /* Social Media Links */
+        .social-media {
+            margin-top: 30px;
+        }
+        
+        .social-media-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b2344;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f8f4ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b2344;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background: #eba337;
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+        }
+        
+        .faq-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0b2344;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .faq-item {
+            background: #f8f4ec;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b2344;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: rgba(235, 163, 55, 0.1);
+        }
+        
+        .faq-icon {
+            color: #eba337;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px 20px;
+            max-height: 500px;
+        }
+        
+        /* ================= NEW SOCIAL MEDIA SECTION ================= */
+        .social-section {
+            background: linear-gradient(135deg, #f8f4ec 0%, #fff 100%);
+            border-radius: 25px;
+            padding: 60px 40px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            max-width: 1200px;
+            border: 1px solid rgba(235, 163, 55, 0.1);
+        }
+        
+        .social-section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0b2344;
+            margin-bottom: 10px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .social-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #f29c1f, #eba337);
+            border-radius: 2px;
+        }
+        
+        .social-section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .social-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Instagram Card */
+        .instagram-card:hover {
+            border-color: #E4405F;
+            background: linear-gradient(145deg, #fff, #fff8f9);
+        }
+        
+        /* Facebook Card */
+        .facebook-card:hover {
+            border-color: #1877F2;
+            background: linear-gradient(145deg, #fff, #f0f8ff);
+        }
+        
+        /* LinkedIn Card */
+        .linkedin-card:hover {
+            border-color: #0A66C2;
+            background: linear-gradient(145deg, #fff, #f0f7ff);
+        }
+        
+        .social-card-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .social-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-card:hover .social-icon-wrapper {
+            transform: scale(1.1);
+        }
+        
+        .instagram-icon {
+            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+            color: white;
+        }
+        
+        .facebook-icon {
+            background: #1877F2;
+            color: white;
+        }
+        
+        .linkedin-icon {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .social-card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0b2344;
+            margin-bottom: 5px;
+        }
+        
+        .social-card-subtitle {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .social-card-content {
+            margin-bottom: 25px;
+        }
+        
+        .social-card-content p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .social-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0b2344;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            text-decoration: none;
+        }
+        
+        .social-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .instagram-button {
+            background: linear-gradient(45deg, #F58529, #DD2A7B);
+            color: white;
+        }
+        
+        .facebook-button {
+            background: #1877F2;
+            color: white;
+        }
+        
+        .linkedin-button {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .social-button i {
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: 40px 20px;
+            }
+            
+            .contact-hero-title {
+                font-size: 2rem;
+            }
+            
+            .contact-hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .contact-icons {
+                gap: 20px;
+            }
+            
+            .contact-icon-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .contact-icon-text {
+                font-size: 0.9rem;
+            }
+            
+            .contact-form-section, .contact-info-section {
+                padding: 30px 20px;
+            }
+            
+            .contact-form-title, .contact-info-title {
+                font-size: 1.5rem;
+            }
+            
+            .faq-section, .social-section {
+                padding: 30px 20px;
+            }
+            
+            .faq-title, .social-section-title {
+                font-size: 1.5rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-card {
+                padding: 25px;
+            }
+            
+            .social-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .social-card-title {
+                font-size: 1.3rem;
+            }
+            
+            .social-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-primary-50 text-slate-900 font-arabic">
-  
-  <div class="bg-primary-900 text-white text-sm">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-3 py-2">
-      <div class="flex items-center gap-2"><span class="inline-block w-1.5 h-1.5 rounded-full bg-amberish"></span><span>IYR</span></div>
-      <div class="flex items-center gap-2">
-        <a href="index.html" class="underline text-white/90">الرئيسية</a>
-      </div>
-    </div>
-  </div>
-  <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
-    <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between">
-      <a href="index.html#home" class="flex items-center gap-3">
-        <img src="logo.png" alt="شعار الموقع" width="70" height="auto">
-        <span class="text-base font-semibold">IRAQI YOURTH RESEARCH</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-5 text-sm">
-        <a href="sections/index.html" class="hover:text-primary-900">الأقسام الفكرية</a>
-        <a href="verified/index.html" class="hover:text-primary-900">الموثقون</a>
-        <a href="about.html" class="hover:text-primary-900">عنّا</a>
-        <a href="theses.html" class="hover:text-primary-900">رسائل الماجستير</a>
-        <a href="special_issues.html" class="hover:text-primary-900">الاصدارات الخاصة</a>
-      </nav>
-      <a href="search.html" class="text-sm bg-fog px-3 py-2 rounded-lg">بحث</a>
-    </div>
-  </header>
-  
-  <main class="max-w-screen-md mx-auto px-3 py-8 space-y-4">
-    <h1 class="text-xl font-bold text-primary-900">تواصل معنا</h1>
-    <form class="grid gap-3" onsubmit="event.preventDefault(); alert('تم الإرسال');">
-      <input class="rounded-lg px-3 py-2 border" placeholder="الاسم" />
-      <input type="email" class="rounded-lg px-3 py-2 border" placeholder="البريد" />
-      <textarea rows="6" class="rounded-lg px-3 py-2 border" placeholder="رسالتك"></textarea>
-      <button type="submit" class="rounded-lg bg-primary-900 text-white px-4 py-2">إرسال</button>
-    </form>
-    <div class="text-sm">بريد رسمي: <a href="mailto:info@example.com" class="text-skyish hover:underline">info@example.com</a></div>
-    <div class="text-sm">سوشيال: <a href="#" class="text-primary-900 hover:underline">X</a> • <a href="#" class="text-primary-900 hover:underline">Facebook</a></div>
-  </main>
-  
-  <footer class="bg-primary-900 text-white mt-12">
-    <div class="max-w-6xl mx-auto px-3 py-6 grid md:grid-cols-3 gap-6 text-sm">
-      <div>
-        <div class="flex items-center gap-2 mb-2">
-          <img src="https://placehold.co/28x28/07234a/f8f4ec?text=لو" class="rounded-full ring-2 ring-white/15" alt="logo" />
-          <span class="font-semibold">مجلة الفكر</span>
-        </div>
-        <p class="text-white/80">© <span id="y"></span></p>
-      </div>
-      <div>
-        <div class="font-semibold mb-2">روابط</div>
-        <ul class="space-y-2">
-          <li><a class="hover:underline" href="sections/index.html">الأقسام</a></li>
-          <li><a class="hover:underline" href="theses.html">رسائل الماجستير</a></li>
-          <li><a class="hover:underline" href="about.html">عنّا</a></li>
-          <li><a class="hover:underline" href="special_issues.html">الاصدارات الخاصة</a></li>
-          <li><a class="hover:underline" href="contact.html">تواصل معنا</a></li>
-          <li><a class="hover:underline" href="verified/index.html">الحسابات الموثّقة</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="font-semibold mb-2">اشترك</div>
-        <form class="flex gap-2 mt-2" onsubmit="event.preventDefault();alert('تم الاشتراك بنجاح');">
-          <input type="email" placeholder="بريدك" class="w-full rounded-lg px-3 py-2 text-slate-900" />
-          <button class="bg-amberish hover:opacity-90 rounded-lg px-4">إرسال</button>
-        </form>
-      </div>
-    </div>
-  </footer>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-  
-</body>
+<body class="bg-[#fffdf6]">
+    
+    <!-- NEW HEADER (From Special Issues) -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
 
+            <!-- TITLE + LOGO (NOT CLICKABLE) -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="special-editions.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>
+            <a href="business-management.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sciences.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="thought-society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+            <a href="contact.html" class="item">اتصل بنا <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث هنا..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('verified-accounts.html')">الحسابات الموثقة</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                            <li onclick="navigateTo('contact.html')"><span class="dot-orange"></span>اتصل بنا</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN CONTENT - CONTACT US PAGE -->
+    <main class="main-container px-4 sm:px-8 py-8">
+        
+        <!-- New Hero Section -->
+        <section class="contact-hero">
+            <div class="contact-hero-content">
+                <h1 class="contact-hero-title">تواصل معنا</h1>
+                <p class="contact-hero-subtitle">
+                    نحن هنا لمساعدتك والإجابة على جميع استفساراتك. فريق مجلة الأبحاث العراقية جاهز للتواصل معكم عبر القنوات المختلفة. سواء كان لديك استفسار بحثي، اقتراح، أو ترغب في التعاون معنا.
+                </p>
+                <div class="contact-icons">
+                    <div class="contact-icon-item" onclick="scrollToSection('contactForm')">
+                        <div class="contact-icon-circle">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span class="contact-icon-text">أرسل رسالة</span>
+                    </div>
+                    <div class="contact-icon-item" onclick="scrollToSection('contactInfo')">
+                        <div class="contact-icon-circle">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <span class="contact-icon-text">اتصل بنا</span>
+                    </div>
+                    <div class="contact-icon-item" onclick="scrollToSection('socialMediaSection')">
+                        <div class="contact-icon-circle">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <span class="contact-icon-text">وسائل التواصل</span>
+                    </div>
+                    <div class="contact-icon-item" onclick="scrollToSection('faqSection')">
+                        <div class="contact-icon-circle">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <span class="contact-icon-text">أسئلة شائعة</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <section class="contact-form-section" id="contactForm">
+                <h2 class="contact-form-title">أرسل رسالة</h2>
+                <p class="contact-form-subtitle">
+                    املأ النموذج أدناه وسنقوم بالرد عليك في أقرب وقت ممكن. نحن نقدر كل رسالة تتلقاها ونعمل على الرد خلال 24-48 ساعة.
+                </p>
+                
+                <form class="contact-form" id="contactFormElement" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label class="form-label">الاسم الكامل <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني <span class="required">*</span></label>
+                        <input type="email" class="form-input" id="email" name="email" required placeholder="example@domain.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">رقم الهاتف (اختياري)</label>
+                        <input type="tel" class="form-input" id="phone" name="phone" placeholder="+964 XXX XXX XXXX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">الموضوع <span class="required">*</span></label>
+                        <select class="form-select" id="subject" name="subject" required>
+                            <option value="">اختر موضوع الرسالة</option>
+                            <option value="general">استفسار عام</option>
+                            <option value="research">استفسار بحثي</option>
+                            <option value="publishing">النشر في المجلة</option>
+                            <option value="partnership">شراكة وتعاون</option>
+                            <option value="technical">دعم فني</option>
+                            <option value="other">موضوع آخر</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">الرسالة <span class="required">*</span></label>
+                        <textarea class="form-textarea" id="message" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+                    </div>
+                    
+                    <div class="form-message" id="formMessage"></div>
+                    
+                    <button type="submit" class="form-button" id="submitButton">
+                        <span id="submitText">إرسال الرسالة</span>
+                        <span id="loadingText" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> جاري الإرسال...
+                        </span>
+                    </button>
+                </form>
+            </section>
+            
+            <!-- Contact Information -->
+            <section class="contact-info-section" id="contactInfo">
+                <h2 class="contact-info-title">معلومات الاتصال</h2>
+                
+                <div class="contact-info-grid">
+                    <!-- Address Card -->
+                    <div class="contact-info-card" onclick="copyToClipboard('المقر الرئيسي: بغداد، المنصور، شارع الجامعة')">
+                        <div class="contact-info-header">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="contact-info-card-title">العنوان</h3>
+                            </div>
+                        </div>
+                        <div class="contact-info-content">
+                            <p><strong>المقر الرئيسي:</strong> بغداد، المنصور، شارع الجامعة</p>
+                            <p><strong>المكتب الإقليمي:</strong> أربيل، مدينة المعارض</p>
+                            <p><strong>صندوق البريد:</strong> 12345 بغداد، العراق</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone & Email Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-info-header">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="contact-info-card-title">الهاتف والبريد</h3>
+                            </div>
+                        </div>
+                        <div class="contact-info-content">
+                            <p><strong>الهاتف الرئيسي:</strong> <a href="tel:+9647701234567">+964 770 123 4567</a></p>
+                            <p><strong>الفاكس:</strong> +964 1 123 4567</p>
+                            <p><strong>البريد العام:</strong> <a href="mailto:info@iraqischolars.edu.iq">info@iraqischolars.edu.iq</a></p>
+                            <p><strong>البريد البحثي:</strong> <a href="mailto:research@iraqischolars.edu.iq">research@iraqischolars.edu.iq</a></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Office Hours -->
+                    <div class="office-hours">
+                        <h3 class="office-hours-title">ساعات العمل</h3>
+                        <ul class="hours-list">
+                            <li class="hours-item">
+                                <span class="day">الأحد - الخميس</span>
+                                <span class="time">٨:٠٠ صباحاً - ٤:٠٠ مساءً</span>
+                            </li>
+                            <li class="hours-item">
+                                <span class="day">الجمعة</span>
+                                <span class="time">٩:٠٠ صباحاً - ١:٠٠ ظهراً</span>
+                            </li>
+                            <li class="hours-item">
+                                <span class="day">السبت</span>
+                                <span class="time">إجازة</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="social-media">
+                        <h3 class="social-media-title">تابعنا على وسائل التواصل</h3>
+                        <div class="social-links">
+                            <a href="https://twitter.com" class="social-link" target="_blank" title="تويتر">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://facebook.com" class="social-link" target="_blank" title="فيسبوك">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://linkedin.com" class="social-link" target="_blank" title="لينكدإن">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://instagram.com" class="social-link" target="_blank" title="إنستغرام">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com" class="social-link" target="_blank" title="يوتيوب">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://telegram.org" class="social-link" target="_blank" title="تلغرام">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- NEW Social Media Section -->
+        <section class="social-section" id="socialMediaSection">
+            <h2 class="social-section-title">تواصل معنا على وسائل التواصل الاجتماعي</h2>
+            <p class="social-section-subtitle">
+                تابع آخر أخبارنا وأبحاثنا وفعالياتنا على منصات التواصل الاجتماعي. نحن نتفاعل مع متابعينا يومياً ونشارك محتوى حصرياً على هذه المنصات.
+            </p>
+            
+            <div class="social-grid">
+                
+                <!-- Instagram Card -->
+                <div class="social-card instagram-card">
+                    <div class="social-card-header">
+                        <div class="social-icon-wrapper instagram-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="social-card-title">إنستغرام</h3>
+                            <p class="social-card-subtitle">صور وفيديوهات حصرية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-card-content">
+                        <p>تابعنا على إنستغرام لمشاهدة:</p>
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>خلف الكواليس لأبحاثنا</li>
+                            <li>مقابلات مع الباحثين</li>
+                            <li>فعاليات وأنشطة المجلة</li>
+                            <li>نصائح بحثية يومية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="social-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="instagramFollowers">24.5K</span>
+                            <span class="stat-label">متابع</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1.2K</span>
+                            <span class="stat-label">منشور</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">تفاعل</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://instagram.com/iraqischolars" class="social-button instagram-button" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        تابعنا على إنستغرام
+                    </a>
+                </div>
+                
+                <!-- Facebook Card -->
+                <div class="social-card facebook-card">
+                    <div class="social-card-header">
+                        <div class="social-icon-wrapper facebook-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div>
+                            <h3 class="social-card-title">فيسبوك</h3>
+                            <p class="social-card-subtitle">مجتمع تفاعلي كبير</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-card-content">
+                        <p>انضم إلى مجتمعنا على فيسبوك للاستفادة من:</p>
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>مناقشات علمية هادفة</li>
+                            <li>بث مباشر للندوات والمحاضرات</li>
+                            <li>مسابقات وجوائز دورية</li>
+                            <li>مجموعات متخصصة للباحثين</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="social-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="facebookLikes">42.8K</span>
+                            <span class="stat-label">إعجاب</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3.5K</span>
+                            <span class="stat-label">مشاركة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4.9</span>
+                            <span class="stat-label">تقييم</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://facebook.com/iraqischolars" class="social-button facebook-button" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                        تابعنا على فيسبوك
+                    </a>
+                </div>
+                
+                <!-- LinkedIn Card -->
+                <div class="social-card linkedin-card">
+                    <div class="social-card-header">
+                        <div class="social-icon-wrapper linkedin-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div>
+                            <h3 class="social-card-title">لينكدإن</h3>
+                            <p class="social-card-subtitle">شبكة احترافية للباحثين</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-card-content">
+                        <p>تواصل معنا على لينكدإن للحصول على:</p>
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>فرص تعاون بحثي</li>
+                            <li>وظائف وشواغر أكاديمية</li>
+                            <li>أوراق بحثية كاملة</li>
+                            <li>تواصل مع محكمين وباحثين</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="social-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="linkedinConnections">18.3K</span>
+                            <span class="stat-label">متابع</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">950+</span>
+                            <span class="stat-label">باحث</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">120+</span>
+                            <span class="stat-label">مؤسسة</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://linkedin.com/company/iraqischolars" class="social-button linkedin-button" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                        تابعنا على لينكدإن
+                    </a>
+                </div>
+                
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="inline-flex flex-col items-center gap-4">
+                    <p class="text-lg font-semibold text-gray-700">تابعنا أيضاً على:</p>
+                    <div class="flex gap-6">
+                        <a href="https://twitter.com/iraqischolars" class="text-2xl text-[#1DA1F2] hover:text-[#0d8bd9] transition-colors" target="_blank" title="تويتر">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://youtube.com/iraqischolars" class="text-2xl text-[#FF0000] hover:text-[#cc0000] transition-colors" target="_blank" title="يوتيوب">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://t.me/iraqischolars" class="text-2xl text-[#0088cc] hover:text-[#006699] transition-colors" target="_blank" title="تلغرام">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/iraqischolars" class="text-2xl text-[#25D366] hover:text-[#1da851] transition-colors" target="_blank" title="واتساب">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faqSection">
+            <h2 class="faq-title">الأسئلة الشائعة</h2>
+            <div class="faq-grid">
+                
+                <!-- FAQ Item 1 -->
+                <div class="faq-item" onclick="toggleFAQ(1)">
+                    <div class="faq-question">
+                        <span>كيف يمكنني نشر بحثي في مجلتكم؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لنشر بحثك في مجلتنا، يرجى اتباع الخطوات التالية:</p>
+                        <ol>
+                            <li>قم بزيارة صفحة "كيف تنشر" على موقعنا</li>
+                            <li>اطلع على شروط النشر ودليل المؤلفين</li>
+                            <li>أرسل بحثك عبر النظام الإلكتروني للنشر</li>
+                            <li>سيتم مراجعة البحث من قبل لجنة التحكيم</li>
+                            <li>ستتلقى رداً خلال 4-6 أسابيع من تاريخ الإرسال</li>
+                        </ol>
+                        <p>للمساعدة الفورية، يمكنك التواصل عبر البريد الإلكتروني research@iraqischolars.edu.iq</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item" onclick="toggleFAQ(2)">
+                    <div class="faq-question">
+                        <span>هل المجلة معتمدة دولياً؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، مجلة الأبحاث العراقية معتمدة من قبل:</p>
+                        <ul>
+                            <li>وزارة التعليم العالي والبحث العلمي العراقية</li>
+                            <li>قاعدة بيانات سكوبس (Scopus) للمجلات العلمية</li>
+                            <li>مؤشر الاستشهادات العربي (Arab Citation Index)</li>
+                            <li>جوجل سكولار (Google Scholar)</li>
+                        </ul>
+                        <p>كما نحصل على تقييمات منتظمة لضمان جودة الأبحاث المنشورة لدينا.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item" onclick="toggleFAQ(3)">
+                    <div class="faq-question">
+                        <span>ما هي مدة الرد على الاستفسارات؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نحرص على الرد على جميع الاستفسارات في أقرب وقت ممكن:</p>
+                        <ul>
+                            <li><strong>الاستفسارات العامة:</strong> خلال 24 ساعة عمل</li>
+                            <li><strong>الاستفسارات البحثية:</strong> خلال 48 ساعة عمل</li>
+                            <li><strong>قضايا النشر:</strong> خلال 72 ساعة عمل</li>
+                            <li><strong>الشكاوى:</strong> خلال 5 أيام عمل</li>
+                        </ul>
+                        <p>في حالات الطوارئ، يمكنك الاتصال بالرقم المباشر +964 770 123 4567</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item" onclick="toggleFAQ(4)">
+                    <div class="faq-question">
+                        <span>هل يمكنني زيارة مقر المجلة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكنكم زيارة مقرنا الرئيسي في بغداد خلال ساعات العمل الرسمية. ننصح بالتالي:</p>
+                        <ul>
+                            <li>حجز موعد مسبق عبر البريد الإلكتروني أو الهاتف</li>
+                            <li>إحضار هوية رسمية للدخول</li>
+                            <li>الوصول قبل الموعد بـ 10 دقائق على الأقل</li>
+                            <li>في حال كانت الزيارة جماعية (أكثر من 5 أشخاص)، يرجى التنسيق قبل أسبوع على الأقل</li>
+                        </ul>
+                        <p>نرحب بالباحثين والطلاب والمهتمين بالعلوم لزيارتنا والتعرف على أعمالنا.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item" onclick="toggleFAQ(5)">
+                    <div class="faq-question">
+                        <span>كيف يمكنني التعاون مع المجلة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نرحب بالتعاون مع المؤسسات والأفراد في المجالات التالية:</p>
+                        <ul>
+                            <li><strong>البحث العلمي:</strong> شراكات بحثية ومشاريع مشتركة</li>
+                            <li><strong>الترجمة:</strong> ترجمة الأبحاث إلى/من العربية</li>
+                            <li><strong>المراجعة:</strong> الانضمام إلى هيئة التحكيم</li>
+                            <li><strong>الفعاليات:</strong> تنظيم مؤتمرات وورش عمل مشتركة</li>
+                            <li><strong>الدعم:</strong> رعاية الأبحاث والمبادرات العلمية</li>
+                        </ul>
+                        <p>للتقدم للتعاون، يرجى إرسال سيرتكم الذاتية ومقترح التعاون إلى partnership@iraqischolars.edu.iq</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- NEW FOOTER (From Special Issues) -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
+                </div>
+            </div>
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('contact.html')">اتصل بنا</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
+    
+    <script>
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
+            
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            if (page === 'contact.html') {
+                // Already on contact page
+                return;
+            }
+            alert(`سيتم الانتقال إلى: ${page}`);
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                alert(`جارٍ البحث عن: "${searchTerm}"`);
+            } else {
+                alert("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                alert(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // ================= CONTACT PAGE FUNCTIONS =================
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            // Get form elements
+            const form = document.getElementById('contactFormElement');
+            const submitButton = document.getElementById('submitButton');
+            const submitText = document.getElementById('submitText');
+            const loadingText = document.getElementById('loadingText');
+            const formMessage = document.getElementById('formMessage');
+            
+            // Validate form
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            
+            if (!fullName || !email || !subject || !message) {
+                showFormMessage('يرجى ملء جميع الحقول الإلزامية', 'error');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showFormMessage('يرجى إدخال بريد إلكتروني صحيح', 'error');
+                return;
+            }
+            
+            // Show loading state
+            submitText.style.display = 'none';
+            loadingText.style.display = 'inline';
+            submitButton.disabled = true;
+            
+            // Simulate form submission (in real app, this would be an AJAX request)
+            setTimeout(() => {
+                // Reset form
+                form.reset();
+                
+                // Show success message
+                showFormMessage('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت ممكن.', 'success');
+                
+                // Reset button state
+                submitText.style.display = 'inline';
+                loadingText.style.display = 'none';
+                submitButton.disabled = false;
+                
+                // Scroll to message
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 2000);
+        }
+
+        function showFormMessage(text, type) {
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = text;
+            formMessage.className = 'form-message ' + type;
+            formMessage.style.display = 'block';
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 10000);
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function copyToClipboard(text) {
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            
+            // Select and copy the text
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove the temporary element
+            document.body.removeChild(textarea);
+            
+            // Show feedback
+            alert('تم نسخ النص: ' + text);
+        }
+
+        function toggleFAQ(id) {
+            const faqItem = document.querySelectorAll('.faq-item')[id - 1];
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // If the clicked item wasn't active, open it
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Social Media Stats Animation
+        function animateSocialStats() {
+            const instagramFollowers = document.getElementById('instagramFollowers');
+            const facebookLikes = document.getElementById('facebookLikes');
+            const linkedinConnections = document.getElementById('linkedinConnections');
+            
+            // Animate Instagram followers
+            let instagramCount = 0;
+            const instagramTarget = 24500;
+            const instagramInterval = setInterval(() => {
+                instagramCount += 245;
+                if (instagramCount >= instagramTarget) {
+                    instagramCount = instagramTarget;
+                    clearInterval(instagramInterval);
+                }
+                instagramFollowers.textContent = (instagramCount / 1000).toFixed(1) + 'K';
+            }, 20);
+            
+            // Animate Facebook likes
+            let facebookCount = 0;
+            const facebookTarget = 42800;
+            const facebookInterval = setInterval(() => {
+                facebookCount += 428;
+                if (facebookCount >= facebookTarget) {
+                    facebookCount = facebookTarget;
+                    clearInterval(facebookInterval);
+                }
+                facebookLikes.textContent = (facebookCount / 1000).toFixed(1) + 'K';
+            }, 20);
+            
+            // Animate LinkedIn connections
+            let linkedinCount = 0;
+            const linkedinTarget = 18300;
+            const linkedinInterval = setInterval(() => {
+                linkedinCount += 183;
+                if (linkedinCount >= linkedinTarget) {
+                    linkedinCount = linkedinTarget;
+                    clearInterval(linkedinInterval);
+                }
+                linkedinConnections.textContent = (linkedinCount / 1000).toFixed(1) + 'K';
+            }, 20);
+        }
+
+        // Initialize FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open first FAQ by default
+            toggleFAQ(1);
+            
+            // Animate social media stats when section is visible
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSocialStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            const socialSection = document.getElementById('socialMediaSection');
+            if (socialSection) {
+                observer.observe(socialSection);
+            }
+            
+            // Add click feedback for all buttons
+            document.querySelectorAll('.footer-item, .subscribe-button, .btn-fancy, .form-button, .social-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // Add keyboard support for email inputs
+            document.getElementById('subscribeEmail').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    subscribe();
+                }
+            });
+
+            // Add animation to contact info cards on hover
+            document.querySelectorAll('.contact-info-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Close search when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                const searchContainer = document.getElementById('searchContainer');
+                const searchIcon = document.querySelector('.search-icon');
+                const searchBar = document.querySelector('.search-bar');
+                
+                if (window.innerWidth <= 768 && 
+                    searchContainer.style.display === 'block' && 
+                    !searchIcon.contains(event.target) && 
+                    !searchBar.contains(event.target)) {
+                    searchContainer.style.display = 'none';
+                    document.body.classList.remove('search-open');
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('search-open');
+                }
+            });
+            
+            // Add hover effects to social cards
+            document.querySelectorAll('.social-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+        });
+    </script>
+
+</body>
 </html>

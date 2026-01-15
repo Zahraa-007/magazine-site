@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجلة الفكر - الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .merriweather-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: var(--hg-blue);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        .btn-fancy {
+            background-color: #eba337;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .btn-fancy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ================= NEW HEADER STYLES ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* FIRST ROW (ICONS + TITLE + LOGO) */
+        .top-header {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .center-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        /* SEARCH ICON */
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        /* MENU ICON */
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SECOND ROW – ARABIC CATEGORIES UNDER TITLE */
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        /* ================= DRAWER ================= */
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #467ca2; }
+        .dot-orange { background: #EBA337; }
+
+        /* ================= SEARCH BAR ================= */
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #0b2344;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= NEW FOOTER STYLES ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        /* Brand section */
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* THREE COLUMNS */
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        /* Column styling - FIXED ALIGNMENT */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center; /* Center align items in mobile */
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+        }
+        
+        /* EXACTLY LIKE SPECIAL EDITIONS BUTTON STYLES */
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+            transition: all 0.3s ease; /* Added for smoother hover effect */
+        }
+        
+        /* Hover effect - SAME AS SPECIAL EDITIONS - MODIFIED: REMOVED DOT */
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15); /* Increased opacity for better visibility */
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2); /* Added subtle glow effect */
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bottom copyright */
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* Tablet adjustments - IMPORTANT: FIXED ALIGNMENT FOR DESKTOP */
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 40px 60px;
+                max-height: none;
+            }
+            
+            .brand {
+                text-align: right;
+                width: 25%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align to right */
+            }
+            
+            .brand-title {
+                justify-content: flex-end;
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+            }
+            
+            .brand-title img {
+                width: 55px;
+                height: 55px;
+            }
+            
+            /* FIXED COLUMNS ALIGNMENT */
+            .columns-row {
+                width: 45%;
+                margin-bottom: 0;
+                gap: 20px;
+                display: flex;
+                align-items: flex-start; /* Align columns at top */
+                justify-content: space-between;
+            }
+            
+            .footer-column {
+                flex: 1;
+                text-align: right; /* Right align in desktop */
+                align-items: flex-end; /* Align items to right */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 16px;
+                text-align: right; /* Right align in desktop */
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            
+            .footer-item {
+                font-size: 14px;
+                margin: 5px 0;
+                padding: 10px 8px;
+                text-align: right; /* Right align in desktop */
+                width: 100%; /* Ensure full width */
+            }
+            
+            /* KEY CHANGE: ALIGN SUBSCRIBE SECTION PROPERLY */
+            .subscribe-section {
+                width: 30%;
+                text-align: right;
+                padding-top: 0;
+                border-top: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align entire section to the right */
+                margin-right: 20px;
+            }
+            
+            /* KEY CHANGE: ALIGN TITLE WITH SUBSCRIPTION BAR */
+            .subscribe-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+                padding-right: 0; /* Remove any padding that might cause misalignment */
+                align-self: flex-end; /* Ensure it aligns with the container */
+            }
+            
+            /* KEY CHANGE: ALIGN CONTAINER WITH TITLE */
+            .subscribe-container {
+                justify-content: flex-end; /* Align to right */
+                width: 100%;
+                max-width: 100%; /* Ensure it takes full width of parent */
+                padding-right: 0; /* Remove any padding */
+            }
+            
+            .subscribe-input {
+                height: 38px;
+                font-size: 14px;
+                max-width: 220px; /* Same as original */
+            }
+            
+            .subscribe-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .copyright {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* For very small screens */
+        @media (max-width: 360px) {
+            .columns-row {
+                gap: 8px;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 12px;
+            }
+            
+            .footer-item {
+                font-size: 11px;
+                padding: 6px 3px;
+            }
+            
+            .subscribe-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subscribe-input, .subscribe-button {
+                width: 100%;
+            }
+        }
+
+        /* Mobile responsive for header */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+        }
+
+        /* ================= HOMEPAGE SPECIFIC STYLES ================= */
+        /* Main Article Section */
+        .main-article {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            margin: 30px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            max-width: 1200px;
+            cursor: pointer;
+        }
+        
+        .main-article:hover {
+            transform: translateY(-5px);
+        }
+        
+        .main-article-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            position: relative;
+        }
+        
+        .main-article-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(235, 163, 55, 0.95);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .main-article-content {
+            padding: 40px;
+            position: relative;
+        }
+        
+        .main-article-category {
+            display: inline-block;
+            background: rgba(11, 35, 68, 0.1);
+            color: #0b2344;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .main-article-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #0b2344;
+            line-height: 1.3;
+        }
+        
+        .main-article-excerpt {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            max-width: 900px;
+        }
+        
+        .main-article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .main-article-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .main-author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #eba337;
+        }
+        
+        .main-author-info h4 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #0b2344;
+        }
+        
+        .main-author-info p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .main-article-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .main-stat {
+            text-align: center;
+        }
+        
+        .main-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #eba337;
+            display: block;
+        }
+        
+        .main-stat-label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* Featured Articles Section */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px auto;
+        }
+        
+        .featured-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(235, 163, 55, 0.2);
+        }
+        
+        .featured-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 20px;
+        }
+        
+        .featured-category {
+            display: inline-block;
+            background: rgba(235, 163, 55, 0.1);
+            color: #eba337;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .featured-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #0b2344;
+        }
+        
+        .featured-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .featured-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Interactive Filter Section */
+        .filter-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        
+        .filter-tab {
+            padding: 10px 25px;
+            border-radius: 25px;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .filter-tab.active {
+            background: #eba337;
+            color: white;
+        }
+        
+        .filter-tab:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(235, 163, 55, 0.15);
+            border-color: #eba337;
+        }
+        
+        .article-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .article-content {
+            padding: 20px;
+        }
+        
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #0b2344;
+        }
+        
+        .article-excerpt {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* ================= EVENTS SECTION - SPECIAL DESIGN ================= */
+        .events-section {
+            background: linear-gradient(135deg, #0b2344 0%, #07234a 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 50px auto;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+        }
+        
+        .events-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(235, 163, 55, 0.15) 0%, transparent 70%);
+        }
+        
+        .events-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(235, 163, 55, 0.1) 0%, transparent 70%);
+        }
+        
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .events-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .events-title span {
+            color: #eba337;
+        }
+        
+        .events-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .event-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .event-nav-btn:hover {
+            background: #eba337;
+            transform: scale(1.1);
+        }
+        
+        .events-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .events-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 10px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        
+        .events-slider::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        
+        .event-card {
+            min-width: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #eba337;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .event-card.featured {
+            border: 2px solid #eba337;
+            background: rgba(235, 163, 55, 0.1);
+        }
+        
+        .event-date {
+            background: #eba337;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .event-day {
+            font-size: 2rem;
+            display: block;
+        }
+        
+        .event-month {
+            font-size: 1rem;
+            display: block;
+        }
+        
+        .event-content {
+            padding: 25px;
+        }
+        
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .event-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .event-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .event-detail i {
+            color: #eba337;
+        }
+        
+        .event-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-participants {
+            display: flex;
+            align-items: center;
+        }
+        
+        .participant-avatars {
+            display: flex;
+            margin-right: 10px;
+        }
+        
+        .participant-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #0b2344;
+            margin-right: -10px;
+        }
+        
+        .participant-avatar:first-child {
+            margin-right: 0;
+        }
+        
+        .participant-count {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .event-register-btn {
+            background: #eba337;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .event-register-btn:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+        }
+        
+        /* ================= VERIFIED ACCOUNTS SECTION - SPECIAL DESIGN ================= */
+        .verified-section {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 50px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .verified-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(235, 163, 55, 0.05) 0%, transparent 70%);
+        }
+        
+        .verified-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .verified-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0b2344;
+        }
+        
+        .verified-title span {
+            color: #eba337;
+        }
+        
+        .verified-badge {
+            background: #eba337;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .verified-badge i {
+            font-size: 1.2rem;
+        }
+        
+        .verified-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .verified-card {
+            background: #f8f4ec;
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .verified-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(235, 163, 55, 0.2);
+            border-color: #eba337;
+        }
+        
+        .verified-card.featured {
+            border-color: #eba337;
+            background: linear-gradient(135deg, #f8f4ec 0%, white 100%);
+        }
+        
+        .verified-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: #eba337;
+            border-radius: 0 20px 0 60px;
+            opacity: 0.1;
+        }
+        
+        .verified-header-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .verified-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #eba337;
+        }
+        
+        .verified-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0b2344;
+            margin-bottom: 5px;
+        }
+        
+        .verified-role {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .verified-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .verified-tag {
+            background: rgba(235, 163, 55, 0.1);
+            color: #eba337;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .verified-bio {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .verified-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .verified-stat {
+            text-align: center;
+        }
+        
+        .verified-stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0b2344;
+            display: block;
+        }
+        
+        .verified-stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .verified-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .verified-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 15px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .verified-btn.primary {
+            background: #eba337;
+            color: white;
+        }
+        
+        .verified-btn.primary:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+        }
+        
+        .verified-btn.secondary {
+            background: #f0f0f0;
+            color: #0b2344;
+        }
+        
+        .verified-btn.secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .verified-view-all {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        /* Newsletter Signup */
+        .newsletter-section {
+            background: linear-gradient(135deg, #f29c1f 0%, #eba337 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 50px auto;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            box-shadow: 0 15px 35px rgba(235, 163, 55, 0.3);
+        }
+        
+        .newsletter-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .newsletter-button {
+            background: #0b2344;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-button:hover {
+            background: #07234a;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-article-image {
+                height: 300px;
+            }
+            
+            .main-article-title {
+                font-size: 1.8rem;
+            }
+            
+            .main-article-excerpt {
+                font-size: 1rem;
+            }
+            
+            .main-article-meta {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .main-article-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .events-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .event-card {
+                min-width: 280px;
+            }
+            
+            .verified-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fffdf6]">
+    
+    <!-- NEW HEADER (From Special Issues) -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- TITLE + LOGO (NOT CLICKABLE) -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="special-editions.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>
+            <a href="business-management.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sciences.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="thought-society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث هنا..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('verified-accounts.html')">الحسابات الموثقة</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN CONTENT IN SPECIAL ISSUES STYLE -->
+    <main class="main-container px-4 sm:px-8 py-8">
+        
+        <!-- Main Article Section -->
+        <section class="main-article" onclick="openMainArticle()">
+            <div class="relative">
+                <img src="https://placehold.co/1200x500/07234a/ffffff?text=Main+Research+Article" alt="المقال الرئيسي" class="main-article-image">
+                <div class="main-article-badge">مقال الشهر</div>
+            </div>
+            <div class="main-article-content">
+                <span class="main-article-category">العلوم والتكنولوجيا</span>
+                <h1 class="main-article-title">ثورة الذكاء الاصطناعي في البحث العلمي: كيف يغير الآلة مستقبل الاكتشافات العلمية</h1>
+                <p class="main-article-excerpt">
+                    في السنوات الأخيرة، شهدنا تحولاً جذرياً في طريقة إجراء الأبحاث العلمية بفضل تطور تقنيات الذكاء الاصطناعي. هذا المقال يقدم تحليلاً شاملاً لأحدث التطورات في مجال الذكاء الاصطناعي التطبيقي في الأبحاث العلمية، مع التركيز على كيفية استفادة الباحثين العراقيين من هذه التقنيات المتطورة في مجالات الطب، الهندسة، والعلوم الأساسية. نناقش أيضاً التحديات الأخلاقية والمهنية المرتبطة بهذا التحول الرقمي.
+                </p>
+                
+                <div class="main-article-meta">
+                    <div class="main-article-author">
+                        <img src="https://placehold.co/60x60/eba337/ffffff?text=د.م" alt="صورة المؤلف" class="main-author-avatar">
+                        <div class="main-author-info">
+                            <h4>د. محمد علي حسن</h4>
+                            <p>أستاذ الذكاء الاصطناعي - جامعة بغداد</p>
+                        </div>
+                    </div>
+                    
+                    <div class="main-article-stats">
+                        <div class="main-stat">
+                            <span class="main-stat-number">٤٥</span>
+                            <span class="main-stat-label">دقيقة قراءة</span>
+                        </div>
+                        <div class="main-stat">
+                            <span class="main-stat-number">١٢٥٠</span>
+                            <span class="main-stat-label">مشاهدة</span>
+                        </div>
+                        <div class="main-stat">
+                            <span class="main-stat-number">٨٧</span>
+                            <span class="main-stat-label">تعليق</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Articles Section -->
+        <section>
+            <h2 class="merriweather-font text-2xl font-bold mb-6 text-right border-b-2 border-orange-500 pb-2">مقالات مميزة</h2>
+            <div class="featured-grid">
+                <!-- Featured Article 1 -->
+                <div class="featured-card" onclick="openArticle('featured-1')">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Research+1" alt="مقال بحثي 1" class="featured-image">
+                    <div class="featured-content">
+                        <span class="featured-category">العلوم</span>
+                        <h3 class="featured-title">تأثير التغير المناخي على التنوع البيولوجي في العراق</h3>
+                        <p class="featured-description">دراسة شاملة عن التغيرات البيئية وتأثيرها على الحياة البرية في المناطق العراقية المختلفة.</p>
+                        <div class="featured-meta">
+                            <span>د. أحمد عبدالله</span>
+                            <span>منذ 3 أيام</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Article 2 -->
+                <div class="featured-card" onclick="openArticle('featured-2')">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Research+2" alt="مقال بحثي 2" class="featured-image">
+                    <div class="featured-content">
+                        <span class="featured-category">الفكر والمجتمع</span>
+                        <h3 class="featured-title">دور الشباب في بناء المجتمع المدني</h3>
+                        <p class="featured-description">تحليل لدور الشباب العراقي في تعزيز قيم المجتمع المدني والمواطنة الفاعلة.</p>
+                        <div class="featured-meta">
+                            <span>د. سارة محمد</span>
+                            <span>منذ أسبوع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Article 3 -->
+                <div class="featured-card" onclick="openArticle('featured-3')">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Research+3" alt="مقال بحثي 3" class="featured-image">
+                    <div class="featured-content">
+                        <span class="featured-category">ادارة الاعمال</span>
+                        <h3 class="featured-title">ريادة الأعمال في البيئة العراقية: التحديات والفرص</h3>
+                        <p class="featured-description">دراسة ميدانية عن واقع ريادة الأعمال في العراق وإمكانيات النمو المستقبلية.</p>
+                        <div class="featured-meta">
+                            <span>د. خالد حسن</span>
+                            <span>منذ 5 أيام</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Interactive Filter Section -->
+        <section class="filter-section">
+            <h2 class="merriweather-font text-2xl font-bold mb-4 text-right">تصفح حسب التصنيف</h2>
+            <p class="text-gray-600 text-right mb-6">اختر مجال اهتمامك لاستكشاف المقالات والدراسات المتخصصة</p>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterArticles('all')">الكل</button>
+                <button class="filter-tab" onclick="filterArticles('sciences')">العلوم</button>
+                <button class="filter-tab" onclick="filterArticles('thought-society')">الفكر والمجتمع</button>
+                <button class="filter-tab" onclick="filterArticles('business')">ادارة الاعمال</button>
+                <button class="filter-tab" onclick="filterArticles('technology')">التكنولوجيا</button>
+                <button class="filter-tab" onclick="filterArticles('health')">الصحة</button>
+                <button class="filter-tab" onclick="filterArticles('environment')">البيئة</button>
+            </div>
+            
+            <div id="articlesContainer" class="articles-grid">
+                <!-- Article 1 -->
+                <div class="article-card" data-category="sciences" onclick="openArticle('science-1')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=Science+1" alt="مقال علمي 1" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">التطورات الحديثة في مجال الطاقة المتجددة</h4>
+                        <p class="article-excerpt">مراجعة لأحدث التقنيات في مجال الطاقة الشمسية وطاقة الرياح وتطبيقاتها في العراق.</p>
+                        <div class="article-footer">
+                            <div class="article-author">
+                                <img src="https://placehold.co/30x30/eba337/ffffff?text=د" alt="صورة المؤلف" class="author-avatar">
+                                <span class="author-name">د. علي كاظم</span>
+                            </div>
+                            <span class="article-date">٢٥ مارس ٢٠٢٤</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="article-card" data-category="thought-society" onclick="openArticle('society-1')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=Society+1" alt="مقال مجتمعي 1" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">الهوية الثقافية في عصر العولمة</h4>
+                        <p class="article-excerpt">كيف تحافظ المجتمعات على هويتها الثقافية في ظل العولمة والانفتاح الرقمي.</p>
+                        <div class="article-footer">
+                            <div class="article-author">
+                                <img src="https://placehold.co/30x30/eba337/ffffff?text=د" alt="صورة المؤلف" class="author-avatar">
+                                <span class="author-name">د. منى سعيد</span>
+                            </div>
+                            <span class="article-date">٢٠ مارس ٢٠٢٤</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="article-card" data-category="business" onclick="openArticle('business-1')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=Business+1" alt="مقال أعمال 1" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">استراتيجيات التسويق الرقمي للشركات الناشئة</h4>
+                        <p class="article-excerpt">دليل عملي لرواد الأعمال حول كيفية استخدام المنصات الرقمية لتسويق منتجاتهم.</p>
+                        <div class="article-footer">
+                            <div class="article-author">
+                                <img src="https://placehold.co/30x30/eba337/ffffff?text=م" alt="صورة المؤلف" class="author-avatar">
+                                <span class="author-name">م. حسن علي</span>
+                            </div>
+                            <span class="article-date">١٨ مارس ٢٠٢٤</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 4 -->
+                <div class="article-card" data-category="technology" onclick="openArticle('tech-1')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=Tech+1" alt="مقال تقني 1" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">الذكاء الاصطناعي في تحسين الخدمات الحكومية</h4>
+                        <p class="article-excerpt">كيف يمكن تطبيق تقنيات الذكاء الاصطناعي لتحسين كفاءة الخدمات الحكومية.</p>
+                        <div class="article-footer">
+                            <div class="article-author">
+                                <img src="https://placehold.co/30x30/eba337/ffffff?text=د" alt="صورة المؤلف" class="author-avatar">
+                                <span class="author-name">د. عمر ناصر</span>
+                            </div>
+                            <span class="article-date">١٥ مارس ٢٠٢٤</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Events Section - Special Interactive Design -->
+        <section class="events-section">
+            <div class="events-header">
+                <h2 class="events-title">الفعاليات <span>والأنشطة</span></h2>
+                <div class="events-nav">
+                    <button class="event-nav-btn" onclick="scrollEvents('left')">←</button>
+                    <button class="event-nav-btn" onclick="scrollEvents('right')">→</button>
+                </div>
+            </div>
+            
+            <div class="events-container">
+                <div class="events-slider" id="eventsSlider">
+                    <!-- Event 1 -->
+                    <div class="event-card featured" onclick="openEvent('conf-2024')">
+                        <div class="event-date">
+                            <span class="event-day">١٥</span>
+                            <span class="event-month">أبريل</span>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">المؤتمر العلمي السنوي للبحث والتطوير</h3>
+                            <p class="event-description">أكبر تجمع للباحثين والعلماء العراقيين لمناقشة أحدث التطورات في مجالات العلوم والتكنولوجيا.</p>
+                            
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>قاعة المؤتمرات - بغداد</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <span>٩:٠٠ صباحاً - ٥:٠٠ مساءً</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-users"></i>
+                                    <span>٢٠٠ مشارك</span>
+                                </div>
+                            </div>
+                            
+                            <div class="event-actions">
+                                <div class="event-participants">
+                                    <div class="participant-avatars">
+                                        <img src="https://placehold.co/30x30/eba337/ffffff?text=أ" alt="مشارك" class="participant-avatar">
+                                        <img src="https://placehold.co/30x30/07234a/ffffff?text=ب" alt="مشارك" class="participant-avatar">
+                                        <img src="https://placehold.co/30x30/eba337/ffffff?text=ج" alt="مشارك" class="participant-avatar">
+                                    </div>
+                                    <span class="participant-count">+١٥٠ مسجل</span>
+                                </div>
+                                <button class="event-register-btn" onclick="registerEvent('conf-2024')">سجل الآن</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 2 -->
+                    <div class="event-card" onclick="openEvent('workshop-writing')">
+                        <div class="event-date">
+                            <span class="event-day">٢٢</span>
+                            <span class="event-month">أبريل</span>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">ورشة عمل: كتابة الأبحاث العلمية للنشر الدولي</h3>
+                            <p class="event-description">ورشة متخصصة لتعليم الباحثين مهارات كتابة الأبحاث العلمية وفق معايير النشر الدولية.</p>
+                            
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>عن بعد (أونلاين)</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <span>٦:٠٠ مساءً - ٨:٠٠ مساءً</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-users"></i>
+                                    <span>١٠٠ مشارك</span>
+                                </div>
+                            </div>
+                            
+                            <div class="event-actions">
+                                <div class="event-participants">
+                                    <div class="participant-avatars">
+                                        <img src="https://placehold.co/30x30/07234a/ffffff?text=د" alt="مشارك" class="participant-avatar">
+                                        <img src="https://placehold.co/30x30/eba337/ffffff?text=ه" alt="مشارك" class="participant-avatar">
+                                    </div>
+                                    <span class="participant-count">+٨٥ مسجل</span>
+                                </div>
+                                <button class="event-register-btn" onclick="registerEvent('workshop-writing')">سجل الآن</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 3 -->
+                    <div class="event-card" onclick="openEvent('awards-ceremony')">
+                        <div class="event-date">
+                            <span class="event-day">٣٠</span>
+                            <span class="event-month">أبريل</span>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">حفل توزيع جوائز أفضل بحث علمي</h3>
+                            <p class="event-description">حفل تكريم للباحثين المتميزين وتوزيع جوائز لأفضل الأبحاث العلمية المقدمة خلال العام.</p>
+                            
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>فندق الرشيد - بغداد</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <span>٧:٠٠ مساءً - ١٠:٠٠ مساءً</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-users"></i>
+                                    <span>٣٠٠ مدعو</span>
+                                </div>
+                            </div>
+                            
+                            <div class="event-actions">
+                                <div class="event-participants">
+                                    <div class="participant-avatars">
+                                        <img src="https://placehold.co/30x30/eba337/ffffff?text=و" alt="مشارك" class="participant-avatar">
+                                        <img src="https://placehold.co/30x30/07234a/ffffff?text=ز" alt="مشارك" class="participant-avatar">
+                                        <img src="https://placehold.co/30x30/eba337/ffffff?text=ح" alt="مشارك" class="participant-avatar">
+                                    </div>
+                                    <span class="participant-count">+٢٠٠ مسجل</span>
+                                </div>
+                                <button class="event-register-btn" onclick="registerEvent('awards-ceremony')">سجل الآن</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 4 -->
+                    <div class="event-card" onclick="openEvent('education-seminar')">
+                        <div class="event-date">
+                            <span class="event-day">٥</span>
+                            <span class="event-month">مايو</span>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">ندوة: مستقبل التعليم العالي في العراق</h3>
+                            <p class="event-description">ندوة حوارية مع خبراء التعليم لمناقشة تحديات وفرص تطوير التعليم العالي في العراق.</p>
+                            
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>جامعة بغداد - كلية التربية</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <span>١٠:٠٠ صباحاً - ١:٠٠ ظهراً</span>
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-users"></i>
+                                    <span>١٥٠ مشارك</span>
+                                </div>
+                            </div>
+                            
+                            <div class="event-actions">
+                                <div class="event-participants">
+                                    <div class="participant-avatars">
+                                        <img src="https://placehold.co/30x30/07234a/ffffff?text=ط" alt="مشارك" class="participant-avatar">
+                                        <img src="https://placehold.co/30x30/eba337/ffffff?text=ي" alt="مشارك" class="participant-avatar">
+                                    </div>
+                                    <span class="participant-count">+١٠٠ مسجل</span>
+                                </div>
+                                <button class="event-register-btn" onclick="registerEvent('education-seminar')">سجل الآن</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Verified Accounts Section - Special Design -->
+        <section class="verified-section">
+            <div class="verified-header">
+                <h2 class="verified-title">الحسابات <span>الموثقة</span></h2>
+                <div class="verified-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>شهادات موثوقية</span>
+                </div>
+            </div>
+            
+            <div class="verified-grid">
+                <!-- Verified Account 1 -->
+                <div class="verified-card featured">
+                    <div class="verified-header-info">
+                        <img src="https://placehold.co/80x80/eba337/ffffff?text=د.أ" alt="صورة الباحث" class="verified-avatar">
+                        <div>
+                            <h3 class="verified-name">د. أحمد سامي</h3>
+                            <p class="verified-role">أستاذ فيزياء - جامعة النهرين</p>
+                            <div class="verified-tags">
+                                <span class="verified-tag">الفيزياء النظرية</span>
+                                <span class="verified-tag">الطاقة النووية</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="verified-bio">
+                        باحث متخصص في الفيزياء النظرية والطاقة النووية، حاصل على جائزة أفضل بحث علمي في مجال الفيزياء لعام 2023. نشر أكثر من 50 بحثاً في مجلات علمية محكمة دولية.
+                    </p>
+                    
+                    <div class="verified-stats">
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٥٤</span>
+                            <span class="verified-stat-label">بحث منشور</span>
+                        </div>
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٢٨٠٠</span>
+                            <span class="verified-stat-label">استشهاد</span>
+                        </div>
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٩٨٪</span>
+                            <span class="verified-stat-label">تقييم</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verified-actions">
+                        <button class="verified-btn primary" onclick="viewProfile('ahmed-sami')">عرض الملف</button>
+                        <button class="verified-btn secondary" onclick="followResearcher('ahmed-sami')">متابعة</button>
+                    </div>
+                </div>
+                
+                <!-- Verified Account 2 -->
+                <div class="verified-card">
+                    <div class="verified-header-info">
+                        <img src="https://placehold.co/80x80/07234a/ffffff?text=د.س" alt="صورة الباحث" class="verified-avatar">
+                        <div>
+                            <h3 class="verified-name">د. سمر قاسم</h3>
+                            <p class="verified-role">باحثة في العلوم الطبية - كلية الطب</p>
+                            <div class="verified-tags">
+                                <span class="verified-tag">الأمراض المعدية</span>
+                                <span class="verified-tag">علم المناعة</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="verified-bio">
+                        باحثة طبية متخصصة في الأمراض المعدية وعلم المناعة، قادت عدة فرق بحثية في مجال تطوير اللقاحات والعلاجات للأمراض المستجدة.
+                    </p>
+                    
+                    <div class="verified-stats">
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٣٨</span>
+                            <span class="verified-stat-label">بحث منشور</span>
+                        </div>
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">١٥٠٠</span>
+                            <span class="verified-stat-label">استشهاد</span>
+                        </div>
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٩٥٪</span>
+                            <span class="verified-stat-label">تقييم</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verified-actions">
+                        <button class="verified-btn primary" onclick="viewProfile('samar-qasim')">عرض الملف</button>
+                        <button class="verified-btn secondary" onclick="followResearcher('samar-qasim')">متابعة</button>
+                    </div>
+                </div>
+                
+                <!-- Verified Account 3 -->
+                <div class="verified-card">
+                    <div class="verified-header-info">
+                        <img src="https://placehold.co/80x80/eba337/ffffff?text=د.ع" alt="صورة الباحث" class="verified-avatar">
+                        <div>
+                            <h3 class="verified-name">د. علي محمود</h3>
+                            <p class="verified-role">خبير اقتصاد - جامعة المستنصرية</p>
+                            <div class="verified-tags">
+                                <span class="verified-tag">الاقتصاد الكلي</span>
+                                <span class="verified-tag">التنمية المستدامة</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="verified-bio">
+                        خبير اقتصادي متخصص في الاقتصاد الكلي والتنمية المستدامة، مستشار لعدة مؤسسات حكومية ودولية في مجال السياسات الاقتصادية.
+                    </p>
+                    
+                    <div class="verified-stats">
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٤٢</span>
+                            <span class="verified-stat-label">بحث منشور</span>
+                        </div>
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٢١٠٠</span>
+                            <span class="verified-stat-label">استشهاد</span>
+                        </div>
+                        <div class="verified-stat">
+                            <span class="verified-stat-value">٩٦٪</span>
+                            <span class="verified-stat-label">تقييم</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verified-actions">
+                        <button class="verified-btn primary" onclick="viewProfile('ali-mahmoud')">عرض الملف</button>
+                        <button class="verified-btn secondary" onclick="followResearcher('ali-mahmoud')">متابعة</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="verified-view-all">
+                <button class="btn-fancy" onclick="navigateTo('verified-accounts.html')">
+                    عرض جميع الحسابات الموثقة
+                </button>
+            </div>
+        </section>
+        
+        <!-- Latest Research Section -->
+        <section>
+            <h2 class="merriweather-font text-2xl font-bold mb-6 text-right border-b-2 border-orange-500 pb-2">أحدث الأبحاث</h2>
+            <div class="articles-grid">
+                <!-- Latest Research 1 -->
+                <div class="article-card" onclick="openArticle('new-research-1')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=New+Research+1" alt="بحث جديد 1" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">تحليل البيانات الضخمة في القطاع الصحي العراقي</h4>
+                        <p class="article-excerpt">دراسة حول إمكانيات تطبيق تحليل البيانات الضخمة لتحسين جودة الخدمات الصحية.</p>
+                        <div class="article-footer">
+                            <span class="article-date">اليوم</span>
+                            <span class="featured-category" style="font-size: 0.7rem;">جديد</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Latest Research 2 -->
+                <div class="article-card" onclick="openArticle('new-research-2')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=New+Research+2" alt="بحث جديد 2" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">تأثير الوسائط الرقمية على التعليم العالي</h4>
+                        <p class="article-excerpt">بحث ميداني حول استخدام الوسائط الرقمية في التعليم الجامعي وتأثيرها على التحصيل العلمي.</p>
+                        <div class="article-footer">
+                            <span class="article-date">أمس</span>
+                            <span class="featured-category" style="font-size: 0.7rem;">جديد</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Latest Research 3 -->
+                <div class="article-card" onclick="openArticle('new-research-3')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=New+Research+3" alt="بحث جديد 3" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">اقتصاد المعرفة والتنمية المستدامة</h4>
+                        <p class="article-excerpt">تحليل لدور اقتصاد المعرفة في تحقيق أهداف التنمية المستدامة في الدول النامية.</p>
+                        <div class="article-footer">
+                            <span class="article-date">قبل يومين</span>
+                            <span class="featured-category" style="font-size: 0.7rem;">جديد</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Latest Research 4 -->
+                <div class="article-card" onclick="openArticle('new-research-4')">
+                    <img src="https://placehold.co/400x300/07234a/ffffff?text=New+Research+4" alt="بحث جديد 4" class="article-image">
+                    <div class="article-content">
+                        <h4 class="article-title">التحديات البيئية في المناطق الحضرية العراقية</h4>
+                        <p class="article-excerpt">دراسة عن المشاكل البيئية في المدن العراقية واقتراح حلول مستدامة.</p>
+                        <div class="article-footer">
+                            <span class="article-date">قبل ٣ أيام</span>
+                            <span class="featured-category" style="font-size: 0.7rem;">جديد</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Newsletter Signup -->
+        <section class="newsletter-section">
+            <h2 class="newsletter-title">ابق على اطلاع</h2>
+            <p class="newsletter-description">اشترك في نشرتنا البريدية لتصلك أحدث الأبحاث والدراسات والمقالات العلمية مباشرة إلى بريدك الإلكتروني.</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="أدخل بريدك الإلكتروني" id="newsletterEmail">
+                <button class="newsletter-button" onclick="subscribeNewsletter()">اشترك الآن</button>
+            </div>
+            <p class="text-sm opacity-80 mt-4">نعدك بعدم إرسال رسائل غير مرغوب فيها. يمكنك إلغاء الاشتراك في أي وقت.</p>
+        </section>
+        
+    </main>
+    
+    <!-- NEW FOOTER (From Special Issues) -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
+                </div>
+            </div>
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('subscribe')">اشتراك</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
+    
+    <script>
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
+            
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            alert(`سيتم الانتقال إلى: ${page}`);
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                alert(`جارٍ البحث عن: "${searchTerm}"`);
+            } else {
+                alert("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                alert(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // ================= HOMEPAGE FUNCTIONS =================
+        function openMainArticle() {
+            alert('جارٍ فتح المقال الرئيسي...');
+            // In a real implementation, this would open the main article
+            // window.location.href = 'articles/main-article.html';
+        }
+
+        function openArticle(articleId) {
+            alert(`جارٍ فتح المقال: ${articleId}`);
+            // In a real implementation, this would open the specific article
+            // window.location.href = `articles/${articleId}.html`;
+        }
+
+        function openEvent(eventId) {
+            alert(`جارٍ فتح صفحة الفعالية: ${eventId}`);
+            // In a real implementation, this would open the event page
+            // window.location.href = `events/${eventId}.html`;
+        }
+
+        function filterArticles(category) {
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter articles
+            const articles = document.querySelectorAll('.article-card');
+            articles.forEach(article => {
+                if (category === 'all' || article.dataset.category === category) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+            
+            // Show message if no articles found
+            const visibleArticles = Array.from(articles).filter(a => a.style.display !== 'none');
+            if (visibleArticles.length === 0 && category !== 'all') {
+                const container = document.getElementById('articlesContainer');
+                const message = document.createElement('div');
+                message.className = 'col-span-full text-center py-10';
+                message.innerHTML = `<p class="text-gray-500">لا توجد مقالات في هذا التصنيف حالياً.</p>`;
+                
+                // Remove any existing message
+                const existingMessage = container.querySelector('.col-span-full');
+                if (existingMessage) existingMessage.remove();
+                
+                container.appendChild(message);
+            } else {
+                // Remove any existing message
+                const container = document.getElementById('articlesContainer');
+                const existingMessage = container.querySelector('.col-span-full');
+                if (existingMessage) existingMessage.remove();
+            }
+        }
+
+        // ================= EVENTS SECTION FUNCTIONS =================
+        function scrollEvents(direction) {
+            const slider = document.getElementById('eventsSlider');
+            const scrollAmount = 400;
+            
+            if (direction === 'left') {
+                slider.scrollLeft -= scrollAmount;
+            } else {
+                slider.scrollLeft += scrollAmount;
+            }
+        }
+
+        function registerEvent(eventId) {
+            alert(`جارٍ تسجيلك في الفعالية: ${eventId}`);
+            // In a real implementation, this would open a registration form
+            // window.location.href = `events/register/${eventId}.html`;
+            
+            // Change button text temporarily
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'تم التسجيل!';
+            button.style.background = '#28a745';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#eba337';
+                button.disabled = false;
+            }, 2000);
+        }
+
+        // ================= VERIFIED ACCOUNTS FUNCTIONS =================
+        function viewProfile(researcherId) {
+            alert(`جارٍ عرض ملف الباحث: ${researcherId}`);
+            // In a real implementation, this would open the researcher's profile
+            // window.location.href = `researchers/${researcherId}.html`;
+        }
+
+        function followResearcher(researcherId) {
+            alert(`جارٍ متابعة الباحث: ${researcherId}`);
+            // In a real implementation, this would add the researcher to user's following list
+            
+            // Change button text temporarily
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'تم المتابعة!';
+            button.style.background = '#28a745';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#f0f0f0';
+                button.disabled = false;
+            }, 2000);
+        }
+
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if(email === '' || !email.includes('@')) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('newsletterEmail').focus();
+            } else {
+                alert(`شكراً على اشتراكك في النشرة البريدية! سيصلك آخر الأبحاث على: ${email}`);
+                document.getElementById('newsletterEmail').value = '';
+                
+                // Animate the button
+                const button = event.target;
+                button.textContent = 'تم الاشتراك!';
+                button.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    button.textContent = 'اشترك الآن';
+                    button.style.background = '#0b2344';
+                }, 2000);
+            }
+        }
+
+        // Initialize page functions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click feedback for all buttons
+            document.querySelectorAll('.footer-item, .subscribe-button, .btn-fancy, .verified-btn, .event-register-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // Add keyboard support for email inputs
+            document.getElementById('subscribeEmail').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    subscribe();
+                }
+            });
+            
+            document.getElementById('newsletterEmail').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    subscribeNewsletter();
+                }
+            });
+
+            // Close search when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                const searchContainer = document.getElementById('searchContainer');
+                const searchIcon = document.querySelector('.search-icon');
+                const searchBar = document.querySelector('.search-bar');
+                
+                if (window.innerWidth <= 768 && 
+                    searchContainer.style.display === 'block' && 
+                    !searchIcon.contains(event.target) && 
+                    !searchBar.contains(event.target)) {
+                    searchContainer.style.display = 'none';
+                    document.body.classList.remove('search-open');
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('search-open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
