@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجلة الفكر</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --hg-yellow: #eba337;
@@ -15,10 +16,11 @@
         }
         
         body {
-            
-            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
             background-color: var(--hg-beige);
             color: #333;
+            scroll-behavior: smooth;
         }
         
         .merriweather-font {
@@ -64,141 +66,916 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
         
-        @media (max-width: 1023px) {
-            .mobile-menu-container {
-                display: none;
-            }
-            
-            .mobile-menu-open .mobile-menu-container {
-                display: block;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #fff;
-                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-                z-index: 50;
-            }
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
+        /* ================= NEW HEADER STYLES ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
             z-index: 100;
         }
-        
-        .header-top {
+
+        /* FIRST ROW (ICONS + TITLE + LOGO) */
+        .top-header {
+            height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 0 25px;
         }
-        
-        .logo {
-            font-size: 28px;
+
+        .center-title {
+            font-size: 22px;
             font-weight: 700;
-            color: #0a2342;
-        }
-        
-        .search-cart {
+            color: #0b2344;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 8px;
         }
-        
-        .search-form {
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        /* SEARCH ICON */
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        /* MENU ICON */
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SECOND ROW – ARABIC CATEGORIES UNDER TITLE */
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        /* ================= DRAWER ================= */
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #467ca2; }
+        .dot-orange { background: #EBA337; }
+
+        /* ================= SEARCH BAR ================= */
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
             position: relative;
         }
-        
-        .search-form input {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            font-size: 14px;
-            width: 200px;
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
         }
-        
-        .search-form button {
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
             position: absolute;
-            right: 10px;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
-            color: #777;
+            color: #0b2344;
+            font-size: 20px;
             cursor: pointer;
-        }
-        
-        .cart-icon,
-        .user-icon {
-            font-size: 18px;
-            color: #555;
-        }
-        
-        nav ul {
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
             display: flex;
-            list-style: none;
-            gap: 25px;
-            padding: 15px 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= NEW FOOTER STYLES ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        /* Brand section */
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* THREE COLUMNS */
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        /* Column styling - FIXED ALIGNMENT */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center; /* Center align items in mobile */
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
         }
         
-        nav ul li a {
-            font-weight: 500;
+        /* EXACTLY LIKE SPECIAL EDITIONS BUTTON STYLES */
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+            transition: all 0.3s ease; /* Added for smoother hover effect */
+        }
+        
+        /* Hover effect - SAME AS SPECIAL EDITIONS - MODIFIED: REMOVED DOT */
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15); /* Increased opacity for better visibility */
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2); /* Added subtle glow effect */
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
             font-size: 16px;
-            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
         }
         
-        nav ul li a.active {
-            color: #0a2342;
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bottom copyright */
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* Tablet adjustments - IMPORTANT: FIXED ALIGNMENT FOR DESKTOP */
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 40px 60px;
+                max-height: none;
+            }
+            
+            .brand {
+                text-align: right;
+                width: 25%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align to right */
+            }
+            
+            .brand-title {
+                justify-content: flex-end;
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+            }
+            
+            .brand-title img {
+                width: 55px;
+                height: 55px;
+            }
+            
+            /* FIXED COLUMNS ALIGNMENT */
+            .columns-row {
+                width: 45%;
+                margin-bottom: 0;
+                gap: 20px;
+                display: flex;
+                align-items: flex-start; /* Align columns at top */
+                justify-content: space-between;
+            }
+            
+            .footer-column {
+                flex: 1;
+                text-align: right; /* Right align in desktop */
+                align-items: flex-end; /* Align items to right */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 16px;
+                text-align: right; /* Right align in desktop */
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            
+            .footer-item {
+                font-size: 14px;
+                margin: 5px 0;
+                padding: 10px 8px;
+                text-align: right; /* Right align in desktop */
+                width: 100%; /* Ensure full width */
+            }
+            
+            /* KEY CHANGE: ALIGN SUBSCRIBE SECTION PROPERLY */
+            .subscribe-section {
+                width: 30%;
+                text-align: right;
+                padding-top: 0;
+                border-top: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align entire section to the right */
+                margin-right: 20px;
+            }
+            
+            /* KEY CHANGE: ALIGN TITLE WITH SUBSCRIPTION BAR */
+            .subscribe-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+                padding-right: 0; /* Remove any padding that might cause misalignment */
+                align-self: flex-end; /* Ensure it aligns with the container */
+            }
+            
+            /* KEY CHANGE: ALIGN CONTAINER WITH TITLE */
+            .subscribe-container {
+                justify-content: flex-end; /* Align to right */
+                width: 100%;
+                max-width: 100%; /* Ensure it takes full width of parent */
+                padding-right: 0; /* Remove any padding */
+            }
+            
+            .subscribe-input {
+                height: 38px;
+                font-size: 14px;
+                max-width: 220px; /* Same as original */
+            }
+            
+            .subscribe-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .copyright {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* For very small screens */
+        @media (max-width: 360px) {
+            .columns-row {
+                gap: 8px;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 12px;
+            }
+            
+            .footer-item {
+                font-size: 11px;
+                padding: 6px 3px;
+            }
+            
+            .subscribe-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subscribe-input, .subscribe-button {
+                width: 100%;
+            }
+        }
+
+        /* Mobile responsive for header */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+        }
+
+        /* Fix for main content - ensure proper spacing */
+        main {
+            padding-top: 20px;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-[#fffdf6]">
     
-    <html lang="ar" dir="rtl">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>مجلة الفكر</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    
-    <body class="bg-[#fffdf6]">
-        
-        <!-- Header -->
-        <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
-            <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between" dir="rtl">
-                
-                <!-- Logo / Title -->
-                <div class="flex items-center space-x-2 space-x-reverse">
-                    
-                    
-                    <img src="logo.png" alt="شعار الموقع" width="70" height="auto">
-                    <span class="text-base font-semibold">IRAQI YOURTH RESEARCH</span>
+    <!-- NEW HEADER -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- TITLE + LOGO (NOT CLICKABLE) -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="special-editions.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>
+            <a href="business-management.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sciences.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="thought-society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث هنا..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('verified-accounts.html')">الحسابات الموثقة</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <!-- Navigation -->
-                <nav class="flex space-x-6 space-x-reverse text-black font-medium">
-                    <a href="sections/index.html" class="hover:text-primary-900">الأقسام الفكرية</a>
-                    <a href="verified/index.html" class="hover:text-primary-900">الموثقون</a>
-                    <a href="about.html" class="hover:text-primary-900">عنّا</a>
-                    <a href="theses.html" class="hover:text-primary-900">رسائل الماجستير</a>
-                </nav>
-                
-                <!-- Search Button -->
-                <button class="bg-gray-100 text-black px-3 py-1.5 rounded-lg hover:bg-gray-200">
-                    بحث
-                </button>
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </header>
-        
-    </body>
+        </div>
+    </div>
     
+    <!-- MAIN CONTENT (UNCHANGED) -->
     <main class="main-container px-4 sm:px-8 py-8">
         <!-- Main Article Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
@@ -554,58 +1331,166 @@
         
     </main>
     
-    <!-- Footer Section -->
-    <footer class="bg-[#0a2342] text-white py-10" dir="rtl">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-            
-            <!-- Subscribe Section -->
-            <div>
-                <h3 class="font-bold mb-4">اشترك</h3>
-                <form class="flex space-x-2 space-x-reverse">
-                    <input type="email" placeholder="بريدك" class="px-4 py-2 rounded-lg text-black flex-1 focus:outline-none" />
-                    <button type="submit" class="bg-[#e79c25] text-white px-4 py-2 rounded-lg hover:bg-[#d1861d]">
-                        إرسال
-                    </button>
-                </form>
-            </div>
-            
-            <!-- Links Section -->
-            <div>
-                <h3 class="font-bold mb-4">روابط</h3>
-                <ul class="space-y-2">
-                    <li><a class="hover:underline" href="sections/index.html">الأقسام</a></li>
-                    <li><a class="hover:underline" href="theses.html">رسائل الماجستير</a></li>
-                    <li><a class="hover:underline" href="about.html">عنّا</a></li>
-                    <li><a class="hover:underline" href="special_issues.html">الاصدارات الخاصة</a></li>
-                    <li><a class="hover:underline" href="contact.html">تواصل معنا</a></li>
-                    <li><a class="hover:underline" href="verified/index.html">الحسابات الموثّقة</a></li>
-                </ul>
-            </div>
-            
-            <!-- Logo + Copyright -->
-            <div class="flex flex-col items-center md:items-end space-y-2">
-                <div class="flex items-center space-x-2 space-x-reverse">
-                    <div class="w-10 h-10 rounded-full bg-[#0a2342] border border-white/30 flex items-center justify-center text-white font-bold">
-                        ؟؟
-                    </div>
-                    <span class="font-bold">مجلة الفكر</span>
+    <!-- NEW FOOTER -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
                 </div>
-                <p class="text-sm text-gray-300">© 2025</p>
             </div>
-            
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('subscribe')">اشتراك</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
         </div>
-    </footer>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const body = document.body;
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
             
-            mobileMenuButton.addEventListener('click', () => {
-                body.classList.toggle('mobile-menu-open');
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            alert(`سيتم الانتقال إلى: ${page}`);
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                alert(`جارٍ البحث عن: "${searchTerm}"`);
+            } else {
+                alert("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                alert(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // Add click feedback for all buttons
+        document.querySelectorAll('.footer-item, .subscribe-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
             });
         });
-    </script>
-</body>
 
+        // Add keyboard support for email input
+        document.getElementById('subscribeEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                subscribe();
+            }
+        });
+
+        // Close search when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.getElementById('searchContainer');
+            const searchIcon = document.querySelector('.search-icon');
+            const searchBar = document.querySelector('.search-bar');
+            
+            if (window.innerWidth <= 768 && 
+                searchContainer.style.display === 'block' && 
+                !searchIcon.contains(event.target) && 
+                !searchBar.contains(event.target)) {
+                searchContainer.style.display = 'none';
+                document.body.classList.remove('search-open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.body.classList.remove('search-open');
+            }
+        });
+    </script>
+
+</body>
 </html>
