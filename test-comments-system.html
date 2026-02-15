@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار نظام التعليقات</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0a2342;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0a2342;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button {
+            background-color: #0a2342;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #051829;
+        }
+        .result {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #0a2342;
+        }
+        .result h3 {
+            color: #0a2342;
+            margin-bottom: 10px;
+        }
+        .result pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .comment-item {
+            background-color: #fafafa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid #0a2342;
+        }
+        .comment-item .author {
+            font-weight: 600;
+            color: #0a2342;
+        }
+        .comment-item .date {
+            color: #999;
+            font-size: 12px;
+        }
+        .comment-item .content {
+            margin-top: 10px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .comment-item .likes {
+            color: #666;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار نظام التعليقات</h1>
+
+        <!-- Create Comment Section -->
+        <div class="section">
+            <h2>📝 إنشاء تعليق جديد</h2>
+            <form id="createCommentForm">
+                <div class="form-group">
+                    <label for="articleId">رقم المقالة *</label>
+                    <input type="number" id="articleId" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="authorName">الاسم *</label>
+                    <input type="text" id="authorName" placeholder="أدخل اسمك" value="مستخدم اختبار" required>
+                </div>
+                <div class="form-group">
+                    <label for="authorEmail">البريد الإلكتروني (اختياري)</label>
+                    <input type="email" id="authorEmail" placeholder="بريدك الإلكتروني">
+                </div>
+                <div class="form-group">
+                    <label for="commentContent">محتوى التعليق *</label>
+                    <textarea id="commentContent" placeholder="اكتب تعليقك هنا..." required></textarea>
+                </div>
+                <button type="submit">إرسال التعليق</button>
+            </form>
+            <div id="createResult"></div>
+        </div>
+
+        <!-- Get Comments Section -->
+        <div class="section">
+            <h2>📖 استرجاع التعليقات</h2>
+            <form id="getCommentsForm">
+                <div class="form-group">
+                    <label for="articleIdGet">رقم المقالة *</label>
+                    <input type="number" id="articleIdGet" value="1" required>
+                </div>
+                <button type="submit">استرجاع التعليقات</button>
+            </form>
+            <div id="getResult"></div>
+        </div>
+
+        <!-- All Comments Section -->
+        <div class="section">
+            <h2>📋 جميع التعليقات</h2>
+            <button onclick="getAllComments()">استرجاع جميع التعليقات</button>
+            <div id="allResult"></div>
+        </div>
+
+        <!-- API Status Section -->
+        <div class="section">
+            <h2>📡 حالة الخادم</h2>
+            <button onclick="testServerConnection()">اختبار الاتصال بالخادم</button>
+            <div id="serverResult"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        // Create Comment
+        document.getElementById('createCommentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const resultDiv = document.getElementById('createResult');
+            resultDiv.innerHTML = '<div class="status info">جاري الإرسال...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/comments`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        article_id: parseInt(document.getElementById('articleId').value),
+                        author_name: document.getElementById('authorName').value,
+                        author_email: document.getElementById('authorEmail').value,
+                        content: document.getElementById('commentContent').value
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="status success">✅ تم إنشاء التعليق بنجاح!</div>
+                        <div class="result">
+                            <h3>البيانات المرجعة:</h3>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                    document.getElementById('createCommentForm').reset();
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">❌ خطأ: ${data.message}</div>
+                        <div class="result">
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">❌ خطأ في الاتصال: ${error.message}</div>
+                `;
+            }
+        });
+
+        // Get Comments by Article
+        document.getElementById('getCommentsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const resultDiv = document.getElementById('getResult');
+            resultDiv.innerHTML = '<div class="status info">جاري البحث...</div>';
+
+            try {
+                const articleId = document.getElementById('articleIdGet').value;
+                const response = await fetch(`${API_BASE_URL}/comments/article/${articleId}`);
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    if (data.length === 0) {
+                        resultDiv.innerHTML = '<div class="status info">ℹ️ لا توجد تعليقات لهذه المقالة</div>';
+                    } else {
+                        let html = `<div class="status success">✅ تم العثور على ${data.length} تعليق(ات)</div>`;
+                        data.forEach(comment => {
+                            html += `
+                                <div class="comment-item">
+                                    <span class="author">${comment.author_name}</span>
+                                    <span class="date"> - ${new Date(comment.created_at).toLocaleDateString('ar-IQ')}</span>
+                                    <div class="content">${comment.content}</div>
+                                    <div class="likes">❤️ ${comment.likes || 0} إعجاب</div>
+                                </div>
+                            `;
+                        });
+                        resultDiv.innerHTML = html;
+                    }
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">❌ خطأ: ${data.message}</div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">❌ خطأ في الاتصال: ${error.message}</div>
+                `;
+            }
+        });
+
+        // Get All Comments
+        async function getAllComments() {
+            const resultDiv = document.getElementById('allResult');
+            resultDiv.innerHTML = '<div class="status info">جاري البحث...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/comments`);
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    let html = `<div class="status success">✅ إجمالي ${data.length} تعليق</div>`;
+                    data.forEach(comment => {
+                        html += `
+                            <div class="comment-item">
+                                <span class="author">${comment.author_name}</span>
+                                <span style="color: #999;"> (المقالة: ${comment.article_id})</span>
+                                <span class="date"> - ${new Date(comment.created_at).toLocaleDateString('ar-IQ')}</span>
+                                <div class="content">${comment.content}</div>
+                                <div class="likes">❤️ ${comment.likes || 0} إعجاب</div>
+                            </div>
+                        `;
+                    });
+                    resultDiv.innerHTML = html;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">❌ خطأ: ${data.message}</div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">❌ خطأ في الاتصال: ${error.message}</div>
+                `;
+            }
+        }
+
+        // Test Server Connection
+        async function testServerConnection() {
+            const resultDiv = document.getElementById('serverResult');
+            resultDiv.innerHTML = '<div class="status info">جاري الاختبار...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE_URL.replace('/api', '')}`);
+                const data = await response.text();
+
+                resultDiv.innerHTML = `
+                    <div class="status success">✅ الخادم متصل!</div>
+                    <div class="result">
+                        <h3>الرد من الخادم:</h3>
+                        <pre>${data}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">❌ الخادم غير متصل: ${error.message}</div>
+                    <div class="result">
+                        <p>تأكد من أن الخادم يعمل على <strong>${API_BASE_URL}</strong></p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

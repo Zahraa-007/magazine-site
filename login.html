@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - Iraqi Scholars Research</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f4ec 0%, #f8f4ec 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #0b2344 0%, #07234a 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .login-header img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .login-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .login-content {
+            padding: 40px 30px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Role Selection Step */
+        .role-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .role-option {
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+        }
+
+        .role-option:hover {
+            border-color: #eba337;
+            background: #fff9f3;
+            transform: translateY(-5px);
+        }
+
+        .role-option.selected {
+            border-color: #eba337;
+            background: #fffaf0;
+            box-shadow: 0 5px 15px rgba(235, 163, 55, 0.2);
+        }
+
+        .role-option i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #07234a;
+            display: block;
+        }
+
+        .role-option.selected i {
+            color: #eba337;
+        }
+
+        .role-option span {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #eba337;
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.1);
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #eba337 0%, #d4891f 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(235, 163, 55, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .login-footer p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .login-footer a {
+            color: #eba337;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #eba337;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Password visibility toggle */
+        .password-group {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            cursor: pointer;
+            color: #07234a;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .password-toggle:hover {
+            color: #eba337;
+        }
+
+        .password-group input {
+            padding-left: 45px;
+        }
+
+        /* Back button */
+        .back-btn {
+            background: none;
+            border: none;
+            color: #07234a;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #eba337;
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                margin: 20px;
+            }
+
+            .role-options {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>تسجيل الدخول</h1>
+            <p>مرحباً بك في منصة الباحثين العراقيين</p>
+        </div>
+
+        <div class="login-content">
+            <!-- Step 1: Role Selection -->
+            <div class="step active" id="roleStep">
+                <h2 style="text-align: center; margin-bottom: 20px; color: #333; font-size: 1.2rem;">
+                    اختر نوع الحساب
+                </h2>
+                <div class="role-options">
+                    <div class="role-option" onclick="selectRole('author')">
+                        <i class="fas fa-pen-fancy"></i>
+                        <span>كاتب</span>
+                    </div>
+                    <div class="role-option" onclick="selectRole('viewer')">
+                        <i class="fas fa-eye"></i>
+                        <span>قارئ</span>
+                    </div>
+                    <div class="role-option" onclick="selectRole('admin')">
+                        <i class="fas fa-user-shield"></i>
+                        <span>مسؤول</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Login Form -->
+            <div class="step" id="loginStep">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-right"></i>
+                    رجوع
+                </button>
+
+                <h2 style="text-align: center; margin-bottom: 25px; color: #333; font-size: 1.2rem;">
+                    تسجيل الدخول كـ <span id="roleLabel" style="color: #eba337;"></span>
+                </h2>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group password-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+
+                    <div class="loading" id="loginLoading">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 10px; color: #666;">جارٍ تسجيل الدخول...</p>
+                    </div>
+
+                    <div class="error-message" id="loginError"></div>
+                    <div class="success-message" id="loginSuccess"></div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary" id="loginBtn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            دخول
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="login-footer">
+                <p>ليس لديك حساب؟ <a href="register.html">سجل الآن</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let selectedRole = null;
+
+        // Select role function
+        function selectRole(role) {
+            selectedRole = role;
+            
+            // Update UI
+            document.querySelectorAll('.role-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.closest('.role-option').classList.add('selected');
+
+            // Map role to Arabic name
+            const roleNames = {
+                'author': 'كاتب',
+                'viewer': 'قارئ',
+                'admin': 'مسؤول'
+            };
+
+            // Show login form
+            setTimeout(() => {
+                document.getElementById('roleStep').classList.remove('active');
+                document.getElementById('loginStep').classList.add('active');
+                document.getElementById('roleLabel').textContent = roleNames[role];
+            }, 300);
+        }
+
+        // Go back function
+        function goBack() {
+            document.getElementById('loginStep').classList.remove('active');
+            document.getElementById('roleStep').classList.add('active');
+            selectedRole = null;
+            document.querySelectorAll('.role-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+        }
+
+        // Toggle password visibility
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const button = event.target.closest('.password-toggle');
+            const icon = button.querySelector('i');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Handle login
+        async function handleLogin(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Clear previous errors
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('loginError').textContent = '';
+            document.getElementById('loginSuccess').textContent = '';
+
+            // Validation
+            let hasError = false;
+
+            if (!email || !email.includes('@')) {
+                document.getElementById('emailError').textContent = 'الرجاء إدخال بريد إلكتروني صحيح';
+                document.getElementById('emailError').classList.add('show');
+                hasError = true;
+            }
+
+            if (!password || password.length < 6) {
+                document.getElementById('passwordError').textContent = 'كلمة المرور يجب أن تكون أكثر من 6 أحرف';
+                document.getElementById('passwordError').classList.add('show');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Show loading state
+            document.getElementById('loginLoading').classList.add('show');
+            document.getElementById('loginBtn').disabled = true;
+
+            try {
+                // Try to login via API first
+                const loginResponse = await fetch(`${API_BASE_URL}/users/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-User-Role': selectedRole || 'guest'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        role: selectedRole
+                    })
+                });
+
+                if (loginResponse.ok) {
+                    const user = await loginResponse.json();
+
+                    // Store user data in localStorage
+                    const userData = {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        role: selectedRole,
+                        userId: user.id,
+                        loginTime: new Date().toISOString()
+                    };
+
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    localStorage.setItem('authToken', `user_${user.id}_${Date.now()}`);
+                    localStorage.setItem('userRole', selectedRole);
+
+                    // Show success message
+                    document.getElementById('loginSuccess').textContent = 'تم تسجيل الدخول بنجاح! جارٍ إعادة التوجيه...';
+                    document.getElementById('loginSuccess').classList.add('show');
+
+                    // Redirect based on role
+                    setTimeout(() => {
+                        if (selectedRole === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        } else if (selectedRole === 'author') {
+                            window.location.href = 'author-dashboard.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    }, 1500);
+                } else {
+                    const errorData = await loginResponse.json();
+                    throw new Error(errorData.error || 'فشل تسجيل الدخول');
+                }
+
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('loginError').textContent = error.message || 'حدث خطأ في تسجيل الدخول. تأكد من البيانات';
+                document.getElementById('loginError').classList.add('show');
+                document.getElementById('loginLoading').classList.remove('show');
+                document.getElementById('loginBtn').disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

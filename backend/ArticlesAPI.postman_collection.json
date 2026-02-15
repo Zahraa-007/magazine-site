@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "Articles API - Magazine Platform",
+    "_postman_id": "a1b2c3d4-5678-9876-abcd-123456789000",
+    "description": "Collection to test CRUD operations for Articles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Article",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-user-role", "value": "author" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My first article\",\n  \"content\": \"This is an article for testing purposes.\",\n  \"tags\": [\"nodejs\", \"express\"]\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/articles", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "articles"] }
+      }
+    },
+    {
+      "name": "Get All Articles",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/articles", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "articles"] }
+      }
+    },
+    {
+      "name": "Get Article by ID",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/articles/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "articles", "1"] }
+      }
+    },
+    {
+      "name": "Update Article",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-user-role", "value": "author" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated title\",\n  \"content\": \"Updated content.\",\n  \"tags\": [\"update\"]\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/articles/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "articles", "1"] }
+      }
+    },
+    {
+      "name": "Change Article Status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-user-role", "value": "author" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"status\": \"published\"\n}" },
+        "url": { "raw": "http://localhost:5000/api/articles/1/status", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "articles", "1", "status"] }
+      }
+    },
+    {
+      "name": "Delete Article",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "x-user-role", "value": "admin" }],
+        "url": { "raw": "http://localhost:5000/api/articles/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "articles", "1"] }
+      }
+    }
+  ]
+}

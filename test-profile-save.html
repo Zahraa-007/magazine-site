@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار حفظ ملف المستخدم</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }
+        .success {
+            border-left-color: #28a745;
+            background-color: #f0f7f4;
+        }
+        .error {
+            border-left-color: #dc3545;
+            background-color: #f9f3f3;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        .step {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            border-right: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 اختبار حفظ ملف المستخدم</h1>
+        <p>هذا الاختبار يتحقق من أن التغييرات التي تُجرى على ملف المستخدم يتم حفظها في قاعدة البيانات.</p>
+
+        <div class="step">
+            <h3>الخطوة 1: تسجيل دخول تجريبي</h3>
+            <p>أنشئ حساباً تجريبياً أو استخدم بيانات موجودة</p>
+            <input type="email" id="email" placeholder="البريد الإلكتروني" value="test@example.com">
+            <input type="password" id="password" placeholder="كلمة المرور" value="password123">
+            <button onclick="testLogin()">🔐 تسجيل الدخول</button>
+        </div>
+
+        <div class="step">
+            <h3>الخطوة 2: تحديث ملف المستخدم</h3>
+            <p>عدّل البيانات التالية ثم انقر على "حفظ"</p>
+            <input type="text" id="name" placeholder="الاسم الكامل">
+            <input type="tel" id="phone" placeholder="رقم الواتس">
+            <textarea id="bio" placeholder="السيرة الذاتية" rows="3"></textarea>
+            <input type="text" id="affiliation" placeholder="الانتماء/المؤسسة">
+            <input type="url" id="website" placeholder="موقع الويب">
+            <button onclick="testUpdateProfile()">💾 حفظ التغييرات</button>
+        </div>
+
+        <div class="step">
+            <h3>الخطوة 3: التحقق من الحفظ</h3>
+            <p>تحقق من أن التغييرات تم حفظها بنجاح</p>
+            <button onclick="testVerifyProfile()">✅ التحقق من البيانات المحفوظة</button>
+        </div>
+
+        <div id="result"></div>
+
+        <h3>📊 حالة الاتصال</h3>
+        <div id="connectionStatus" class="result">
+            <p>API_BASE_URL: <code id="apiUrl">http://localhost:5000/api</code></p>
+            <p>حالة الاتصال: <span id="status">غير متصل</span></p>
+            <button onclick="testConnection()">🔗 اختبار الاتصال</button>
+        </div>
+
+        <h3>📝 السجل</h3>
+        <div id="log" style="background-color: #f0f0f0; padding: 15px; border-radius: 4px; max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 12px;"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let userId = null;
+
+        function addLog(message) {
+            const log = document.getElementById('log');
+            const time = new Date().toLocaleTimeString('ar-EG');
+            log.innerHTML += `<div>[${time}] ${escapeHtml(message)}</div>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showResult(message, isSuccess = true) {
+            const result = document.getElementById('result');
+            result.className = 'result ' + (isSuccess ? 'success' : 'error');
+            result.innerHTML = `<p>${message}</p>`;
+            addLog(message);
+        }
+
+        async function testConnection() {
+            try {
+                addLog('جاري اختبار الاتصال...');
+                const response = await fetch(`${API_BASE_URL}/users`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    document.getElementById('status').textContent = '✅ متصل';
+                    document.getElementById('status').style.color = 'green';
+                    showResult('✅ الاتصال بنجاح مع الخادم', true);
+                } else {
+                    document.getElementById('status').textContent = '❌ خطأ في الاتصال';
+                    document.getElementById('status').style.color = 'red';
+                    showResult(`❌ خطأ: ${response.status}`, false);
+                }
+            } catch (error) {
+                document.getElementById('status').textContent = '❌ غير متصل';
+                document.getElementById('status').style.color = 'red';
+                showResult(`❌ فشل الاتصال: ${error.message}`, false);
+            }
+        }
+
+        async function testLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showResult('❌ الرجاء إدخال البريد والكلمة المرورية', false);
+                return;
+            }
+
+            try {
+                addLog(`جاري محاولة تسجيل الدخول: ${email}`);
+                const response = await fetch(`${API_BASE_URL}/users/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        role: 'author'
+                    })
+                });
+
+                const data = await response.json();
+                addLog(`الرد من الخادم: ${JSON.stringify(data)}`);
+
+                if (response.ok && data.id) {
+                    userId = data.id;
+                    localStorage.setItem('userData', JSON.stringify(data));
+                    
+                    // Populate form with user data
+                    document.getElementById('name').value = data.name || '';
+                    document.getElementById('phone').value = data.whatsapp_number || '';
+                    document.getElementById('bio').value = data.bio || '';
+                    document.getElementById('affiliation').value = data.affiliation || '';
+                    document.getElementById('website').value = data.website || '';
+
+                    showResult(`✅ تم تسجيل الدخول بنجاح (ID: ${userId})`, true);
+                } else {
+                    showResult(`❌ فشل تسجيل الدخول: ${data.error || 'خطأ غير معروف'}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ خطأ: ${error.message}`, false);
+            }
+        }
+
+        async function testUpdateProfile() {
+            if (!userId) {
+                showResult('❌ الرجاء تسجيل الدخول أولاً', false);
+                return;
+            }
+
+            const updateData = {
+                name: document.getElementById('name').value,
+                whatsapp_number: document.getElementById('phone').value,
+                bio: document.getElementById('bio').value,
+                affiliation: document.getElementById('affiliation').value,
+                website: document.getElementById('website').value
+            };
+
+            try {
+                addLog(`جاري تحديث بيانات المستخدم ${userId}...`);
+                addLog(`البيانات المرسلة: ${JSON.stringify(updateData)}`);
+
+                const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-User-Role': 'author'
+                    },
+                    body: JSON.stringify(updateData)
+                });
+
+                const data = await response.json();
+                addLog(`الرد من الخادم: ${JSON.stringify(data)}`);
+
+                if (response.ok) {
+                    showResult(`✅ تم حفظ البيانات بنجاح: ${data.message}`, true);
+                    
+                    // Update localStorage
+                    let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+                    Object.assign(userData, updateData);
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                } else {
+                    showResult(`❌ فشل الحفظ: ${data.error || 'خطأ غير معروف'}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ خطأ: ${error.message}`, false);
+            }
+        }
+
+        async function testVerifyProfile() {
+            if (!userId) {
+                showResult('❌ الرجاء تسجيل الدخول أولاً', false);
+                return;
+            }
+
+            try {
+                addLog(`جاري استرجاع بيانات المستخدم ${userId}...`);
+                
+                const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const user = await response.json();
+                addLog(`البيانات المخزنة: ${JSON.stringify(user)}`);
+
+                if (response.ok) {
+                    let verification = '<h4>البيانات المحفوظة:</h4><ul>';
+                    verification += `<li>الاسم: ${user.name}</li>`;
+                    verification += `<li>البريد: ${user.email}</li>`;
+                    verification += `<li>الواتس: ${user.whatsapp_number}</li>`;
+                    verification += `<li>السيرة: ${user.bio}</li>`;
+                    verification += `<li>الانتماء: ${user.affiliation}</li>`;
+                    verification += `<li>الموقع: ${user.website}</li>`;
+                    verification += '</ul>';
+                    
+                    const result = document.getElementById('result');
+                    result.className = 'result success';
+                    result.innerHTML = `✅ تم استرجاع البيانات بنجاح<br>${verification}`;
+                } else {
+                    showResult(`❌ فشل استرجاع البيانات: ${user.error}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ خطأ: ${error.message}`, false);
+            }
+        }
+
+        // Test connection on page load
+        window.addEventListener('load', () => {
+            testConnection();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Shane</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #0a2342;
+    }
+
+    /* --- Section 1: About Shane --- */
+    .about-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 140px 120px;
+      background-color: #F2F0EB;
+    }
+
+    .text {
+      flex: 1;
+      max-width: 600px;
+      margin-left: 120px;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: #e5a50a;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1.25em;
+    }
+
+    .image-area {
+      position: relative;
+      width: 520px;
+      height: 520px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-area .circle1,
+    .image-area .circle2 {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(229, 165, 10, 0.3);
+      z-index: 0;
+    }
+
+    .circle1 {
+      width: 250px;
+      height: 250px;
+      top: 60px;
+      right: 50px;
+    }
+
+    .circle2 {
+      width: 130px;
+      height: 130px;
+      top: -20px;
+      right: 140px;
+    }
+
+    .placeholder-img {
+      width: 340px;
+      height: 340px;
+      background-color: #0a2342;
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    /* --- Content Cards Section --- */
+    .cards-section {
+      background-color: #f4f4f4;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cards-container {
+      display: flex;
+      gap: 20px; 
+      max-width: 1200px;
+      width: 100%;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      flex: 1; 
+      text-align: right; 
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-image-placeholder {
+      width: 100%;
+      height: 200px; 
+      background-color: #0a2342;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image-placeholder::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(10, 35, 66, 0.7), rgba(10, 35, 66, 0.9));
+      opacity: 0.8;
+    }
+
+    .card-image-placeholder span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-category {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end; 
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .category-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-left: 5px; 
+      margin-right: 0;
+    }
+
+    .dot-community { background-color: #2196F3; } 
+    .dot-politics { background-color: #F44336; }  
+    .dot-economy { background-color: #FFC107; }   
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .card-subtitle {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .read-more {
+      display: flex;
+      justify-content: flex-end; 
+      font-size: 14px;
+      color: #e5a50a;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.2s;
+      font-weight: bold;
+    }
+
+    .read-more:hover {
+      color: #c28c0a;
+      transform: translateX(-5px);
+    }
+
+    .show-more-btn {
+      background-color: #e5a50a;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(229, 165, 10, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .show-more-btn:hover {
+      background-color: #c28c0a;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(194, 140, 10, 0.4);
+    }
+
+    .show-more-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(194, 140, 10, 0.4);
+    }
+
+    .show-more-btn::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .show-more-btn:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+
+    #hidden-cards-section {
+      display: none;
+      width: 100%;
+      max-width: 1200px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    #hidden-cards-section.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hidden-cards-row {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+      width: 100%;
+    }
+    
+    .hidden-cards-row .card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .hidden-cards-row.show .card:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    .hidden-cards-row.show .card:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+    .hidden-cards-row.show .card:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+    
+    .hidden-cards-row.show .card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    /* --- Straight Line Separator --- */
+    .line-separator {
+      height: 1px;
+      background: linear-gradient(to right, 
+        transparent 0%, 
+        rgba(10, 35, 66, 0.2) 20%, 
+        rgba(10, 35, 66, 0.4) 50%, 
+        rgba(10, 35, 66, 0.2) 80%, 
+        transparent 100%);
+      margin: 0 120px;
+    }
+
+    /* --- Section 2: Expert in Humans --- */
+    .expert-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 140px 120px;
+      background-color: #E8E2D6;
+    }
+
+    .expert-img-area {
+      position: relative;
+      width: 520px;
+      height: 520px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .expert-circle1,
+    .expert-circle2,
+    .expert-circle3 {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(229, 165, 10, 0.3);
+      z-index: 0;
+    }
+
+    .expert-circle1 {
+      width: 220px;
+      height: 220px;
+      bottom: 30px;
+      left: 20px;
+    }
+
+    .expert-circle2 {
+      width: 150px;
+      height: 150px;
+      bottom: 10px;
+      left: 120px;
+      background-color: rgba(10, 35, 66, 0.2);
+    }
+
+    .expert-img {
+      width: 360px;
+      height: 360px;
+      background-color: #0a2342;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .expert-text {
+      flex: 1;
+      max-width: 650px;
+      margin-left: 100px;
+    }
+
+    .expert-text h2 {
+      font-size: 2.5em;
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .expert-text h2 span {
+      color: #e5a50a;
+    }
+
+    .expert-text p {
+      line-height: 1.8;
+      font-size: 1.15em;
+      margin-bottom: 25px;
+    }
+
+    .expert-btn {
+      background-color: #e5a50a;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1em;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .expert-btn:hover {
+      background-color: #d09508;
+    }
+
+    /* --- Section 3: A Respected Voice --- */
+    .voice-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 100px;
+      background-color: #F2F0EB;
+      gap: 40px;
+    }
+
+    .voice-left {
+      flex: 1;
+      max-width: 550px;
+      margin-left: 180px;
+    }
+
+    .voice-left h2 {
+      font-size: 2.8em;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #0a2342;
+      margin-bottom: 50px;
+    }
+
+    .voice-left h2 span {
+      color: #e5a50a;
+    }
+
+    /* Circular image & overlapping decorative circles */
+    .voice-img-wrapper {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+
+    .voice-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 3;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .circle.gold {
+      width: 160px;
+      height: 160px;
+      background-color: #d5a542;
+      bottom: -25px;
+      left: -25px;
+      opacity: 0.9;
+    }
+
+    .circle.grey {
+      width: 130px;
+      height: 130px;
+      background-color: #c4c4c4;
+      bottom: -50px;
+      left: 90px;
+      opacity: 0.6;
+    }
+
+    .voice-right {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .voice-right h3 {
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #0a2342;
+    }
+
+    .voice-right ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .voice-right li {
+      font-size: 1.3em;
+      line-height: 1.9;
+      color: #b3871b;
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .voice-right li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #b3871b;
+      transition: all 0.3s ease;
+    }
+
+    .voice-right li:hover {
+      transform: translateY(-3px);
+      color: #e5a50a;
+    }
+
+    .voice-right li:hover::before {
+      transform: translateX(3px);
+      color: #e5a50a;
+    }
+
+    .voice-right li:active {
+      transform: translateY(0);
+      transition: transform 0.1s;
+    }
+
+    .voice-right em {
+      color: #0a2342;
+      font-style: italic;
+    }
+
+    /* --- Balanced Credentials Section --- */
+    .credentials-section {
+      display: flex;
+      justify-content: center;
+      padding: 100px 120px;
+      background-color: #F2F0EB;
+      opacity: 1;
+    }
+
+    .credentials-content {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1200px;
+      width: 100%;
+      gap: 80px;
+    }
+
+    .credentials-left {
+      flex: 1;
+      position: relative;
+      text-align: left;
+    }
+
+    .credentials-left h2 {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #0a2342;
+      margin-bottom: 40px;
+    }
+
+    .credentials-left h2 span {
+      color: #e5a50a;
+      font-weight: 700;
+    }
+
+    /* Beige background circle */
+    .badge-bg {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      background-color: #f7f4ed;
+      border-radius: 50%;
+      top: 120px;
+      left: 0px;
+      z-index: 0;
+    }
+
+    /* Gray image placeholder */
+    .badge-placeholder {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 1;
+      margin-top: 10px;
+      margin-left: 60px;
+      background-color: #e6e6e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .badge-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .credentials-right {
+      flex: 1;
+      padding-top: 20px;
+    }
+
+    .credentials-right ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .credentials-right li {
+      position: relative;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      font-size: 1.1em;
+      padding-left: 25px;
+    }
+
+    .credentials-right li::before {
+      content: "▶";
+      color: #0a2342;
+      font-size: 0.9em;
+      position: absolute;
+      left: 0;
+    }
+
+    /* --- Quote Carousel Section --- */
+      /* --- Quote Carousel Section --- */
+    .quote-section {
+      background-color: #0c0733;
+      color: white;
+      padding: 80px 40px;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+    }
+
+    .carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      margin: 0 auto;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .quote-container {
+      flex: 1;
+      max-width: 800px;
+      padding: 10px 60px;
+      transition: opacity 0.6s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quote-text {
+      font-size: 1.7rem;
+      font-weight: 400;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      text-align: center;
+      width: 100%;
+    }
+
+    .quote-author {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #f5f5f5;
+      text-align: center;
+      width: 100%;
+    }
+
+    .nav-btn {
+      background-color: #b08a3b;
+      border: none;
+      color: white;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      flex-shrink: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .nav-btn:hover {
+      background-color: #d1a64c;
+    }
+
+    .prev-btn {
+      left: 20px;
+    }
+
+    .next-btn {
+      right: 20px;
+    }
+
+    /* Move buttons closer to screen edges */
+    .prev-btn {
+      position: absolute;
+      left: 0;
+    }
+
+    .next-btn {
+      position: absolute;
+      right: 0;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 900px) {
+      .about-section,
+      .expert-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 40px;
+      }
+
+      .text,
+      .expert-text {
+        margin-left: 0;
+      }
+
+      .image-area,
+      .expert-img-area {
+        margin-top: 60px;
+      }
+      
+      .line-separator {
+        margin: 0 40px;
+      }
+
+      .voice-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 40px;
+      }
+
+      .voice-left {
+        margin-left: 0;
+      }
+
+      .voice-img-wrapper {
+        margin: 0 auto;
+      }
+
+      .voice-right {
+        margin-top: 60px;
+      }
+
+      .circle.gold {
+        left: 30px;
+      }
+
+      .circle.grey {
+        left: 140px;
+      }
+
+      .credentials-section {
+        padding: 80px 40px;
+      }
+
+      .credentials-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .credentials-left h2 {
+        text-align: center;
+      }
+
+      .badge-placeholder {
+        margin: 0 auto 30px;
+      }
+
+      .badge-bg {
+        display: none;
+      }
+
+      .credentials-right {
+        text-align: left;
+        padding-top: 0;
+      }
+
+      .quote-text {
+        font-size: 1.3rem;
+      }
+      
+      .nav-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+      }
+      
+      .prev-btn {
+        left: 10px;
+      }
+      
+      .next-btn {
+        right: 10px;
+      }
+      
+      .cards-container {
+        flex-direction: column;
+      }
+      
+      .hidden-cards-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
+    <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between" dir="rtl">
+        <!-- Logo / Title -->
+        <div class="flex items-center space-x-2 space-x-reverse">
+            <div class="w-10 h-10 rounded-full bg-[#0a2342] flex items-center justify-center text-white text-lg font-bold">
+                ؟؟
+            </div>
+            <span class="text-lg font-bold text-[#0a2342]">مجلة الفكر</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex space-x-6 space-x-reverse text-black font-medium">
+            <a href="#" class="hover:text-[#0a2342]">الفعاليات</a>
+            <a href="#" class="hover:text-[#0a2342]">أحدث</a>
+            <a href="#" class="hover:text-[#0a2342]">الأقسام</a>
+            <a href="#" class="hover:text-[#0a2342]">الموثوقون</a>
+            <a href="#" class="hover:text-[#0a2342]">عتا</a>
+        </nav>
+
+        <!-- Search Button -->
+        <button class="bg-gray-100 text-black px-3 py-1.5 rounded-lg hover:bg-gray-200">
+            بحث
+        </button>
+    </div>
+</header>
+
+<!-- About Ahmed Ali -->
+<section class="about-section">
+  <div class="text">
+    <h1>حول <span>أحمد علي</span></h1>
+    <p>
+      أحمد علي هو باحث في العلوم السياسية، مختص بدراسة السياسات العامة والتحليل السياسي،
+      وقد شارك في العديد من الدراسات والأبحاث الأكاديمية والإستشارية في هذا المجال.
+    </p>
+  </div>
+
+    <div class="image-area">
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="placeholder-img"></div>
+    </div>
+  </section>
+
+  <!-- Content Cards Section -->
+  <section class="cards-section">
+    <div class="cards-container">
+      <div class="card" data-link="article1.html">
+        <div class="card-image-placeholder"><span>800 × 420</span></div>
+        <div class="card-content">
+          <div class="card-category">مجتمع <span class="category-dot dot-community"></span></div>
+          <h2 class="card-title">تكنولوجيا المجتمع (1)</h2>
+          <p class="card-subtitle">كيف تغيرت الأدوات الرقمية أنماط التواصل...</p>
+          <a href="article1.html" class="read-more">اقرأ المزيد ←</a>
+        </div>
+      </div>
+      <div class="card" data-link="article2.html">
+        <div class="card-image-placeholder"><span>800 × 420</span></div>
+        <div class="card-content">
+          <div class="card-category">سياسة <span class="category-dot dot-politics"></span></div>
+          <h2 class="card-title">إعادة تشكيل العلاقات (2)</h2>
+          <p class="card-subtitle">تغيرات سريعة في خرائط التحالفات...</p>
+          <a href="article2.html" class="read-more">اقرأ المزيد ←</a>
+        </div>
+      </div>
+      <div class="card" data-link="article3.html">
+        <div class="card-image-placeholder"><span>800 × 420</span></div>
+        <div class="card-content">
+          <div class="card-category">اقتصاد <span class="category-dot dot-economy"></span></div>
+          <h2 class="card-title">تحولات الاقتصاد العالمي (3)</h2>
+          <p class="card-subtitle">لمحة سريعة عن الاتجاهات المؤثرة...</p>
+          <a href="article3.html" class="read-more">اقرأ المزيد ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="hidden-cards-section">
+      <div class="cards-container hidden-cards-row">
+        <div class="card" data-link="article4.html">
+          <div class="card-image-placeholder"><span>800 × 420</span></div>
+          <div class="card-content">
+            <div class="card-category">تقنية <span class="category-dot dot-community"></span></div>
+            <h2 class="card-title">الذكاء الاصطناعي (4)</h2>
+            <p class="card-subtitle">تأثيره على سوق العمل والابتكار...</p>
+            <a href="article4.html" class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </div>
+        <div class="card" data-link="article5.html">
+          <div class="card-image-placeholder"><span>800 × 420</span></div>
+          <div class="card-content">
+            <div class="card-category">ثقافة <span class="category-dot dot-politics"></span></div>
+            <h2 class="card-title">الفنون المعاصرة (5)</h2>
+            <p class="card-subtitle">أبرز التيارات الحديثة في الرسم...</p>
+            <a href="article5.html" class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </div>
+        <div class="card" data-link="article6.html">
+          <div class="card-image-placeholder"><span>800 × 420</span></div>
+          <div class="card-content">
+            <div class="card-category">صحة <span class="category-dot dot-economy"></span></div>
+            <h2 class="card-title">النمط الغذائي (6)</h2>
+            <p class="card-subtitle">أهمية التوازن في الحياة اليومية...</p>
+            <a href="article6.html" class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-container hidden-cards-row">
+        <div class="card" data-link="article7.html">
+          <div class="card-image-placeholder"><span>800 × 420</span></div>
+          <div class="card-content">
+            <div class="card-category">رياضة <span class="category-dot dot-community"></span></div>
+            <h2 class="card-title">التحكيم الإلكتروني (7)</h2>
+            <p class="card-subtitle">تكنولوجيا خط المرمى والمراجعة...</p>
+            <a href="article7.html" class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </div>
+        <div class="card" data-link="article8.html">
+          <div class="card-image-placeholder"><span>800 × 420</span></div>
+          <div class="card-content">
+            <div class="card-category">سفر <span class="category-dot dot-politics"></span></div>
+            <h2 class="card-title">وجهات سياحية (8)</h2>
+            <p class="card-subtitle">أفضل الوجهات للسفر في الشتاء...</p>
+            <a href="article8.html" class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </div>
+        <div class="card" data-link="article9.html">
+          <div class="card-image-placeholder"><span>800 × 420</span></div>
+          <div class="card-content">
+            <div class="card-category">موضة <span class="category-dot dot-economy"></span></div>
+            <h2 class="card-title">أزياء 2024 (9)</h2>
+            <p class="card-subtitle">اتجاهات الألوان والأقمشة لهذا العام...</p>
+            <a href="article9.html" class="read-more">اقرأ المزيد ←</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="show-more-btn" id="showMoreButton">إظهار المزيد</button>
+  </section>
+
+  <!-- Straight Line Separator -->
+  <div class="line-separator"></div>
+
+  <!-- Expert in Humans -->
+  <section class="expert-section">
+    <div class="expert-img-area">
+      <div class="expert-circle1"></div>
+      <div class="expert-circle2"></div>
+      <div class="expert-img"></div>
+    </div>
+<div class="expert-text">
+  <h2><span>باحث في العلوم السياسية</span> وتحليل السياسات.</h2>
+  <p>
+    أحمد علي يمتلك خبرة واسعة في دراسة السياسات العامة والتحليل السياسي، وشارك في العديد من الأبحاث الأكاديمية والاستشارات السياسية.
+    لديه القدرة على فهم الديناميكيات السياسية المعقدة، وتقديم رؤى معمقة تساعد صانعي القرار على اتخاذ قرارات مستنيرة.
+  </p>
+  <p>
+    أحمد علي باحث نشط في المجلات الأكاديمية، كما يقدم ورش عمل ومحاضرات لتثقيف المهتمين بالشؤون السياسية، ويملك خبرة طويلة في كتابة الدراسات وتحليل البيانات السياسية.
+  </p>
+  <button class="expert-btn">تواصل مع أحمد علي</button>
+</div>
+</section>
+
+  <!-- Third Section: A Respected Voice -->
+<section class="voice-section">
+  <div class="voice-left">
+    <h2>
+      صوت محترم<br>
+      في مواضيع<br>
+      <span>السياسة والتحليل السياسي.</span>
+    </h2>
+    
+    <div class="voice-img-wrapper">
+      <div class="circle gold"></div>
+      <div class="circle grey"></div>
+      <img src="Screenshot 2025-10-15 111121.png" alt="صورة أحمد علي" class="voice-img">
+    </div>
+  </div>
+  
+  <div class="voice-right">
+    <h3>مقالات منشورة:</h3>
+    <ul>
+      <li onclick="window.open('https://example.com/article1', '_blank')">
+        التحولات السياسية في الشرق الأوسط <em>(مجلة العلوم السياسية)</em>
+      </li>
+      <li onclick="window.open('https://example.com/article2', '_blank')">
+        دور الأحزاب السياسية في تعزيز الديمقراطية <em>(مجلة الدراسات السياسية)</em>
+      </li>
+      <li onclick="window.open('https://example.com/article3', '_blank')">
+        تحليل السياسات العامة وتأثيرها على المجتمع <em>(Journal of Political Analysis)</em>
+      </li>
+      <li onclick="window.open('https://example.com/article4', '_blank')">
+        إدارة الأزمات السياسية: دراسة حالات <em>(مجلة السياسة المعاصرة)</em>
+      </li>
+      <li onclick="window.open('https://example.com/article5', '_blank')">
+        العلاقة بين الإعلام وصنع القرار السياسي <em>(Political Science Review)</em>
+      </li>
+    </ul>
+  </div>
+</section>
+<!-- Credentials Section -->
+<section class="credentials-section">
+  <div class="credentials-content">
+    <div class="credentials-left">
+      <h2>المؤهلات <span>الأكاديمية.</span></h2>
+      <div class="badge-bg"></div>
+      <div class="badge-placeholder">
+        <img src="Screenshot 2025-10-15 111121.png" alt="Badge Placeholder" />
+      </div>
+    </div>
+    
+    <div class="credentials-right">
+      <ul>
+        <li>
+          حاصل على درجة الدكتوراه في العلوم السياسية من جامعة مرموقة.
+        </li>
+        <li>
+          نشر العديد من الأبحاث العلمية في مجلات محكمة دولية حول السياسات العامة والتحليل السياسي.
+        </li>
+        <li>
+          عضو في الجمعية الدولية للعلوم السياسية (IPSA).
+        </li>
+        <li>
+          مشارك في ورش عمل ومؤتمرات دولية متخصصة في السياسة وتحليل السياسات.
+        </li>
+        <li>
+          خبرة في تقديم الاستشارات البحثية والتحليلية لصانعي القرار والهيئات الأكاديمية.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+  <!-- Quote Carousel Section --><section class="quote-section">
+  <div class="carousel">
+    <button class="nav-btn prev-btn">&#8592;</button>
+    
+    <div class="quote-container">
+      <p class="quote-text">"أحمد علي يقدم تحليلات دقيقة وعميقة للسياسات العامة، ويُمكّن صانعي القرار من فهم تأثيرات السياسات على المجتمع بشكل واضح."</p>
+      <p class="quote-author">— د. ليلى الحسن، أستاذة العلوم السياسية، جامعة بغداد</p>
+    </div>
+    
+    <button class="nav-btn next-btn">&#8594;</button>
+  </div>
+</section>
+  <!-- FOOTER -->
+<footer class="bg-[#0a2342] text-white py-10" dir="rtl">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+        <!-- Subscribe Section -->
+        <div>
+            <h3 class="font-bold mb-4">اشترك</h3>
+            <form class="flex space-x-2 space-x-reverse">
+                <input type="email" placeholder="بريدك" class="px-4 py-2 rounded-lg text-black flex-1 focus:outline-none" />
+                <button type="submit" class="bg-[#e79c25] text-white px-4 py-2 rounded-lg hover:bg-[#d1861d]">
+                    إرسال
+                </button>
+            </form>
+        </div>
+
+        <!-- Links Section -->
+        <div>
+            <h3 class="font-bold mb-4">روابط</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:underline">الفعاليات</a></li>
+                <li><a href="#" class="hover:underline">أحدث المقالات</a></li>
+                <li><a href="#" class="hover:underline">الأقسام</a></li>
+                <li><a href="#" class="hover:underline">الحسابات الموثوقة</a></li>
+            </ul>
+        </div>
+
+        <!-- Logo + Copyright -->
+        <div class="flex flex-col items-center md:items-end space-y-2">
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="w-10 h-10 rounded-full bg-[#0a2342] border border-white/30 flex items-center justify-center text-white font-bold">
+                    ؟؟
+                </div>
+                <span class="font-bold">مجلة الفكر</span>
+            </div>
+            <p class="text-sm text-gray-300">© 2025</p>
+        </div>
+    </div>
+</footer>
+
+  <script>
+    // Simple fade-in effect
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        document.body.style.transition = "opacity 1s";
+        document.body.style.opacity = 1;
+      }, 200);
+
+      // Quote Carousel Functionality
+     const quotes = [
+  {
+    text: "“أحمد علي يقدم تحليلات دقيقة وعميقة للسياسات العامة، ويُمكّن صانعي القرار من فهم تأثيرات السياسات على المجتمع بشكل واضح.”",
+    author: "— د. ليلى الحسن، أستاذة العلوم السياسية، جامعة بغداد"
+  },
+  {
+    text: "“أبحاث أحمد علي تساهم بشكل كبير في تطوير فهمنا للسياسات الإقليمية، وتوفر أدوات فعّالة للتحليل العلمي والسياسي.”",
+    author: "— د. سامر كاظم، باحث في الدراسات السياسية، جامعة البصرة"
+  },
+  {
+    text: "“القدرة التحليلية لأحمد علي ومهاراته البحثية تجعل من تعامله مع القضايا السياسية معقدة إلى مفهومة وقابلة للتطبيق.”",
+    author: "— د. ندى العزاوي، خبيرة في السياسات العامة"
+  }
+];
+
+      let current = 0;
+
+      const quoteText = document.querySelector(".quote-text");
+      const quoteAuthor = document.querySelector(".quote-author");
+      const prevBtn = document.querySelector(".prev-btn");
+      const nextBtn = document.querySelector(".next-btn");
+
+      function updateQuote(index) {
+        quoteText.style.opacity = 0;
+        quoteAuthor.style.opacity = 0;
+
+        setTimeout(() => {
+          quoteText.textContent = quotes[index].text;
+          quoteAuthor.textContent = quotes[index].author;
+          quoteText.style.opacity = 1;
+          quoteAuthor.style.opacity = 1;
+        }, 300);
+      }
+
+      prevBtn.addEventListener("click", () => {
+        current = (current - 1 + quotes.length) % quotes.length;
+        updateQuote(current);
+      });
+
+      nextBtn.addEventListener("click", () => {
+        current = (current + 1) % quotes.length;
+        updateQuote(current);
+      });
+
+      // Content Cards Functionality
+      const button = document.getElementById('showMoreButton');
+      const hiddenSection = document.getElementById('hidden-cards-section');
+      const hiddenRows = document.querySelectorAll('.hidden-cards-row');
+      const cards = document.querySelectorAll('.card');
+      
+      // عند الضغط على الزر
+      button.addEventListener('click', function() {
+        // إذا كان القسم مخفياً
+        if (hiddenSection.classList.contains('show')) {
+          // إخفاء البطاقات بشكل متتالي
+          hiddenRows.forEach(row => row.classList.remove('show'));
+          
+          // بعد انتهاء تأثير الإخفاء، إخفاء القسم بالكامل
+          setTimeout(() => {
+            hiddenSection.classList.remove('show');
+            button.textContent = 'إظهار المزيد'; // أعد نص الزر الأصلي
+          }, 500);
+        } else {
+          // إذا كان القسم مخفياً، أظهره أولاً
+          hiddenSection.classList.add('show');
+          button.textContent = 'إخفاء المقالات'; // غيّر نص الزر
+          
+          // ثم أظهر البطاقات بشكل متتالي بعد تأخير بسيط
+          setTimeout(() => {
+            hiddenRows.forEach(row => row.classList.add('show'));
+          }, 50);
+        }
+      });
+
+      // إضافة تأثير النقر على البطاقات
+      cards.forEach(card => {
+        card.addEventListener('click', function() {
+          // تأثير النقر
+          this.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
+          
+          // الانتقال إلى الصفحة المحددة
+          const link = this.getAttribute('data-link');
+          if (link) {
+            // في بيئة حقيقية، استخدم:
+            // window.location.href = link;
+            
+            // للعرض التوضيحي، سنظهر رسالة فقط
+            console.warn(`سيتم الانتقال إلى: ${link}`);
+          }
+        });
+      });
+
+      // تأثير التموج عند الضغط على الزر
+      button.addEventListener('mousedown', function(e) {
+        // إضافة تأثير التموج
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        this.appendChild(ripple);
+        
+        // إزالة تأثير التموج بعد انتهاء الرسوم المتحركة
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+  </script>
+
+</body>
+</html>

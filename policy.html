@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - Iraqi Scholars Research</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .merriweather-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: var(--hg-blue);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        /* ================= NEW HEADER STYLES ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 100;
+        }
+
+        .top-header {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .center-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #467ca2; }
+        .dot-orange { background: #EBA337; }
+
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #0b2344;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= POLICY PAGE STYLES ================= */
+        .policy-header {
+            background: linear-gradient(135deg, #07234a 0%, #0b2344 100%);
+            padding: 60px 20px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(11, 35, 68, 0.2);
+        }
+
+        .policy-header h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .policy-header .meta {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .policy-container {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .policy-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .policy-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .policy-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .policy-section h2 {
+            color: #0b2344;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eba337;
+            display: inline-block;
+        }
+
+        .policy-section h3 {
+            color: #0b2344;
+            font-size: 20px;
+            margin: 25px 0 15px;
+        }
+
+        .policy-section h4 {
+            color: #555;
+            font-size: 18px;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #444;
+            text-align: justify;
+        }
+
+        .policy-section ul, .policy-section ol {
+            margin: 15px 0 20px 20px;
+            padding-right: 20px;
+        }
+
+        .policy-section li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f4ec 0%, #f5f0e3 100%);
+            border-right: 4px solid #eba337;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-box {
+            background: #e8f4ff;
+            border-right: 4px solid #467ca2;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff8e8;
+            border-right: 4px solid #ffa726;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .policy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .policy-table th {
+            background: #0b2344;
+            color: white;
+            padding: 15px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .policy-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: right;
+            vertical-align: top;
+        }
+
+        .policy-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .policy-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .expandable-section {
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .expandable-header {
+            background: #f8f8f8;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #0b2344;
+            transition: all 0.3s ease;
+        }
+
+        .expandable-header:hover {
+            background: #f0f0f0;
+        }
+
+        .expandable-header i {
+            transition: transform 0.3s ease;
+        }
+
+        .expandable-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .expandable-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+
+        .expandable-content.active {
+            padding: 20px;
+            max-height: 2000px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #eba337;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(235, 163, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #0b2344;
+            transform: translateY(-5px);
+        }
+
+        /* ================= NEW FOOTER STYLES ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center;
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15);
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2);
+        }
+
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* Tablet adjustments */
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 40px 60px;
+                max-height: none;
+            }
+            
+            .brand {
+                text-align: right;
+                width: 25%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            
+            .brand-title {
+                justify-content: flex-end;
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right;
+            }
+            
+            .brand-title img {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .columns-row {
+                width: 45%;
+                margin-bottom: 0;
+                gap: 20px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            
+            .footer-column {
+                flex: 1;
+                text-align: right;
+                align-items: flex-end;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 16px;
+                text-align: right;
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            
+            .footer-item {
+                font-size: 14px;
+                margin: 5px 0;
+                padding: 10px 8px;
+                text-align: right;
+                width: 100%;
+            }
+            
+            .subscribe-section {
+                width: 30%;
+                text-align: right;
+                padding-top: 0;
+                border-top: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                margin-right: 20px;
+            }
+            
+            .subscribe-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right;
+                padding-right: 0;
+                align-self: flex-end;
+            }
+            
+            .subscribe-container {
+                justify-content: flex-end;
+                width: 100%;
+                max-width: 100%;
+                padding-right: 0;
+            }
+            
+            .subscribe-input {
+                height: 38px;
+                font-size: 14px;
+                max-width: 220px;
+            }
+            
+            .subscribe-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .copyright {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* Mobile responsive for header */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+            
+            .policy-header {
+                padding: 40px 15px 30px;
+            }
+            
+            .policy-header h1 {
+                font-size: 28px;
+            }
+            
+            .policy-content {
+                padding: 25px;
+            }
+            
+            .policy-section h2 {
+                font-size: 22px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+            
+            .policy-header h1 {
+                font-size: 24px;
+            }
+            
+            .policy-content {
+                padding: 20px;
+            }
+            
+            .policy-section h2 {
+                font-size: 20px;
+            }
+            
+            .policy-table {
+                font-size: 14px;
+            }
+            
+            .policy-table th, .policy-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fffdf6]">
+    
+    <!-- NEW HEADER -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- TITLE + LOGO (NOT CLICKABLE) -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="index.html" class="item">الرئيسية <span class="dot"></span></a>
+            <a href="about.html" class="item">من نحن <span class="dot"></span></a>
+         <!--    <a href="special_issues.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>-->
+            <a href="sections/economy.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sections/general.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="sections/society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث هنا..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('verified-accounts.html')">الحسابات الموثقة</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- POLICY PAGE HEADER -->
+    <div class="policy-header">
+        <h1>سياسة الخصوصية</h1>
+        <p class="text-lg text-white/90 max-w-3xl mx-auto">نحن ملتزمون بحماية خصوصيتك. تعرف على كيفية جمع واستخدام ومشاركة بياناتك الشخصية.</p>
+        <div class="meta">
+            <span><i class="fas fa-calendar-alt ml-1"></i> تم التحديث: 10 أكتوبر 2018</span>
+            <span><i class="fas fa-file-alt ml-1"></i> ساري المفعول: 10 أكتوبر 2018</span>
+        </div>
+    </div>
+    
+    <!-- POLICY CONTENT -->
+    <div class="policy-container">
+        <div class="policy-content">
+            
+            <!-- Introduction -->
+            <div class="policy-section">
+                <h2>مقدمة</h2>
+                <p>تشرف الجمعية الأمريكية لتقدم العلوم (AAAS) على مواقع AAAS ومواقع عائلة Science (المشار إليها مجتمعة بـ "مواقع AAAS وScience")، بما في ذلك AAAS.org، وScience (النسخة الإلكترونية)، وScience Advances، وScience Signaling، وScience Translational Medicine، وScience Immunology، وScience Robotics، وNews from Science، وScience Careers، وScience Classic، وSAGE KE.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>ملاحظة هامة:</strong> تحتوي مواقع AAAS وScience على روابط لمواقع أخرى ليس لنا أي سيطرة عليها. نحن لسنا مسؤولين عن سياسات الخصوصية أو الممارسات الخاصة بالمواقع الأخرى التي تزورها من خلال رابط على مواقع AAAS وScience.</p>
+                </div>
+            </div>
+            
+            <!-- Personal Data Definition -->
+            <div class="policy-section">
+                <h2>ما هي البيانات الشخصية؟</h2>
+                <p>البيانات الشخصية (يشار إليها أيضًا في هذه السياسة باسم المعلومات الشخصية) تعني أي معلومات تتعلق بشخص طبيعي يمكن تحديد هويته بالإشارة إلى معرّف مثل الاسم، أو رقم تعريف، أو بيانات الموقع، أو معرّف عبر الإنترنت، أو إلى عامل واحد أو أكثر خاص بالهوية الجسدية، أو الفسيولوجية، أو الجينية، أو العقلية، أو الاقتصادية، أو الثقافية، أو الاجتماعية لذلك الشخص.</p>
+            </div>
+            
+            <!-- Information We Collect -->
+            <div class="policy-section">
+                <h2>المعلومات الشخصية التي نجمعها</h2>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span>معلومات الاتصال</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>في بعض أقسام مواقع AAAS وScience، نطلب أو قد نطلب منك تقديم معلومات شخصية، بما في ذلك اسمك وعنوانك وعنوان بريدك الإلكتروني ورقم هاتفك.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span>معلومات المشتري</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>في بعض أقسام مواقع AAAS وScience، نطلب أو قد نطلب منك تقديم رقم بطاقتك الائتمانية، ومعلومات الاتصال، ومعلومات الفوترة.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span>المعلومات الديموغرافية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>في أقسام أخرى، نجمع أو قد نجمع معلومات ديموغرافية مثل عمرك، وتركيز مهنتك وتخصصك، وتفضيلاتك، وجنسك، وشهاداتك التعليمية، وخلفيتك العرقية، واهتماماتك، ونطاق دخلك المنزلي.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span>المعلومات التقنية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>نقوم أيضًا بجمع أو قد نجمع معلومات معينة حول استخدامك لموقعنا، مثل المناطق التي تزورها والخدمات التي تصل إليها. علاوة على ذلك، هناك معلومات حول أجهزة وبرامج الكمبيوتر الخاصة بك التي نجمعها أو قد نجمعها. يمكن أن تشمل هذه المعلومات، دون حصر، عنوان IP الخاص بك، ونوع المتصفح، وأسماء النطاقات، وأوقات الوصول، وعناوين مواقع الويب المرجعية.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Use of Personal Information -->
+            <div class="policy-section">
+                <h2>استخدام المعلومات الشخصية</h2>
+                <p>قد يتم استخدام المعلومات التي تم جمعها بواسطة AAAS لغرض تزويدك بالمحتوى الذي تطلبه، وتشغيل وتحسين مواقع AAAS وScience، وتعزيز تجربة مستخدم إيجابية، وتقديم المنتجات والخدمات التي نقدمها.</p>
+                
+                <p>قد نستخدم أيضًا المعلومات التي نجمعها لإعلامك بالمنتجات أو الخدمات الأخرى المتاحة من مواقع AAAS وScience أو للاتصال بك بشأن رأيك في المنتجات والخدمات الحالية أو المنتجات والخدمات الجديدة المحتملة التي قد يتم تقديمها.</p>
+                
+                <div class="info-box">
+                    <p><strong>ملاحظة:</strong> إذا كنا نعتزم في المستقبل معالجة بياناتك الشخصية لغرض غير الغرض الذي تم جمعها من أجله، فسنزودك بمعلومات حول هذا الغرض وأي معلومات أخرى ذات صلة.</p>
+                </div>
+                
+                <!-- GDPR Table -->
+                <h3>أساس المعالجة القانونية (لمستخدمي الاتحاد الأوروبي)</h3>
+                <div class="policy-table-container">
+                    <table class="policy-table">
+                        <thead>
+                            <tr>
+                                <th>المعلومات الشخصية</th>
+                                <th>الأساس القانوني للمعالجة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>معلومات الاتصال، بما في ذلك الاسم والعنوان وعنوان البريد الإلكتروني ورقم الهاتف</td>
+                                <td>الموافقة لتزويدك بالمحتوى الذي تطلبه، حسب الضرورة لتنفيذ العقد</td>
+                            </tr>
+                            <tr>
+                                <td>معلومات المشتري، بما في ذلك رقم بطاقة الائتمان ومعلومات الاتصال ومعلومات الفوترة</td>
+                                <td>ضروري لتزويدك بالمحتوى الذي تطلبه</td>
+                            </tr>
+                            <tr>
+                                <td>المعلومات الديموغرافية، بما في ذلك العمر وتركيز المهنة والتخصص والتفضيلات والجنس والشهادات التعليمية والخلفية العرقية والاهتمامات ونطاق الدخل المنزلي</td>
+                                <td>الغرض المشروع لتوفير محتوى مخصص لك</td>
+                            </tr>
+                            <tr>
+                                <td>المعلومات التقنية، بما في ذلك عنوان IP الخاص بك ونوع المتصفح وأسماء النطاقات وأوقات الوصول وعناوين مواقع الويب المرجعية</td>
+                                <td>الغرض المشروع لمصادقة المشتركين وتحسين أداء الموقع</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Retention of Personal Information -->
+            <div class="policy-section">
+                <h2>الاحتفاظ بالمعلومات الشخصية</h2>
+                <p>نحتفظ إلى أجل غير مسمى بجميع المعلومات الشخصية التي نجمعها عن الزوار أو المشتركين حسب الضرورة لتنفيذ عقدنا معك. نحتفظ إلى أجل غير مسمى بمعلومات معينة مجهولة المصدر نجمعها عن الزوار أو المشتركين للغرض المشروع لإجراء تحليلات الموقع وتوفير استخدام موقعنا لجميع الزوار بطريقة فعالة وعملية وذات صلة.</p>
+                
+                <div class="warning-box">
+                    <p><strong>تنويه مهم:</strong> إذا لم يكن هناك أساس قانوني أو متطلب آخر للاحتفاظ ببياناتك وبعد عدم وجود أي نشاط منك لمدة ستة وعشرين (26) شهرًا، فسيتم مسح بياناتك التي لم تعد مطلوبة.</p>
+                </div>
+            </div>
+            
+            <!-- Sharing of Personal Data -->
+            <div class="policy-section">
+                <h2>مشاركة البيانات الشخصية</h2>
+                <p>لا نشارك أو نكشف عن معلوماتك الشخصية لأطراف ثالثة إلا كما هو محدد أدناه:</p>
+                
+                <div class="policy-table-container">
+                    <table class="policy-table">
+                        <thead>
+                            <tr>
+                                <th>المعلومات الشخصية</th>
+                                <th>الغرض من المشاركة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>المعلومات التقنية</td>
+                                <td>مع شركاء أعمال AAAS للغرض المشروع لفهم أنماط الاستخدام لمواقع AAAS وScience ومواقع شركائنا</td>
+                            </tr>
+                            <tr>
+                                <td>المعلومات التقنية</td>
+                                <td>مع مزودي خدمة استضافة الويب وغيرها من الخدمات التقنية للغرض المشروع لاستضافة خوادم الويب الخاصة بنا وضمان أمان المعلومات لشبكاتنا</td>
+                            </tr>
+                            <tr>
+                                <td>معلومات الاتصال</td>
+                                <td>مع الاستشاريين والبائعين للغرض المشروع لتقديم دعم العملاء والمساعدة في التسويق</td>
+                            </tr>
+                            <tr>
+                                <td>معلومات بطاقة الائتمان</td>
+                                <td>مع معالجات بطاقات الائتمان لأغراض معالجة معاملات بطاقات الائتمان فيما يتعلق بعقد المشترك مع مواقع AAAS وScience</td>
+                            </tr>
+                            <tr>
+                                <td>معلومات الاتصال</td>
+                                <td>مع شركائنا التجاريين، بموافقتك، لأغراض تزويدك بمنتجات أو خدمات مخصصة لاهتماماتك وتفضيلاتك</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p>بالإضافة إلى ذلك، نكشف عن المعلومات الشخصية إذا كان ذلك مطلوبًا قانونيًا، أو إذا طلبت منا كيان حكومي ذلك، أو إذا كنا نعتقد بحسن نية أن مثل هذا الإجراء ضروري لـ: (أ) الامتثال للمتطلبات القانونية أو الالتزام بالإجراءات القانونية؛ (ب) حماية حقوق أو ممتلكات AAAS؛ (ج) منع جريمة أو حماية الأمن القومي؛ أو (د) حماية السلامة الشخصية للمستخدمين أو الجمهور.</p>
+            </div>
+            
+            <!-- Your Rights -->
+            <div class="policy-section">
+                <h2>حقوقك بموجب اللائحة العامة لحماية البيانات (GDPR)</h2>
+                <p>يتمتع زوار ومشتركو الاتحاد الأوروبي بالحقوق التالية فيما يتعلق ببياناتهم الشخصية:</p>
+                
+                <ul>
+                    <li><strong>حق الوصول:</strong> الحق في الوصول إلى البيانات الشخصية التي نخزنها عنك.</li>
+                    <li><strong>حق التصحيح:</strong> الحق في تصحيح (أو تصويب) هذه البيانات.</li>
+                    <li><strong>حق تقييد المعالجة:</strong> الحق في تقييد معالجتنا للبيانات الشخصية.</li>
+                    <li><strong>حق الحذف:</strong> الحق في حذف البيانات.</li>
+                    <li><strong>حق قابلية نقل البيانات:</strong> الحق في الحصول على نسخة من البيانات بتنسيق منظم وشائع الاستخدام وقابل للقراءة الآلية.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>كيفة ممارسة حقوقك:</strong> إذا كنت ترغب في ممارسة حق بموجب اللائحة العامة لحماية البيانات (GDPR)، يمكنك الاتصال بنا على <strong>dataprotectionoffice@aaas.org</strong>. يرجى استخدام سطر الموضوع "استفسار حول اللائحة العامة لحماية البيانات (GDPR)". يجب أن يتضمن بريدك الإلكتروني وصفًا مفصلًا بما فيه الكفاية للحق بموجب اللائحة العامة لحماية البيانات (GDPR) الذي تبحث عن المساعدة فيه. قد نحتاج إلى الاتصال بك للحصول على مزيد من المعلومات ونحتفظ بالحق في فرض رسوم على بعض الطلبات.</p>
+                </div>
+            </div>
+            
+            <!-- Cookies -->
+            <div class="policy-section">
+                <h2>ملفات تعريف الارتباط (الكوكيز)</h2>
+                <p>ملفات تعريف الارتباط هي ملفات نصية توضع على محرك الأقراص الثابتة الخاص بك عن طريق خادم صفحة الويب. نستخدم ملفات تعريف الارتباط لتقديم نتائج أسرع وأكثر دقة وتجربة موقع أكثر تخصيصًا. نستخدم أيضًا ملفات تعريف الارتباط لتتبع تدفق النقرات، وتحقيق توازن الحمل، ولأغراض تحليلية.</p>
+                
+                <p>نستخدم AdWords Remarketing، وهي خدمة إعادة استهداف وتوجيه سلوكي تقدمها Google. نستخدم أيضًا بيانات Google وAdobe Analytics وملف تعريف ارتباط DoubleClick لعرض الإعلانات استنادًا إلى زيارة المستخدم السابقة لموقعنا.</p>
+                
+                <div class="info-box">
+                    <p><strong>خيارات التحكم:</strong> يمكنك تغيير تفضيلات ملفات تعريف الارتباط الخاصة بك باستخدام أداة إدارة الموافقة الخاصة بنا. إذا اخترت عدم تلقي ملفات تعريف الارتباط، فلن نتمكن من عرض إعلانات مخصصة لك ولن نقدم معلوماتك الشخصية إلى أي أطراف ثالثة لأغراض الإعلان المستهدف.</p>
+                </div>
+            </div>
+            
+            <!-- Children's Privacy -->
+            <div class="policy-section">
+                <h2>خصوصية الأطفال</h2>
+                <p>تولي AAAS خصوصية الأطفال أهمية كبيرة. خدماتنا غير مخصصة للأطفال دون سن 16 عامًا. لذلك، لا نقوم بجمع معلومات شخصية عن الأطفال دون سن 16 عامًا بشكل مقصود. إذا كان الطفل دون سن 16 عامًا يرغب في الوصول إلى خدماتنا أو استخدامها، فيمكنه القيام بذلك فقط بموافقة صريحة من والديه أو الوصي عليه.</p>
+                
+                <div class="warning-box">
+                    <p>في حالة علمنا بأننا جمعنا معلومات شخصية من طفل دون سن 16 عامًا دون موافقة الوالدين، فسنقوم فورًا بحذف هذه المعلومات. إذا كنت تعتقد أن لدينا أي معلومات من أو عن طفل دون سن 16 عامًا، فيرجى الاتصال بنا عبر البريد الإلكتروني على <strong>dataprotectionoffice@aaas.org</strong>.</p>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="policy-section">
+                <h2>مكان توجيه أسئلتك أو شكواك</h2>
+                <p>إذا كان لديك أي مخاوف بشأن كيفية معالجة بياناتك، يمكنك الاتصال بـ:</p>
+                
+                <div class="highlight-box">
+                    <p><strong>American Association for the Advancement of Science</strong><br>
+                    Data Protection Office<br>
+                    1200 New York Ave NW<br>
+                    Washington, DC 20005<br>
+                    الهاتف: 202-326-6417<br>
+                    البريد الإلكتروني: dataprotectionoffice@aaas.org</p>
+                </div>
+            </div>
+            
+            <!-- Changes to Privacy Statement -->
+            <div class="policy-section">
+                <h2>التغييرات على بيان الخصوصية</h2>
+                <p>إذا قمنا بتغيير بيان الخصوصية لمواقع AAAS وScience، فسننشر هذه التغييرات هنا حتى تعرف دائمًا المعلومات التي نجمعها، وكيف يمكننا استخدام هذه المعلومات، وإلى من قد نكشف عنها.</p>
+                
+                <p>نرحب بتعليقاتكم حول بيان الخصوصية هذا. يمكن للأعضاء الذين يعتقدون أننا لم نلتزم بهذا البيان الاتصال بنا عن طريق إرسال بريد إلكتروني إلى membership@aaas.org. يمكن للأشخاص غير الأعضاء الاتصال بنا على dataprotectionoffice@aaas.org. سنستخدم جهودًا تجارية معقولة لتحديد المشكلة وإصلاحها على الفور.</p>
+            </div>
+            
+            <!-- Acceptance -->
+            <div class="policy-section">
+                <h2>قبول هذه الشروط</h2>
+                <p>يُشير استخدامك لمواقع AAAS وScience إلى فهمك وقبولك لشروط بيان الخصوصية هذا. إذا لم توافق على جميع الشروط الواردة هنا، فلا يجب عليك استخدام مواقع AAAS وScience أو الخدمات.</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- NEW FOOTER -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
+                </div>
+            </div>
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('subscribe')">اشتراك</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
+    
+    <script>
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
+            
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            if (page === 'our-policies') {
+                return; // Already on policy page
+            }
+            console.warn(`سيتم الانتقال إلى: ${page}`);
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                console.warn(`جارٍ البحث عن: "${searchTerm}"`);
+            } else {
+                console.warn("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= POLICY PAGE FUNCTIONS =================
+        function toggleExpandable(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            element.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            if (content.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = "0";
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show scroll to top button when scrolling
+        window.addEventListener('scroll', function() {
+            const scrollTopButton = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                scrollTopButton.classList.add('visible');
+            } else {
+                scrollTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Expand all sections on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-expand first expandable section
+            const firstExpandable = document.querySelector('.expandable-section');
+            if (firstExpandable) {
+                const header = firstExpandable.querySelector('.expandable-header');
+                const content = firstExpandable.querySelector('.expandable-content');
+                header.classList.add('active');
+                content.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                console.warn('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                console.warn(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // Add click feedback for all buttons
+        document.querySelectorAll('.footer-item, .subscribe-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Add keyboard support for email input
+        document.getElementById('subscribeEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                subscribe();
+            }
+        });
+
+        // Close search when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.getElementById('searchContainer');
+            const searchIcon = document.querySelector('.search-icon');
+            const searchBar = document.querySelector('.search-bar');
+            
+            if (window.innerWidth <= 768 && 
+                searchContainer.style.display === 'block' && 
+                !searchIcon.contains(event.target) && 
+                !searchBar.contains(event.target)) {
+                searchContainer.style.display = 'none';
+                document.body.classList.remove('search-open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.body.classList.remove('search-open');
+            }
+            
+            // Update expandable content heights
+            document.querySelectorAll('.expandable-content.active').forEach(content => {
+                content.style.maxHeight = content.scrollHeight + "px";
+            });
+        });
+    </script>
+
+</body>
+</html>

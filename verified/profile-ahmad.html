@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>أحمد علي — ملف</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#f8f4ec', 900: '#07234a' },
+            skyish: '#5ea3cc',
+            amberish: '#eba337',
+            vermilion: '#d25227',
+            fog: '#f6f7f9'
+          },
+          fontFamily: {
+            arabic: ['"DG Modal3at"', 'Tahoma', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial']
+          },
+          boxShadow: { soft: '0 8px 24px -10px rgb(0 0 0 / 0.18)' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-primary-50 text-slate-900 font-arabic">
+
+  <!-- الهيدر -->
+  <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
+    <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="https://placehold.co/40x40/07234a/f8f4ec?text=لو" alt="الشعار" class="rounded-full ring-2 ring-primary-900/15"/>
+        <span class="text-base font-semibold">مجلة الفكر</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-5 text-sm">
+        <a href="../index.html#events" class="hover:text-primary-900">الفعاليات</a>
+        <a href="../index.html#latest" class="hover:text-primary-900">أحدث</a>
+        <a href="../sections/index.html" class="hover:text-primary-900">الأقسام</a>
+        <a href="../verified/index.html" class="hover:text-primary-900">الموثقون</a>
+        <a href="../about.html" class="hover:text-primary-900">عنّا</a>
+      </nav>
+      <a href="../search.html" class="text-sm bg-fog px-3 py-2 rounded-lg">بحث</a>
+    </div>
+  </header>
+
+  <main class="max-w-screen-md mx-auto px-3 py-8">
+
+    <!-- الغلاف + البروفايل -->
+    <div class="rounded-xl overflow-hidden border bg-white shadow-soft">
+      <div class="relative">
+        <img src="https://placehold.co/1200x300?text=غلاف" class="w-full h-40 sm:h-48 object-cover"/>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+          <img src="https://placehold.co/160x160?text=أ" class="w-28 h-28 rounded-full border-4 border-white shadow-lg object-cover"/>
+        </div>
+      </div>
+      <div class="pt-16 pb-6 px-4 text-center">
+        <h1 class="text-xl font-bold flex justify-center items-center gap-2">
+          أحمد علي
+          <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amberish/20 text-amberish">موثّق ✓</span>
+        </h1>
+        <p class="text-slate-600 mt-1">باحث في العلوم السياسية</p>
+        <!-- أزرار تواصل -->
+        <div class="flex justify-center gap-3 mt-3 text-sm">
+          <a href="mailto:ahmad@example.com" class="px-3 py-1.5 rounded-lg bg-primary-900 text-white hover:opacity-90">📧 بريد</a>
+          <a href="#" class="px-3 py-1.5 rounded-lg bg-skyish text-white hover:opacity-90">🌐 موقع</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- الأعمال -->
+    <div class="grid gap-6 md:grid-cols-2 mt-8">
+      <!-- مقالات -->
+      <section>
+        <h3 class="text-base font-semibold mb-3">📑 مقالات</h3>
+        <div class="grid gap-3">
+          <a class="rounded-lg border p-4 bg-white hover:shadow" href="../article.html">
+            <div class="font-semibold">تحولات السوق</div>
+            <p class="text-xs text-slate-500 mt-1">مقال سياسي حول تحولات السوق المحلية والعالمية.</p>
+          </a>
+          <a class="rounded-lg border p-4 bg-white hover:shadow" href="../article.html">
+            <div class="font-semibold">الحكم المحلي اليوم</div>
+            <p class="text-xs text-slate-500 mt-1">رؤية نقدية لإدارة الحكم المحلي في المدن.</p>
+          </a>
+        </div>
+      </section>
+      <!-- رسائل ماجستير -->
+      <section>
+        <h3 class="text-base font-semibold mb-3">🎓 رسائل الماجستير</h3>
+        <div class="grid gap-3">
+          <a class="rounded-lg border p-4 bg-white hover:shadow" href="../theses.html">
+            <div class="font-semibold">أثر السياسات المالية على النمو</div>
+            <p class="text-xs text-slate-500 mt-1">رسالة ماجستير تبحث في العلاقة بين السياسة المالية والتنمية.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- فوتر -->
+  <footer class="bg-primary-900 text-white mt-12">
+    <div class="max-w-6xl mx-auto px-3 py-6 text-sm text-center">
+      © <span id="y"></span> مجلة الفكر
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+</body>
+</html>

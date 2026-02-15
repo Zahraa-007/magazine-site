@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار المقالات - Debug Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #07234a 0%, #0b2344 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-right: 4px solid #eba337;
+        }
+
+        .test-section h3 {
+            color: #07234a;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Cairo', Arial;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: #eba337;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d4891f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(235, 163, 55, 0.3);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .output {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .output.loading {
+            color: #007bff;
+        }
+
+        .output.success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .output.error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .output.info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        .log-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-item.success::before {
+            content: '✅ ';
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .log-item.error::before {
+            content: '❌ ';
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .log-item.info::before {
+            content: 'ℹ️ ';
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .log-item.warning::before {
+            content: '⚠️ ';
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #eba337;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #eba337;
+        }
+
+        .stat-box .label {
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: 'Cairo', Arial;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: #856404;
+        }
+
+        .success-banner {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-banner.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 أداة اختبار المقالات</h1>
+            <p>Debug Tool for Featured Articles</p>
+        </div>
+
+        <div class="content">
+            <div id="successBanner" class="success-banner"></div>
+
+            <!-- Test 1: API Connectivity -->
+            <div class="test-section">
+                <h3>🔗 اختبار الاتصال بـ API</h3>
+                <div class="button-group">
+                    <button class="btn-primary" onclick="testApiConnection()">اختبار الاتصال</button>
+                    <button class="btn-info" onclick="clearOutput('output1')">مسح</button>
+                </div>
+                <div id="output1" class="output"></div>
+            </div>
+
+            <!-- Test 2: Get All Articles -->
+            <div class="test-section">
+                <h3>📚 جميع المقالات</h3>
+                <div class="button-group">
+                    <button class="btn-primary" onclick="getAllArticles()">عرض جميع المقالات</button>
+                    <button class="btn-info" onclick="clearOutput('output2')">مسح</button>
+                </div>
+                <div id="output2" class="output"></div>
+                <div id="stats2" class="stats"></div>
+            </div>
+
+            <!-- Test 3: Get Published Articles -->
+            <div class="test-section">
+                <h3>✅ المقالات المنشورة</h3>
+                <div class="button-group">
+                    <button class="btn-success" onclick="getPublishedArticles()">عرض المقالات المنشورة</button>
+                    <button class="btn-info" onclick="clearOutput('output3')">مسح</button>
+                </div>
+                <div id="output3" class="output"></div>
+                <div id="stats3" class="stats"></div>
+            </div>
+
+            <!-- Test 4: Get by Type -->
+            <div class="test-section">
+                <h3>📂 المقالات حسب النوع</h3>
+                <div class="form-row">
+                    <select id="typeFilter" style="padding: 10px; border-radius: 5px; border: 2px solid #e0e0e0;">
+                        <option value="">اختر النوع</option>
+                        <option value="article">مقال عادي</option>
+                        <option value="featured_article">مقال مميز</option>
+                        <option value="monthly_article">مقال الشهر</option>
+                        <option value="thesis">رسالة ماجستير</option>
+                    </select>
+                    <button class="btn-primary" onclick="getArticlesByType()">البحث</button>
+                </div>
+                <div id="output4" class="output"></div>
+                <div id="stats4" class="stats"></div>
+            </div>
+
+            <!-- Test 5: Publish Article -->
+            <div class="test-section">
+                <h3>✨ نشر مقالة جديدة</h3>
+                <form onsubmit="publishArticle(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>نوع المحتوى *</label>
+                            <select id="pubType" required>
+                                <option value="">اختر النوع</option>
+                                <option value="article">مقال عادي</option>
+                                <option value="featured_article">مقال مميز</option>
+                                <option value="monthly_article">مقال الشهر</option>
+                                <option value="thesis">رسالة ماجستير</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>الفئة</label>
+                            <select id="pubCategory">
+                                <option value="general">عام</option>
+                                <option value="thought-society">الفكر والمجتمع</option>
+                                <option value="business">ادارة الاعمال</option>
+                                <option value="technology">التكنولوجيا</option>
+                                <option value="sciences">العلوم</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>العنوان *</label>
+                        <input type="text" id="pubTitle" placeholder="أدخل عنوان المقالة" required>
+                    </div>
+                    <div class="form-group">
+                        <label>المحتوى *</label>
+                        <textarea id="pubContent" placeholder="أدخل محتوى المقالة" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>رابط الصورة</label>
+                            <input type="url" id="pubImage" placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label>اسم الكاتب</label>
+                            <input type="text" id="pubAuthor" placeholder="اسم الكاتب (اختياري)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>الكلمات المفتاحية</label>
+                        <input type="text" id="pubTags" placeholder="فاصل،تجربة،اختبار">
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="btn-success">نشر المقالة</button>
+                        <button type="reset" class="btn-info">إعادة تعيين</button>
+                        <button type="button" class="btn-danger" onclick="clearOutput('output5')">مسح النتائج</button>
+                    </div>
+                </form>
+                <div id="output5" class="output"></div>
+            </div>
+
+            <!-- Test 6: Run Full Diagnostics -->
+            <div class="test-section">
+                <h3>🩺 تشخيص شامل</h3>
+                <div class="button-group">
+                    <button class="btn-danger" onclick="runFullDiagnostics()">تشغيل التشخيص الكامل</button>
+                    <button class="btn-info" onclick="clearOutput('output6')">مسح</button>
+                </div>
+                <div id="output6" class="output"></div>
+                <div class="tip">
+                    ℹ️ سيتحقق هذا من جميع جوانب النظام ويخبرك بأي مشاكل
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        function log(outputId, message, type = 'info') {
+            const output = document.getElementById(outputId);
+            if (!output) return;
+
+            const item = document.createElement('div');
+            item.className = `log-item ${type}`;
+            item.textContent = message;
+            output.appendChild(item);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearOutput(outputId) {
+            const output = document.getElementById(outputId);
+            if (output) output.innerHTML = '';
+            const statsId = outputId.replace('output', 'stats');
+            const stats = document.getElementById(statsId);
+            if (stats) stats.innerHTML = '';
+        }
+
+        function setLoading(outputId) {
+            clearOutput(outputId);
+            document.getElementById(outputId).classList.add('loading');
+            document.getElementById(outputId).textContent = '⏳ جارٍ التحميل...';
+        }
+
+        async function testApiConnection() {
+            const outputId = 'output1';
+            setLoading(outputId);
+
+            try {
+                const resp = await fetch(`${API_BASE_URL}/articles`);
+                if (resp.ok) {
+                    log(outputId, 'API متصل وعامل بشكل صحيح', 'success');
+                    log(outputId, `Status Code: ${resp.status}`, 'info');
+                } else {
+                    log(outputId, `خطأ في الاتصال: ${resp.status}`, 'error');
+                }
+            } catch (err) {
+                log(outputId, `خطأ: ${err.message}`, 'error');
+                log(outputId, 'تأكد من أن Backend يعمل على port 5000', 'warning');
+            }
+        }
+
+        async function getAllArticles() {
+            const outputId = 'output2';
+            setLoading(outputId);
+
+            try {
+                const resp = await fetch(`${API_BASE_URL}/articles`);
+                const articles = await resp.json();
+
+                if (Array.isArray(articles)) {
+                    log(outputId, `إجمالي المقالات: ${articles.length}`, 'info');
+                    
+                    const statuses = {};
+                    articles.forEach(a => {
+                        statuses[a.status] = (statuses[a.status] || 0) + 1;
+                    });
+
+                    for (const [status, count] of Object.entries(statuses)) {
+                        log(outputId, `${status}: ${count}`, 'info');
+                    }
+
+                    articles.slice(0, 5).forEach(a => {
+                        log(outputId, `  "${a.title}" (${a.status}, ${a.content_type})`, 'success');
+                    });
+
+                    if (articles.length > 5) {
+                        log(outputId, `... و ${articles.length - 5} مقالة أخرى`, 'info');
+                    }
+                }
+            } catch (err) {
+                log(outputId, `خطأ: ${err.message}`, 'error');
+            }
+        }
+
+        async function getPublishedArticles() {
+            const outputId = 'output3';
+            setLoading(outputId);
+
+            try {
+                const resp = await fetch(`${API_BASE_URL}/articles/published`);
+                const articles = await resp.json();
+
+                if (Array.isArray(articles)) {
+                    log(outputId, `المقالات المنشورة: ${articles.length}`, 'success');
+
+                    const types = {};
+                    articles.forEach(a => {
+                        types[a.content_type || 'article'] = (types[a.content_type || 'article'] || 0) + 1;
+                    });
+
+                    document.getElementById('stats3').innerHTML = Object.entries(types)
+                        .map(([type, count]) => `<div class="stat-box"><div class="number">${count}</div><div class="label">${type}</div></div>`)
+                        .join('');
+
+                    articles.slice(0, 5).forEach(a => {
+                        log(outputId, `✅ "${a.title}" (${a.content_type})`, 'success');
+                    });
+
+                    if (articles.length > 5) {
+                        log(outputId, `... و ${articles.length - 5} مقالة أخرى`, 'info');
+                    }
+                }
+            } catch (err) {
+                log(outputId, `خطأ: ${err.message}`, 'error');
+            }
+        }
+
+        async function getArticlesByType() {
+            const outputId = 'output4';
+            const type = document.getElementById('typeFilter').value;
+
+            if (!type) {
+                log(outputId, 'اختر نوع المقالات أولاً', 'warning');
+                return;
+            }
+
+            setLoading(outputId);
+
+            try {
+                const resp = await fetch(`${API_BASE_URL}/articles/type/by-type?content_type=${type}`);
+                const articles = await resp.json();
+
+                if (Array.isArray(articles)) {
+                    log(outputId, `عدد المقالات من نوع "${type}": ${articles.length}`, 'success');
+
+                    articles.slice(0, 5).forEach(a => {
+                        log(outputId, `📄 ${a.title}`, 'success');
+                    });
+
+                    if (articles.length === 0) {
+                        log(outputId, `لا توجد مقالات من نوع "${type}"`, 'warning');
+                    }
+                }
+            } catch (err) {
+                log(outputId, `خطأ: ${err.message}`, 'error');
+            }
+        }
+
+        async function publishArticle(e) {
+            e.preventDefault();
+            const outputId = 'output5';
+            setLoading(outputId);
+
+            const payload = {
+                title: document.getElementById('pubTitle').value,
+                content: document.getElementById('pubContent').value,
+                content_type: document.getElementById('pubType').value,
+                category_id: document.getElementById('pubCategory').value,
+                author_name: document.getElementById('pubAuthor').value,
+                image_url: document.getElementById('pubImage').value,
+                tags: document.getElementById('pubTags').value.split(',').map(t => t.trim()).filter(t => t)
+            };
+
+            log(outputId, 'البيانات المرسلة:', 'info');
+            log(outputId, JSON.stringify(payload, null, 2), 'info');
+
+            try {
+                const resp = await fetch(`${API_BASE_URL}/articles/publish/admin-publish`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-User-Role': 'admin'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await resp.json();
+
+                if (resp.ok && result.id) {
+                    log(outputId, `✅ تم النشر بنجاح!`, 'success');
+                    log(outputId, `ID: ${result.id}`, 'success');
+                    log(outputId, `Status: ${result.status}`, 'success');
+                    
+                    showSuccess('✅ تم نشر المقالة بنجاح!');
+                    e.target.reset();
+                    
+                    setTimeout(() => getPublishedArticles(), 1500);
+                } else {
+                    log(outputId, `خطأ: ${result.error || result.details}`, 'error');
+                    log(outputId, JSON.stringify(result, null, 2), 'error');
+                }
+            } catch (err) {
+                log(outputId, `خطأ: ${err.message}`, 'error');
+            }
+        }
+
+        async function runFullDiagnostics() {
+            const outputId = 'output6';
+            setLoading(outputId);
+
+            log(outputId, '🔍 بدء التشخيص الشامل...', 'info');
+
+            try {
+                // 1. Check API
+                log(outputId, '\n1️⃣ اختبار API...', 'info');
+                const apiResp = await fetch(`${API_BASE_URL}/articles`);
+                if (apiResp.ok) {
+                    log(outputId, '   ✅ API متصل', 'success');
+                } else {
+                    log(outputId, `   ❌ خطأ في API: ${apiResp.status}`, 'error');
+                    return;
+                }
+
+                // 2. Get all articles
+                log(outputId, '\n2️⃣ جلب جميع المقالات...', 'info');
+                const allResp = await fetch(`${API_BASE_URL}/articles`);
+                const allArticles = await allResp.json();
+                log(outputId, `   📊 الإجمالي: ${allArticles.length}`, 'success');
+
+                // 3. Count by status
+                const byStatus = {};
+                allArticles.forEach(a => {
+                    byStatus[a.status] = (byStatus[a.status] || 0) + 1;
+                });
+                for (const [status, count] of Object.entries(byStatus)) {
+                    log(outputId, `      ${status}: ${count}`, 'info');
+                }
+
+                // 4. Get published
+                log(outputId, '\n3️⃣ جلب المقالات المنشورة...', 'info');
+                const pubResp = await fetch(`${API_BASE_URL}/articles/published`);
+                const published = await pubResp.json();
+                log(outputId, `   ✅ المنشورة: ${published.length}`, 'success');
+
+                // 5. Count by type
+                const byType = {};
+                published.forEach(a => {
+                    byType[a.content_type || 'article'] = (byType[a.content_type || 'article'] || 0) + 1;
+                });
+                log(outputId, '\n4️⃣ توزيع المحتوى:', 'info');
+                for (const [type, count] of Object.entries(byType)) {
+                    const icons = {
+                        'article': '📄',
+                        'featured_article': '⭐',
+                        'monthly_article': '📅',
+                        'thesis': '🎓'
+                    };
+                    log(outputId, `      ${icons[type] || '📄'} ${type}: ${count}`, 'success');
+                }
+
+                // 6. Summary
+                log(outputId, '\n5️⃣ الخلاصة:', 'info');
+                log(outputId, `   ✅ كل شيء يعمل بشكل صحيح!`, 'success');
+                
+                if (published.length === 0) {
+                    log(outputId, '   ⚠️ لا توجد مقالات منشورة حالياً', 'warning');
+                    log(outputId, '   💡 جرب نشر مقالة جديدة أعلاه', 'info');
+                }
+
+            } catch (err) {
+                log(outputId, `❌ خطأ: ${err.message}`, 'error');
+            }
+
+            log(outputId, '\n✅ انتهى التشخيص', 'success');
+        }
+
+        function showSuccess(message) {
+            const banner = document.getElementById('successBanner');
+            banner.innerHTML = `<strong>✅ نجح!</strong> ${message}`;
+            banner.classList.add('show');
+            setTimeout(() => banner.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>

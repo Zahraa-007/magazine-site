@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسائل الماجستير | مجلة الفكر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --dark-blue: #0d2b5e; /* أزرق غامق نيلي */
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
+            --dark-orange: #d35400;
+            --green: #27ae60;
+            --purple: #8e44ad;
+            --teal: #16a085;
+            --brown: #a3521e;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .merriweather-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: var(--hg-blue);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        .btn-fancy {
+            background-color: #d35400; /* لون برتقالي للزر */
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn-fancy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(211, 84, 0, 0.2), 0 4px 6px -4px rgba(211, 84, 0, 0.1);
+            background-color: #ba4a00;
+        }
+        
+        /* ================= HEADER STYLES ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* FIRST ROW (ICONS + TITLE + LOGO) */
+        .top-header {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .center-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        /* SEARCH ICON */
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        /* MENU ICON */
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SECOND ROW – ARABIC CATEGORIES UNDER TITLE */
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        /* ================= DRAWER ================= */
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #0d2b5e; } /* أزرق غامق نيلي */
+        .dot-orange { background: #EBA337; }
+
+        /* ================= SEARCH BAR ================= */
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #0b2344;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= MAIN CONTENT STYLES ================= */
+        .page-header {
+            text-align: center;
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0b2344;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* ================= THESIS FILTERS ================= */
+        .thesis-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0 40px;
+            padding: 0 20px;
+        }
+        
+        .filter-btn {
+            padding: 12px 25px;
+            border: 2px solid #0b2344;
+            background: white;
+            color: #0b2344;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #0b2344;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(11, 35, 68, 0.15);
+        }
+        
+        .filter-btn.economics-btn {
+            border-color: #0d2b5e; /* أزرق غامق نيلي */
+            color: #0d2b5e;
+        }
+        
+        .filter-btn.economics-btn:hover, .filter-btn.economics-btn.active {
+            background: #0d2b5e;
+            color: white;
+            border-color: #0d2b5e;
+        }
+        
+        /* ================= THESIS CARDS ================= */
+        .thesis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            margin-bottom: 60px;
+        }
+        
+        .thesis-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .thesis-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .thesis-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .thesis-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .thesis-card:hover .thesis-image img {
+            transform: scale(1.05);
+        }
+        
+        .thesis-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .thesis-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0b2344;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+        
+        .thesis-card:hover .thesis-title {
+            color: #d35400;
+        }
+        
+        .thesis-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .thesis-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        /* ألوان مختلفة للأفاتار حسب التصنيف */
+        .avatar-economics { background: #0d2b5e; } /* أزرق غامق نيلي */
+        .avatar-social { background: #27ae60; } /* أخضر */
+        .avatar-management { background: #8e44ad; } /* بنفسجي */
+        .avatar-education { background: #16a085; } /* تيركواز */
+        .avatar-general { background: #a3521e; } /* بني */
+        
+        .thesis-summary {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .thesis-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tag {
+            background: rgba(13, 43, 94, 0.08); /* أزرق غامق نيلي */
+            color: #0d2b5e;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .tag.economics {
+            background: rgba(13, 43, 94, 0.15);
+            color: #0d2b5e;
+        }
+        
+        .tag.social {
+            background: rgba(39, 174, 96, 0.15); /* أخضر */
+            color: #27ae60;
+        }
+        
+        .tag.management {
+            background: rgba(142, 68, 173, 0.15); /* بنفسجي */
+            color: #8e44ad;
+        }
+        
+        .tag.education {
+            background: rgba(22, 160, 133, 0.15); /* تيركواز */
+            color: #16a085;
+        }
+        
+        .thesis-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .download-btn {
+            background: #d35400; /* برتقالي غامق */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn:hover {
+            background: #ba4a00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(211, 84, 0, 0.3);
+        }
+        
+        /* ================= CALL TO ACTION SECTION ================= */
+        .cta-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            margin: 40px 20px 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 5px solid #d35400;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b2344;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .cta-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: right;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .cta-icon {
+            width: 80px;
+            height: 80px;
+            background: #0d2b5e; /* أزرق غامق نيلي */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn.primary {
+            background: #d35400; /* برتقالي غامق */
+            color: white;
+        }
+        
+        .cta-btn.primary:hover {
+            background: #0b2344;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(211, 84, 0, 0.3);
+        }
+        
+        /* ================= FOOTER STYLES ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        /* Brand section */
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* THREE COLUMNS */
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        /* Column styling - FIXED ALIGNMENT */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center; /* Center align items in mobile */
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+        }
+        
+        /* EXACTLY LIKE SPECIAL EDITIONS BUTTON STYLES */
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+            transition: all 0.3s ease; /* Added for smoother hover effect */
+        }
+        
+        /* Hover effect - SAME AS SPECIAL EDITIONS - MODIFIED: REMOVED DOT */
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15); /* Increased opacity for better visibility */
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2); /* Added subtle glow effect */
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bottom copyright */
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* Tablet adjustments - IMPORTANT: FIXED ALIGNMENT FOR DESKTOP */
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 40px 60px;
+                max-height: none;
+            }
+            
+            .brand {
+                text-align: right;
+                width: 25%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align to right */
+            }
+            
+            .brand-title {
+                justify-content: flex-end;
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+            }
+            
+            .brand-title img {
+                width: 55px;
+                height: 55px;
+            }
+            
+            /* FIXED COLUMNS ALIGNMENT */
+            .columns-row {
+                width: 45%;
+                margin-bottom: 0;
+                gap: 20px;
+                display: flex;
+                align-items: flex-start; /* Align columns at top */
+                justify-content: space-between;
+            }
+            
+            .footer-column {
+                flex: 1;
+                text-align: right; /* Right align in desktop */
+                align-items: flex-end; /* Align items to right */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 16px;
+                text-align: right; /* Right align in desktop */
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            
+            .footer-item {
+                font-size: 14px;
+                margin: 5px 0;
+                padding: 10px 8px;
+                text-align: right; /* Right align in desktop */
+                width: 100%; /* Ensure full width */
+            }
+            
+            /* KEY CHANGE: ALIGN SUBSCRIBE SECTION PROPERLY */
+            .subscribe-section {
+                width: 30%;
+                text-align: right;
+                padding-top: 0;
+                border-top: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align entire section to the right */
+                margin-right: 20px;
+            }
+            
+            /* KEY CHANGE: ALIGN TITLE WITH SUBSCRIPTION BAR */
+            .subscribe-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+                padding-right: 0; /* Remove any padding that might cause misalignment */
+                align-self: flex-end; /* Ensure it aligns with the container */
+            }
+            
+            /* KEY CHANGE: ALIGN CONTAINER WITH TITLE */
+            .subscribe-container {
+                justify-content: flex-end; /* Align to right */
+                width: 100%;
+                max-width: 100%; /* Ensure it takes full width of parent */
+                padding-right: 0; /* Remove any padding */
+            }
+            
+            .subscribe-input {
+                height: 38px;
+                font-size: 14px;
+                max-width: 220px; /* Same as original */
+            }
+            
+            .subscribe-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .copyright {
+                padding: 15px;
+                font-size: 14px;
+            }
+            
+            /* Adjust thesis grid for desktop */
+            .thesis-grid {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+                gap: 40px;
+                padding: 0 40px;
+            }
+        }
+
+        /* Mobile responsive */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .thesis-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 0 15px;
+            }
+            
+            .cta-section {
+                padding: 30px 20px;
+                margin: 30px 15px 40px;
+            }
+            
+            .cta-title {
+                font-size: 1.6rem;
+            }
+            
+            .cta-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .cta-text {
+                text-align: center;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+            
+            .thesis-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* For very small screens */
+        @media (max-width: 360px) {
+            .columns-row {
+                gap: 8px;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 12px;
+            }
+            
+            .footer-item {
+                font-size: 11px;
+                padding: 6px 3px;
+            }
+            
+            .subscribe-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subscribe-input, .subscribe-button {
+                width: 100%;
+            }
+            
+            .thesis-grid {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fffdf6]">
+    
+    <!-- HEADER -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- TITLE + LOGO -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="index.html" class="item">الرئيسية <span class="dot"></span></a>
+            <a href="about.html" class="item">من نحن <span class="dot"></span></a>
+            <a href="theses.html" class="item">رسائل الماجستير <span class="dot"></span></a>
+            <a href="special_issues.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>
+            <a href="sections/economy.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sections/general.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="sections/society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث في رسائل الماجستير..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>رسائل الماجستير</h1>
+            <p>مجموعة مختارة من رسائل الماجستير الأكاديمية في مجالات متنوعة. تصفح واستكشف الأبحاث العلمية التي تساهم في تطوير المعرفة</p>
+        </div>
+        
+        <!-- Thesis Filters -->
+        <div class="thesis-filters">
+            <button class="filter-btn active" onclick="filterTheses('all')">الكل</button>
+            <button class="filter-btn economics-btn" onclick="filterTheses('economics')">الاقتصاد</button>
+            <button class="filter-btn" onclick="filterTheses('social')">الاجتماع</button>
+            <button class="filter-btn" onclick="filterTheses('management')">الإدارة</button>
+            <button class="filter-btn" onclick="filterTheses('education')">التربية</button>
+        </div>
+        
+        <!-- Thesis Grid -->
+        <div class="thesis-grid" id="thesisGrid">
+            <!-- Thesis 1 - Economics -->
+          
+          
+          
+        </div>
+        
+        <!-- Call to Action Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">هل لديك رسالة ماجستير تريد نشرها؟</h2>
+            <div class="cta-content">
+                <div class="cta-text">
+                    <p>نرحب بنشر رسائل الماجستير الأكاديمية المتميزة في مجلة الفكر. نضمن لرسالتك الوصول إلى جمهور واسع من القراء والباحثين.</p>
+                    <p>للحصول على حساب ونشر رسالتك، نرجو التواصل معنا عبر البريد الإلكتروني أو تعبئة النموذج.</p>
+                </div>
+                <div class="cta-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn primary">تواصل معنا للنشر</a>
+            </div>
+        </div>
+        
+       
+    </main>
+    
+    <!-- FOOTER -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
+                </div>
+            </div>
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('subscribe')">اشتراك</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        // ================= LOAD THESIS FROM API =================
+        async function loadThesesFromAPI() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/articles/type/by-type?content_type=thesis`);
+                if (!response.ok) {
+                    throw new Error('فشل تحميل رسائل الماجستير');
+                }
+                const theses = await response.json();
+                
+                // Display loaded theses
+                displayTheses(theses);
+            } catch (error) {
+                console.error('Error loading theses:', error);
+                // Keep existing theses visible if API fails
+            }
+        }
+
+        // Display theses in the page
+        function displayTheses(theses) {
+            const gridContainer = document.querySelector('.thesis-grid');
+            
+            if (!theses || theses.length === 0) {
+                // Keep existing content if no API theses
+                return;
+            }
+
+            // Create HTML for each thesis from API
+            const thesesHTML = theses.map(thesis => `
+                <div class="thesis-card" data-category="all" style="opacity: 0; transform: translateY(20px); transition: all 0.3s ease;">
+                    <div class="thesis-image">
+                        <img src="${thesis.image_url || 'https://placehold.co/350x200?text=Thesis'}" 
+                             alt="${thesis.title}" 
+                             style="width: 100%; height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="thesis-content">
+                        <h3 class="thesis-title">${thesis.title}</h3>
+                        <p class="thesis-author">
+                            <i class="fas fa-user"></i> ${thesis.author_name || 'باحث'}
+                        </p>
+                        <p class="thesis-abstract">
+                            ${thesis.content.substring(0, 150)}...
+                        </p>
+                        <div class="thesis-stats">
+                            <span><i class="fas fa-calendar"></i> ${new Date(thesis.createdAt).toLocaleDateString('ar-IQ')}</span>
+                            <span><i class="fas fa-eye"></i> ${thesis.view_count || 0} مشاهدة</span>
+                        </div>
+                        <a href="#" class="download-btn" onclick="viewThesis(${thesis.id}); return false;">
+                            <i class="fas fa-eye"></i> عرض الرسالة
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Append to grid (add after existing cards)
+            const lastCard = gridContainer.lastElementChild;
+            if (lastCard) {
+                lastCard.insertAdjacentHTML('afterend', thesesHTML);
+            } else {
+                gridContainer.innerHTML = thesesHTML;
+            }
+
+            // Animate new cards
+            setTimeout(() => {
+                gridContainer.querySelectorAll('[style*="opacity: 0"]').forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 50);
+        }
+
+        function viewThesis(thesisId) {
+            // Navigate to article page to view full thesis
+            window.location.href = `articl.html?id=${thesisId}&type=thesis`;
+        }
+
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
+            
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                console.warn(`جارٍ البحث عن: "${searchTerm}" في رسائل الماجستير`);
+                // Implement actual search logic here
+            } else {
+                console.warn("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= THESIS FILTERING =================
+        function filterTheses(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Get all thesis cards
+            const allCards = document.querySelectorAll('.thesis-card');
+            
+            // Filter cards
+            allCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (category === 'all' || cardCategory.includes(category)) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // ================= LOAD MORE THESES =================
+        function loadMoreTheses() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            // Show loading state
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> جاري التحميل...';
+            btn.disabled = true;
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                // In a real implementation, you would fetch more theses from server
+                console.warn('سيتم تحميل المزيد من رسائل الماجستير في التطبيق الفعلي');
+                
+                // Restore button state
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                console.warn('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                console.warn(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // Add click feedback for all buttons
+        document.querySelectorAll('.footer-item, .subscribe-button, .download-btn, .cta-btn, .btn-fancy').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Add keyboard support for email input
+        document.getElementById('subscribeEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                subscribe();
+            }
+        });
+
+        // Add keyboard support for search input
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Close search when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.getElementById('searchContainer');
+            const searchIcon = document.querySelector('.search-icon');
+            const searchBar = document.querySelector('.search-bar');
+            
+            if (window.innerWidth <= 768 && 
+                searchContainer.style.display === 'block' && 
+                !searchIcon.contains(event.target) && 
+                !searchBar.contains(event.target)) {
+                searchContainer.style.display = 'none';
+                document.body.classList.remove('search-open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.body.classList.remove('search-open');
+            }
+        });
+
+        // Initialize with all theses showing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make sure all cards are visible initially
+            document.querySelectorAll('.thesis-card').forEach(card => {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+            });
+
+            // Load theses from API
+            loadThesesFromAPI();
+        });
+    </script>
+
+</body>
+</html>

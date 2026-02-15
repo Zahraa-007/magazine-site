@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجلة الفكر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .merriweather-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: var(--hg-blue);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        .btn-fancy {
+            background-color: #eba337;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .btn-fancy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ================= NEW HEADER STYLES ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* FIRST ROW (ICONS + TITLE + LOGO) */
+        .top-header {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .center-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        /* SEARCH ICON */
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        /* MENU ICON */
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SECOND ROW – ARABIC CATEGORIES UNDER TITLE */
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        /* ================= DRAWER ================= */
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #467ca2; }
+        .dot-orange { background: #EBA337; }
+
+        /* ================= SEARCH BAR ================= */
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #0b2344;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= NEW FOOTER STYLES ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        /* Brand section */
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* THREE COLUMNS */
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        /* Column styling - FIXED ALIGNMENT */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center; /* Center align items in mobile */
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+        }
+        
+        /* EXACTLY LIKE SPECIAL EDITIONS BUTTON STYLES */
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%; /* Ensure full width for alignment */
+            text-align: center; /* Center in mobile */
+            transition: all 0.3s ease; /* Added for smoother hover effect */
+        }
+        
+        /* Hover effect - SAME AS SPECIAL EDITIONS - MODIFIED: REMOVED DOT */
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15); /* Increased opacity for better visibility */
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2); /* Added subtle glow effect */
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bottom copyright */
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* Tablet adjustments - IMPORTANT: FIXED ALIGNMENT FOR DESKTOP */
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 40px 60px;
+                max-height: none;
+            }
+            
+            .brand {
+                text-align: right;
+                width: 25%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align to right */
+            }
+            
+            .brand-title {
+                justify-content: flex-end;
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+            }
+            
+            .brand-title img {
+                width: 55px;
+                height: 55px;
+            }
+            
+            /* FIXED COLUMNS ALIGNMENT */
+            .columns-row {
+                width: 45%;
+                margin-bottom: 0;
+                gap: 20px;
+                display: flex;
+                align-items: flex-start; /* Align columns at top */
+                justify-content: space-between;
+            }
+            
+            .footer-column {
+                flex: 1;
+                text-align: right; /* Right align in desktop */
+                align-items: flex-end; /* Align items to right */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 16px;
+                text-align: right; /* Right align in desktop */
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            
+            .footer-item {
+                font-size: 14px;
+                margin: 5px 0;
+                padding: 10px 8px;
+                text-align: right; /* Right align in desktop */
+                width: 100%; /* Ensure full width */
+            }
+            
+            /* KEY CHANGE: ALIGN SUBSCRIBE SECTION PROPERLY */
+            .subscribe-section {
+                width: 30%;
+                text-align: right;
+                padding-top: 0;
+                border-top: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align entire section to the right */
+                margin-right: 20px;
+            }
+            
+            /* KEY CHANGE: ALIGN TITLE WITH SUBSCRIPTION BAR */
+            .subscribe-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: right; /* Right align in desktop */
+                padding-right: 0; /* Remove any padding that might cause misalignment */
+                align-self: flex-end; /* Ensure it aligns with the container */
+            }
+            
+            /* KEY CHANGE: ALIGN CONTAINER WITH TITLE */
+            .subscribe-container {
+                justify-content: flex-end; /* Align to right */
+                width: 100%;
+                max-width: 100%; /* Ensure it takes full width of parent */
+                padding-right: 0; /* Remove any padding */
+            }
+            
+            .subscribe-input {
+                height: 38px;
+                font-size: 14px;
+                max-width: 220px; /* Same as original */
+            }
+            
+            .subscribe-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .copyright {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* For very small screens */
+        @media (max-width: 360px) {
+            .columns-row {
+                gap: 8px;
+            }
+            
+            .footer-column div:first-child {
+                font-size: 12px;
+            }
+            
+            .footer-item {
+                font-size: 11px;
+                padding: 6px 3px;
+            }
+            
+            .subscribe-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subscribe-input, .subscribe-button {
+                width: 100%;
+            }
+        }
+
+        /* Mobile responsive for header */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+        }
+
+        /* Fix for main content - ensure proper spacing */
+        main {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-[#fffdf6]">
+    
+    <!-- NEW HEADER -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- TITLE + LOGO (NOT CLICKABLE) -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="index.html" class="item">الرئيسية <span class="dot"></span></a>
+            <a href="about.html" class="item">من نحن <span class="dot"></span></a>
+            <a href="theses.html" class="item">رسائل الماجستير <span class="dot"></span></a>
+            <a href="special_issues.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>
+            <a href="sections/economy.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sections/general.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="sections/society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث هنا..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('verified-accounts.html')">الحسابات الموثقة</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN CONTENT (UNCHANGED) -->
+    <main class="main-container px-4 sm:px-8 py-8">
+        <!-- Main Article Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+            <!-- Small Articles on the left -->
+            <div class="space-y-6 flex flex-col">
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-end">
+                    <div class="flex flex-col sm:flex-row">
+                        <img src="https://placehold.co/150x250/07234a/ffffff" alt="G for Gory Ghost" class="w-full sm:w-28 sm:h-auto h-36 object-cover">
+                        <div class="p-4 flex flex-col justify-center flex-grow">
+                            <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline">
+                                عنوان المقال الاول
+                            </a>
+                            <p class="mt-1 text-gray-500 text-sm">
+                                حجي عن المقال وحجي حجي حجي الكثير من الكلام
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-end">
+                    <div class="flex flex-col sm:flex-row">
+                        <img src="https://placehold.co/150x250/07234a/ffffff" alt="Viewing art like an expert" class="w-full sm:w-28 sm:h-auto h-36 object-cover">
+                        <div class="p-4 flex flex-col justify-center flex-grow">
+                            <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline">
+                                عنوان مقال ثاني
+                            </a>
+                            <p class="mt-1 text-gray-500 text-sm">
+                                حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                            </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Article on the right -->
+            <div class="col-span-1 lg:col-span-2 relative bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+                <img src="https://placehold.co/1000x500/07234a/07234a" alt="AI Predicts Therapies" class="w-full h-80 object-cover">
+                <div class="p-6 flex-grow flex flex-col justify-end">
+                    <a href="#" class="merriweather-font text-2xl md:text-3xl font-bold text-gray-900 hover:text-blue-700 hover-underline">
+                        عنوان المقاله
+                    </a>
+                    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+                        حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- New Four Articles Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=1" alt="Article 1" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">عنوان</a>
+                    <p class="text-gray-600 text-sm">حجيجيجييي</p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=2" alt="Article 2" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">عنوان</a>
+                    <p class="text-gray-600 text-sm">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي</p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=3" alt="Article 3" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">حجي</a>
+                    <p class="text-gray-600 text-sm">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                    </p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:text-blue-700 hover-underline ">
+                <img src="https://placehold.co/400x300/07234a/ffffff?text=4" alt="Article 4" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <a href="#" class="merriweather-font font-bold text-lg mb-2">عنوان</a>
+                    <p class="text-gray-600 text-sm">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View All Articles Section -->
+        <div class="mt-12 text-center">
+            <a href="#" class="btn-fancy">
+                عرض جميع المقالات
+            </a>
+        </div>
+        
+        <!-- Event Results Section -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6 text-right">نتائج الفعاليات</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
+            <div class="col-span-1 lg:col-span-3 bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+                <img src="https://placehold.co/1000x600/07234a/ffffff?text=Environmental+Event+Results" alt="Environmental Event Results" class="w-full h-96 object-cover">
+                <div class="p-6">
+                    <a href="#" class="merriweather-font text-2xl md:text-3xl font-bold text-gray-900 hover:text-blue-700 hover-underline text-right">
+                        نتائج فعاليه مسابقه البيئه
+                    </a>
+                    <p class="mt-4 text-gray-600 text-lg leading-relaxed text-right">
+                        حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                    </p>
+                </div>
+            </div>
+            <div class="space-y-6 flex flex-col lg:col-span-1">
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-start">
+                    <div class="p-4">
+                        <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline text-right">
+                            <h3 class="merriweather-font font-bold text-lg hover:text-blue-700 hover-underline text-right">
+                                فعاليه قادمه/ او نتيجه فعاليه
+                            </h3>
+                        </a>
+                        <p class="mt-1 text-gray-500 text-sm text-right">
+                            حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex-grow flex flex-col justify-start">
+                    <div class="p-4">
+                        <a href="#" class="merriweather-font font-bold text-md hover:text-blue-700 hover-underline text-right">
+                            <h3 class="merriweather-font font-bold text-lg hover:text-blue-700 hover-underline text-right">
+                                فعاليه قادمه/ او نتيجه فعاليه
+                            </h3>
+                        </a>
+                        <p class="mt-1 text-gray-500 text-sm text-right">
+                            حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Three Articles Grid -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6">فعاليات قادمه</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white shadow-lg rounded-xl p-6">
+                <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-2">
+                    <span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>الاثنين, 2:00PM</span>
+                </div>
+                <a href="#" class="merriweather-font font-bold text-xl hover:text-blue-700 hover-underline">
+                    اسم الفعاليه يمكن او ايشي
+                </a>
+                <p class="mt-2 text-sm text-gray-500">
+                    <a href="#">الموقع مثلا</a>
+                </p>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl p-6">
+                <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-2">
+                    <span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>الخميس, 4:00PM</span>
+                </div>
+                <a href="#" class="merriweather-font font-bold text-xl hover:text-blue-700 hover-underline">
+                    اسم الفعاليه
+                </a>
+                <p class="mt-2 text-sm text-gray-500">
+                    <a href="#">موقع الفعاليه</a>
+                </p>
+            </div>
+            <div class="bg-white shadow-lg rounded-xl p-6">
+                <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-2">
+                    <span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>اربعاء, 11:00AM</span>
+                </div>
+                <a href="#" class="merriweather-font font-bold text-xl hover:text-blue-700 hover-underline">
+                    اسم الفعاليه
+                </a>
+                <p class="mt-2 text-sm text-gray-500">
+                    <a href="#">موقعهه</a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Orange Long Articles Section -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6 text-right">مقالات / كولكشنات</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Article 1 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    كولكشن الصيف مثلا</h3>
+                <p class="text-sm text-white mt-2">حجي حجي حيجيججييي</p>
+            </a>
+            <!-- Article 2 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    عنوان</h3>
+                <p class="text-sm text-white mt-2">حجي حجي حجيجيجييي كلام</p>
+            </a>
+            <!-- Article 3 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    كلام او كولكشن شي</h3>
+                <p class="text-sm text-white mt-2">حجي حجي كلام كلام كلمامام</p>
+            </a>
+            <!-- Article 4 -->
+            <a href="#" class="group block bg-orange-500 rounded-xl overflow-hidden shadow-lg p-6 flex flex-col justify-end min-h-[400px] hover:shadow-2xl transition-shadow duration-300">
+                <h3 class="merriweather-font font-bold text-xl text-white transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                    مجموعه الخريف</h3>
+                <p class="text-sm text-white mt-2">حجي عن المقال وحجي حجي حجي كلام كلام الكثير من الحجي</p>
+            </a>
+        </div>
+        
+        <!-- News & Classified Articles Section -->
+        <h2 class="merriweather-font text-2xl font-bold mt-12 mb-6 text-right">أخبار</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Politics -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">سياسة
+                </h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Politics" alt="Politics article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">تحليل</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">تأثير الانتخابات على
+                            الاقتصاد العالمي</h4>
+                        <p class="text-xs text-gray-500 mt-1">دراسة تحليلية لنتائج الانتخابات الأخيرة وتأثيرها على
+                            الأسواق المالية.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">خبر عاجل</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">قانون جديد يهدف إلى تنظيم
+                        تكنولوجيا الذكاء الاصطناعي</h4>
+                    <p class="text-xs text-gray-500 mt-1">المشرعون يدرسون مشروع قانون جديد لضمان الاستخدام الأخلاقي
+                        للذكاء الاصطناعي.</p>
+                </a>
+            </div>
+            
+            <!-- Technology -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">
+                    تكنولوجيا</h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Technology" alt="Technology article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">تقرير</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">السيارات الكهربائية: هل هي
+                            مستقبل النقل؟</h4>
+                        <p class="text-xs text-gray-500 mt-1">نظرة فاحصة على التطورات في صناعة السيارات الكهربائية
+                            وتأثيرها على البيئة.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">مقابلة</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">مخترع الروبوتات الطائرة يتحدث عن
+                        تحدياته</h4>
+                    <p class="text-xs text-gray-500 mt-1">لقاء حصري مع المخترع الشاب الذي يقود ثورة في مجال الطيران.</p>
+                </a>
+            </div>
+            
+            <!-- Health -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">صحة</h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Health" alt="Health article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">إرشادات</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">نصائح للحفاظ على صحتك
+                            العقلية أثناء العمل عن بعد</h4>
+                        <p class="text-xs text-gray-500 mt-1">خبراء يقدمون استراتيجيات بسيطة للتعامل مع التوتر والإرهاق.
+                        </p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">بحث جديد</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">دراسة تكشف عن علاقة بين النوم
+                        الجيد والذاكرة القوية</h4>
+                    <p class="text-xs text-gray-500 mt-1">اكتشف العلماء كيف يؤثر نمط نومك على قدراتك المعرفية.</p>
+                </a>
+            </div>
+            
+            <!-- Economy -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">اقتصاد
+                </h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Economy" alt="Economy article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">تحليل مالي</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">توقعات النمو الاقتصادي للعام
+                            القادم</h4>
+                        <p class="text-xs text-gray-500 mt-1">خبراء الاقتصاد يتوقعون اتجاهات الأسواق العالمية في ضوء
+                            التغيرات الأخيرة.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">ريادة أعمال</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">كيف تبدأ مشروعًا صغيرًا ناجحًا
+                    </h4>
+                    <p class="text-xs text-gray-500 mt-1">نصائح وإرشادات للمبتدئين في عالم ريادة الأعمال.</p>
+                </a>
+            </div>
+            
+            <!-- Arts -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">فن</h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Arts" alt="Arts article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">مراجعة</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">معرض "ألوان من الشرق": رحلة
+                            عبر الزمن</h4>
+                        <p class="text-xs text-gray-500 mt-1">مراجعة نقدية لأحدث المعارض الفنية التي تعرض أعمالًا
+                            مستوحاة من التراث الشرقي.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">مقابلة فنية</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">النحات العالمي يتحدث عن مصدر
+                        إلهامه</h4>
+                    <p class="text-xs text-gray-500 mt-1">مقابلة حصرية مع أحد أشهر النحاتين في العالم وتاريخه الفني.</p>
+                </a>
+            </div>
+            
+            <!-- Science -->
+            <div class="space-y-4">
+                <h3 class="merriweather-font font-bold text-lg text-gray-900 border-b-2 border-orange-500 pb-2">علوم
+                </h3>
+                <a href="#" class="block bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://placehold.co/600x400/07234a/ffffff?text=Science" alt="Science article image" class="w-full h-40 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <p class="text-sm font-bold text-orange-500 mb-1">اكتشاف جديد</p>
+                        <h4 class="merriweather-font font-bold text-md hover:text-blue-700">علماء يكتشفون كوكبًا جديدًا
+                            خارج المجموعة الشمسية</h4>
+                        <p class="text-xs text-gray-500 mt-1">تفاصيل حول الكوكب المكتشف حديثًا وخصائصه الفريدة.</p>
+                    </div>
+                </a>
+                <a href="#" class="block bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+                    <p class="text-sm font-bold text-orange-500 mb-1">بحث علمي</p>
+                    <h4 class="merriweather-font font-bold text-md hover:text-blue-700">تطورات في مجال الطب الجزيئي</h4>
+                    <p class="text-xs text-gray-500 mt-1">كيف يمكن للعلاجات الجزيئية أن تحدث ثورة في مكافحة الأمراض
+                        المستعصية.</p>
+                </a>
+            </div>
+            
+        </div>
+        
+    </main>
+    
+    <!-- NEW FOOTER -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
+                </div>
+            </div>
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('subscribe')">اشتراك</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
+    
+    <script>
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
+            
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                console.warn(`جارٍ البحث عن: "${searchTerm}"`);
+            } else {
+                console.warn("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                console.warn('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                console.warn(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // Add click feedback for all buttons
+        document.querySelectorAll('.footer-item, .subscribe-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Add keyboard support for email input
+        document.getElementById('subscribeEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                subscribe();
+            }
+        });
+
+        // Close search when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.getElementById('searchContainer');
+            const searchIcon = document.querySelector('.search-icon');
+            const searchBar = document.querySelector('.search-bar');
+            
+            if (window.innerWidth <= 768 && 
+                searchContainer.style.display === 'block' && 
+                !searchIcon.contains(event.target) && 
+                !searchBar.contains(event.target)) {
+                searchContainer.style.display = 'none';
+                document.body.classList.remove('search-open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.body.classList.remove('search-open');
+            }
+        });
+    </script>
+
+</body>
+</html>

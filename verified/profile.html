@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ملف موثّق</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#f8f4ec', 900: '#07234a' },
+            skyish: '#5ea3cc',
+            amberish: '#eba337',
+            vermilion: '#d25227',
+            fog: '#f6f7f9'
+          },
+          fontFamily: {
+            arabic: ['"DG Modal3at"', 'Tahoma', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial']
+          },
+          boxShadow: { soft: '0 8px 24px -10px rgb(0 0 0 / 0.18)' }
+        }
+      }
+    }
+  </script>
+  <style>html{scroll-behavior:smooth}</style>
+
+</head>
+<body class="bg-primary-50 text-slate-900 font-arabic">
+
+  <div class="bg-primary-900 text-white text-sm">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-3 py-2">
+      <div class="flex items-center gap-2"><span class="inline-block w-1.5 h-1.5 rounded-full bg-amberish"></span><span>مجلة فكر مبسطة</span></div>
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="underline text-white/90">الرئيسية</a>
+      </div>
+    </div>
+  </div>
+  <header class="bg-white/80 backdrop-blur sticky top-0 z-40 border-b border-black/5">
+    <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between">
+      <a href="index.html#home" class="flex items-center gap-3">
+        <img src="https://placehold.co/40x40/07234a/f8f4ec?text=لو" alt="الشعار" class="rounded-full ring-2 ring-primary-900/15"/>
+        <span class="text-base font-semibold">مجلة الفكر</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-5 text-sm">
+        <a href="index.html#events" class="hover:text-primary-900">الفعاليات</a>
+        <a href="index.html#latest" class="hover:text-primary-900">أحدث</a>
+        <a href="sections/index.html" class="hover:text-primary-900">الأقسام</a>
+        <a href="about.html" class="hover:text-primary-900">عنّا</a>
+      </nav>
+      <a href="search.html" class="text-sm bg-fog px-3 py-2 rounded-lg">بحث</a>
+    </div>
+  </header>
+
+<main class="max-w-screen-md mx-auto px-3 py-8">
+  <div class="rounded-xl overflow-hidden border">
+    <img src="https://placehold.co/1200x240" class="w-full h-40 object-cover"/>
+    <div class="p-4 flex items-center gap-3">
+      <img src="https://placehold.co/120x120" class="w-14 h-14 rounded-full object-cover"/>
+      <div class="text-sm">
+        <div class="flex items-center gap-2 font-semibold">
+          <span>أحمد علي</span>
+          <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amberish/20 text-amberish">موثّق ✓</span>
+        </div>
+        <div class="text-slate-500">باحث في العلوم السياسية</div>
+        <a href="mailto:ahmad@example.com" class="text-xs text-primary-900 hover:underline">تواصل</a>
+      </div>
+    </div>
+  </div>
+  <div class="grid gap-6 md:grid-cols-2 mt-6">
+    <div>
+      <h3 class="text-base font-semibold mb-2">مقالات الكاتب</h3>
+      <div class="grid gap-3">
+        <a class="rounded-lg border p-3 text-sm bg-white" href="../article.html">تحولات السوق</a>
+        <a class="rounded-lg border p-3 text-sm bg-white" href="../article.html">الحكم المحلي اليوم</a>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold mb-2">رسائل الماجستير</h3>
+      <div class="grid gap-3">
+        <a class="rounded-lg border p-3 text-sm bg-white" href="../theses.html">أثر السياسات المالية على النمو</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+  <footer class="bg-primary-900 text-white mt-12">
+    <div class="max-w-6xl mx-auto px-3 py-6 grid md:grid-cols-3 gap-6 text-sm">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <img src="https://placehold.co/28x28/07234a/f8f4ec?text=لو" class="rounded-full ring-2 ring-white/15" alt="logo"/>
+          <span class="font-semibold">مجلة الفكر</span>
+        </div>
+        <p class="text-white/80">© <span id="y"></span></p>
+      </div>
+      <div>
+        <div class="font-semibold mb-2">روابط</div>
+        <ul class="space-y-2">
+          <li><a class="hover:underline" href="index.html#events">الفعاليات</a></li>
+          <li><a class="hover:underline" href="index.html#latest">أحدث المقالات</a></li>
+          <li><a class="hover:underline" href="sections/index.html">الأقسام</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold mb-2">اشترك</div>
+        <form class="flex gap-2 mt-2" onsubmit="event.preventDefault();console.warn('تم الاشتراك بنجاح');">
+          <input type="email" placeholder="بريدك" class="w-full rounded-lg px-3 py-2 text-slate-900"/>
+          <button class="bg-amberish hover:opacity-90 rounded-lg px-4">إرسال</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

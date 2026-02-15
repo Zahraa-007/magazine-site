@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - مجلة الفكر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hg-yellow: #eba337;
+            --hg-blue: #07234a;
+            --hg-dark-blue: #07234a;
+            --hg-beige: #f8f4ec;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--hg-beige);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ================= HEADER STYLES (From Special Issues) ================= */
+        .header-container {
+            background: white;
+            width: 100%;
+            border-bottom: 2px solid #eba337;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* FIRST ROW (ICONS + TITLE + LOGO) */
+        .top-header {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .center-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+        }
+
+        /* SEARCH ICON */
+        .search-icon {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .search-icon .circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0b2344;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .circle {
+            border-color: #EBA337;
+        }
+
+        .search-icon .line {
+            width: 3px;
+            height: 12px;
+            background: #0b2344;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .search-icon:hover .line {
+            background: #EBA337;
+        }
+
+        /* MENU ICON */
+        .menu-icon {
+            width: 35px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon span {
+            height: 3px;
+            background: #0b2344;
+            width: 100%;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* SECOND ROW – ARABIC CATEGORIES UNDER TITLE */
+        .category-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 10px 0 12px 0;
+        }
+
+        .category-row .item {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0b2344;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-row .item:hover {
+            color: #EBA337;
+            background: rgba(235, 163, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-row .dot {
+            width: 6px;
+            height: 6px;
+            background: #eba337;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .category-row .item:hover .dot {
+            transform: scale(1.5);
+        }
+
+        /* ================= DRAWER ================= */
+        .drawer-container {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            display: none;
+            z-index: 20;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-panel {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 40px 40px;
+            padding: 20px 35px 40px;
+            box-shadow: 0px 8px 25px rgba(235, 163, 55, 0.35);
+            box-sizing: border-box;
+        }
+
+        .drawer-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .drawer-right-column {
+            flex: 1;
+        }
+
+        .drawer-right-column .drawer-title {
+            margin-top: 0;
+        }
+
+        .drawer-block ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-block li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0b2344;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .drawer-block li:hover {
+            background: rgba(235, 163, 55, 0.1);
+            color: #E5701E;
+            transform: translateX(-5px);
+            padding-right: 20px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #E5701E;
+            margin: 0 0 15px 0;
+            padding-right: 15px;
+        }
+
+        .drawer-left-column {
+            flex: 1;
+        }
+
+        .dot-blue,
+        .dot-orange {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-block li:hover .dot-blue,
+        .drawer-block li:hover .dot-orange {
+            transform: scale(1.5);
+        }
+
+        .dot-blue { background: #467ca2; }
+        .dot-orange { background: #EBA337; }
+
+        /* ================= SEARCH BAR ================= */
+        .search-container {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 15;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            border: 2px solid #eba337;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: "Cairo", sans-serif;
+            color: #0b2344;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7f3eb;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.2);
+            background: white;
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #eba337;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Cairo", sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background: #0b2344;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .close-search {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #0b2344;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-search:hover {
+            color: #E5701E;
+        }
+
+        /* ================= FOOTER STYLES (From Special Issues) ================= */
+        .footer-container {
+            width: 100%;
+            background: #02234b;
+            border-top: 3px solid #f29c1f;
+            margin-top: auto;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        /* Brand section */
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #f5f1e8;
+        }
+
+        .brand-title img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* THREE COLUMNS */
+        .columns-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        /* Column styling */
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+            align-items: center;
+        }
+
+        .footer-column div:first-child {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f29c1f;
+            white-space: nowrap;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* EXACTLY LIKE SPECIAL EDITIONS BUTTON STYLES */
+        .footer-item {
+            margin: 4px 0;
+            padding: 8px 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+            color: white;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-item:hover {
+            color: #f29c1f;
+            background: rgba(242, 156, 31, 0.15);
+            transform: translateY(-2px);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(242, 156, 31, 0.2);
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-title {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f29c1f;
+        }
+
+        .subscribe-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 120px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            padding: 0 12px;
+            font-size: 13px;
+            text-align: right;
+            direction: rtl;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .subscribe-button {
+            background: #f29c1f;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background: #e68a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bottom copyright */
+        .copyright {
+            width: 100%;
+            background: #011c3d;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* ================= ABOUT US PAGE STYLES ================= */
+        /* Hero Section */
+        .about-hero {
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .about-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #07234a;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .about-subtitle {
+            font-size: 1.8rem;
+            color: #eba337;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .about-quote {
+            font-size: 1.3rem;
+            color: #eba337;
+            font-style: italic;
+            max-width: 900px;
+            margin: 40px auto;
+            line-height: 1.8;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .about-quote::before, .about-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(235, 163, 55, 0.3);
+            position: absolute;
+        }
+        
+        .about-quote::before {
+            top: -20px;
+            right: 0;
+        }
+        
+        .about-quote::after {
+            bottom: -40px;
+            left: 0;
+        }
+        
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: #eba337;
+            width: 80%;
+            margin: 60px auto;
+            max-width: 1000px;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #07234a;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: #eba337;
+            border-radius: 2px;
+        }
+        
+        /* Magazine Writings Section */
+        .writings-section {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .article-btn {
+            display: block;
+            width: 100%;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            text-align: right;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-btn:hover {
+            transform: translateY(-5px);
+            border-color: #eba337;
+            box-shadow: 0 10px 25px rgba(235, 163, 55, 0.2);
+        }
+        
+        .article-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: #eba337;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .article-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .article-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #07234a;
+            margin-bottom: 10px;
+        }
+        
+        .article-btn:hover .article-title {
+            color: #eba337;
+        }
+        
+        .article-meta {
+            font-size: 0.9rem;
+            color: #777;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* Sections Grid */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-10px);
+            border-color: #eba337;
+            box-shadow: 0 15px 35px rgba(235, 163, 55, 0.2);
+        }
+        
+        .section-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(235, 163, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #eba337;
+            font-size: 2rem;
+        }
+        
+        .section-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #07234a;
+            margin-bottom: 15px;
+        }
+        
+        .section-card-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Partners Section */
+        .partners-section {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 2px solid #eba337;
+        }
+        
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #eba337;
+            margin-bottom: 20px;
+        }
+        
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #07234a;
+            margin-bottom: 10px;
+        }
+        
+        .profile-role {
+            font-size: 1.1rem;
+            color: #eba337;
+            margin-bottom: 20px;
+        }
+        
+        .profile-bio {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Impact Button */
+        .impact-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background: #eba337;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(235, 163, 55, 0.3);
+        }
+        
+        .impact-btn:hover {
+            background: #e68a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(235, 163, 55, 0.4);
+        }
+        
+        /* Interactive Effects */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .about-quote {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-btn {
+                padding: 20px;
+            }
+            
+            .article-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Mobile responsive for header */
+        @media(max-width: 768px) {
+            .top-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .center-title {
+                font-size: 18px;
+            }
+            
+            .logo-img {
+                height: 24px;
+            }
+            
+            .category-row {
+                display: none;
+            }
+            
+            .search-container {
+                top: 60px;
+                padding: 15px;
+            }
+            
+            .drawer-container {
+                top: 120px;
+            }
+            
+            .drawer-panel {
+                padding: 20px 25px 30px;
+                width: calc(100% - 30px);
+            }
+            
+            .drawer-content {
+                gap: 25px;
+                flex-direction: row;
+            }
+            
+            .drawer-block li {
+                font-size: 15px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .drawer-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .search-input {
+                padding: 12px 120px 12px 45px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                left: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .close-search {
+                left: 10px;
+                font-size: 18px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .top-header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .center-title {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                height: 22px;
+            }
+            
+            .search-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .search-icon .circle {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .search-icon .line {
+                width: 2px;
+                height: 10px;
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 20px;
+            }
+            
+            .menu-icon span {
+                height: 2.5px;
+            }
+            
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .search-container {
+                top: 55px;
+                padding: 12px 10px;
+            }
+            
+            .search-input {
+                padding: 10px 100px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .search-button {
+                padding: 7px 12px;
+                font-size: 13px;
+                left: 3px;
+            }
+            
+            .close-search {
+                left: 8px;
+                font-size: 16px;
+            }
+            
+            .drawer-container {
+                top: 115px;
+            }
+            
+            .drawer-panel {
+                width: calc(100% - 20px);
+                padding: 15px 18px 22px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .drawer-content {
+                gap: 18px;
+            }
+            
+            .drawer-block li {
+                font-size: 13.5px;
+                padding: 5px 8px;
+                margin-bottom: 7px;
+            }
+            
+            .drawer-title {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding-right: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fffdf6]">
+    
+    <!-- HEADER (From Special Issues) -->
+    <div class="header-container">
+        <!-- FIRST ROW -->
+        <div class="top-header">
+            <!-- SEARCH -->
+            <div class="search-icon" onclick="toggleSearch()">
+                <span class="circle"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- TITLE + LOGO (NOT CLICKABLE) -->
+            <div class="center-title">
+                IRAQI SCHOLARS RESEARCH
+                <img src="IYRD.png" class="logo-img" alt="Logo">
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- SECOND ROW – ARABIC CATEGORIES UNDER TITLE -->
+        <div class="category-row">
+            <a href="index.html" class="item">الرئيسية <span class="dot"></span></a>
+            <a href="about.html" class="item">من نحن <span class="dot"></span></a>
+           <!-- <a href="special_issues.html" class="item">الاصدارات الخاصة <span class="dot"></span></a>-->
+            <a href="sections/economy.html" class="item">ادارة الاعمال <span class="dot"></span></a>
+            <a href="sections/general.html" class="item">العلوم <span class="dot"></span></a>
+            <a href="sections/society.html" class="item">الفكر والمجتمع <span class="dot"></span></a>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div id="searchContainer" class="search-container">
+        <div class="search-bar">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <input type="text" class="search-input" placeholder="ابحث هنا..." id="searchInput">
+            <button class="search-button" onclick="performSearch()">بحث</button>
+        </div>
+    </div>
+
+    <!-- DRAWER -->
+    <div id="drawer" class="drawer-container">
+        <div class="drawer-panel">
+            <div class="drawer-content">
+                <!-- RIGHT COLUMN - الفعاليات section -->
+                <div class="drawer-right-column">
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('events.html')">الفعاليات</li>
+                            <li onclick="navigateTo('latest-articles.html')">احدث المقالات</li>
+                            <li onclick="navigateTo('verified-accounts.html')">الحسابات الموثقة</li>
+                            <li onclick="navigateTo('support-us.html')">ادعمنا</li>
+                            <li onclick="navigateTo('how-to-write.html')">كيف تكتب</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- LEFT COLUMN - الاقسام الرئيسية section -->
+                <div class="drawer-left-column">
+                    <div class="drawer-title">الاقسام الرئيسية</div>
+                    <div class="drawer-block">
+                        <ul>
+                            <li onclick="navigateTo('sciences.html')"><span class="dot-blue"></span>العلوم</li>
+                            <li onclick="navigateTo('thought-society.html')"><span class="dot-orange"></span>الفكر والمجتمع</li>
+                            <li onclick="navigateTo('business-management.html')"><span class="dot-orange"></span>ادارة الاعمال</li>
+                            <li onclick="navigateTo('special-editions.html')"><span class="dot-orange"></span>الاصدارات الخاصة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <main class="main-container px-4 sm:px-8">
+        
+        <!-- About Us Hero Section -->
+        <section class="about-hero">
+            <h1 class="about-title">من نحن</h1>
+            <p class="about-subtitle">نصنع الأفكار لنحولها إلى أفكار تغير الواقع</p>
+            
+            <div class="about-quote float" onclick="animateQuote()">
+                كل خطوة مدروسة نحو المجهول تقربنا نحو عالم نستحقه، في مكان تغذى فيه كل شرارة لتكون نجوم المستقبل
+            </div>
+        </section>
+        
+       
+    
+     
+        
+    </main>
+    
+    <!-- FOOTER (From Special Issues) -->
+    <div class="footer-container">
+        <div class="footer">
+            <!-- Brand -->
+            <div class="brand">
+                <div class="brand-title">
+                    <img src="IYRL.png" alt="logo"> 
+                    Iraqi Scholars Research
+                </div>
+            </div>
+
+            <!-- THREE COLUMNS WITH FIXED ALIGNMENT -->
+            <div class="columns-row">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <div>المحتوى</div>
+                    <button class="footer-item" onclick="navigateTo('writings')">كتابات</button>
+                    <button class="footer-item" onclick="navigateTo('featured-writings')">كتابات مميزة</button>
+                    <button class="footer-item" onclick="navigateTo('latest-writers')">احدث الكتاب</button>
+                    <button class="footer-item" onclick="navigateTo('writing-rules')">قوانين الكتابة</button>
+                    <button class="footer-item" onclick="navigateTo('our-policies')">سياساتنا</button>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <div>الأقسام</div>
+                    <button class="footer-item" onclick="navigateTo('main-sections')">الاقسام الرئيسية</button>
+                    <button class="footer-item" onclick="navigateTo('thought-society')">الفكر والمجتمع</button>
+                    <button class="footer-item" onclick="navigateTo('sciences')">العلوم</button>
+                    <button class="footer-item" onclick="navigateTo('special-editions')">الاصدارات الخاصة</button>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <div>الحساب والدعم</div>
+                    <button class="footer-item" onclick="navigateTo('subscribe')">اشتراك</button>
+                    <button class="footer-item" onclick="navigateTo('manage-account')">اداره حسابي</button>
+                    <button class="footer-item" onclick="navigateTo('support-financially')">ادعم ماديا</button>
+                    <button class="footer-item" onclick="navigateTo('work-with-us')">اعمل معنا</button>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-title">اشترك معنا</div>
+                <div class="subscribe-container">
+                    <input type="email" class="subscribe-input" placeholder="أدخل بريدك الإلكتروني" id="subscribeEmail">
+                    <button class="subscribe-button" onclick="subscribe()">ارسال</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">2025 ©جميع الحقوق محفوظة</div>
+    </div>
+    
+    <script>
+        // ================= HEADER FUNCTIONS =================
+        function toggleMenu() {
+            const icon = document.querySelector(".menu-icon");
+            const drawer = document.getElementById("drawer");
+            
+            icon.classList.toggle("active");
+            if (drawer.style.display === "block") {
+                drawer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                drawer.style.display = "block";
+                document.getElementById("searchContainer").style.display = "none";
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function toggleSearch() {
+            const searchContainer = document.getElementById("searchContainer");
+            const drawer = document.getElementById("drawer");
+            
+            if (searchContainer.style.display === "block") {
+                searchContainer.style.display = "none";
+                document.body.classList.remove('search-open');
+            } else {
+                searchContainer.style.display = "block";
+                drawer.style.display = "none";
+                document.querySelector(".menu-icon").classList.remove("active");
+                setTimeout(() => {
+                    document.getElementById("searchInput").focus();
+                }, 100);
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('search-open');
+                }
+            }
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById("searchInput").value;
+            if (searchTerm.trim() !== "") {
+                console.warn(`جارٍ البحث عن: "${searchTerm}"`);
+            } else {
+                console.warn("يرجى إدخال كلمة البحث");
+                document.getElementById("searchInput").focus();
+            }
+        }
+
+        // ================= FOOTER FUNCTIONS =================
+        function subscribe() {
+            const email = document.getElementById('subscribeEmail').value;
+            if(email === '' || !email.includes('@')) {
+                console.warn('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('subscribeEmail').focus();
+            } else {
+                console.warn(`شكراً على اشتراكك! سيصلك آخر التحديثات على: ${email}`);
+                document.getElementById('subscribeEmail').value = '';
+            }
+        }
+
+        // ================= ABOUT US PAGE FUNCTIONS =================
+        function animateQuote() {
+            const quote = document.querySelector('.about-quote');
+            quote.style.transform = 'scale(1.05)';
+            quote.style.color = '#07234a';
+            quote.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                quote.style.transform = '';
+                quote.style.color = '#eba337';
+            }, 500);
+            
+            // Add particles effect
+            createParticles(quote);
+        }
+        
+        function createParticles(element) {
+            const rect = element.getBoundingClientRect();
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = '5px';
+                particle.style.height = '5px';
+                particle.style.backgroundColor = '#eba337';
+                particle.style.borderRadius = '50%';
+                particle.style.zIndex = '1000';
+                particle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                particle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                particle.style.pointerEvents = 'none';
+                
+                document.body.appendChild(particle);
+                
+                // Animate particle
+                const animation = particle.animate([
+                    { transform: 'translateY(0) scale(1)', opacity: 1 },
+                    { transform: `translateY(${Math.random() * 100 - 50}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 800 + Math.random() * 400,
+                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    particle.remove();
+                };
+            }
+        }
+        
+        function openArticle(articleId) {
+            window.location.href = 'articl.html';
+        }
+        
+        function openSection(sectionId) {
+            console.warn(`جارٍ فتح القسم: ${sectionId}`);
+            // In a real implementation, this would open the specific section
+            // window.location.href = `sections/${sectionId}.html`;
+            
+            // Add visual feedback
+            const card = event.currentTarget;
+            card.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                card.style.transform = '';
+            }, 300);
+        }
+        
+        // Initialize interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to article buttons
+            document.querySelectorAll('.article-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Add click effect to section cards
+            document.querySelectorAll('.section-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-10px) scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-10px)';
+                    }, 150);
+                });
+            });
+            
+            // Add effect to impact button
+            const impactBtn = document.querySelector('.impact-btn');
+            if (impactBtn) {
+                impactBtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                });
+                
+                impactBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

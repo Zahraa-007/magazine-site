@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجلة الفكرية - قسم الأعمال والاقتصاد</title>
+    <meta name="description" content="المجلة الفكرية - أحدث الأخبار والتحليلات في مجال الأعمال والاقتصاد والتكنولوجيا">
+    <meta name="keywords" content="أعمال, اقتصاد, تكنولوجيا, أسواق, استثمار, مال, أعمال">
+    
+    <!-- تحسينات SEO -->
+    <meta property="og:title" content="المجلة الفكرية - قسم الأعمال">
+    <meta property="og:description" content="أحدث الأخبار والتحليلات في مجال الأعمال والاقتصاد">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload للخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- CSS المدمج بدلاً من الخارجي -->
+    <style>
+        /* CSS Reset المصغر */
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji'}
+
+        /* متغيرات الألوان */
+        :root {
+            --light-beige: #f8f4ec;
+            --dark-blue: #07234a;
+            --sky-blue: #53ea3c;
+            --orange-yellow: #eba337;
+            --red-orange: #d25227;
+            --light-gray: #f1f5f5;
+        }
+
+        /* أنماط أساسية */
+        body {
+            font-family: 'Almarai', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-beige);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--orange-yellow);
+            outline: none;
+        }
+
+        .search-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        /* قسم الفيديو والصورة */
+        .featured-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .image-section,
+        .video-section {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .image-placeholder,
+        .video-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .image-caption,
+        .video-overlay {
+            padding: 1.25rem;
+        }
+
+        .image-caption h2,
+        .video-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-blue);
+            line-height: 1.3;
+        }
+
+        .image-caption p,
+        .video-overlay p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* العنوان والعناوين الفرعية */
+        .headline-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .main-headline {
+            font-size: 1.8rem;
+            margin-bottom: 1.25rem;
+            color: var(--dark-blue);
+            border-bottom: 3px solid var(--orange-yellow);
+            padding-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .sub-headlines {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .sub-headline {
+            padding: 0.75rem;
+        }
+
+        .sub-headline h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+            line-height: 1.4;
+        }
+
+        .sub-headline p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* شريط الأخبار - ثابت */
+        .news-ticker {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .ticker-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .ticker-item span {
+            margin-right: 0.5rem;
+            color: var(--orange-yellow);
+            font-weight: 700;
+        }
+
+        /* قسم الجرائد والأخبار */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .image-placeholder-small {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .news-content {
+            padding: 1.25rem;
+        }
+
+        .news-category {
+            display: inline-block;
+            background-color: var(--sky-blue);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-blue);
+            line-height: 1.4;
+        }
+
+        .news-date {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* التذييل */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 2.5rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--orange-yellow);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus {
+            color: var(--orange-yellow);
+            outline: none;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* تحسينات Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--orange-yellow);
+            outline-offset: 2px;
+        }
+
+        /* التجاوب مع الشاشات المختلفة */
+        @media (max-width: 992px) {
+            .featured-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+            
+            .sub-headlines {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .ticker-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+            
+            .main-headline {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                order: 0;
+                width: auto;
+                margin-top: 0;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="header-container">
+            <h1 class="logo">المجلة الفكرية</h1>
+            <nav aria-label="القائمة الرئيسية">
+                <ul class="nav-links">
+                    <li><a href="#main-content">الرئيسية</a></li>
+                    <li><a href="#business">الأعمال</a></li>
+                    <li><a href="#economy">الاقتصاد</a></li>
+                    <li><a href="#technology">التكنولوجيا</a></li>
+                    <li><a href="#markets">الأسواق</a></li>
+                    <li><a href="#opinion">الرأي</a></li>
+                </ul>
+            </nav>
+            <button class="search-icon" aria-label="بحث">
+                🔍
+            </button>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main id="main-content" class="main-content">
+        <!-- قسم الفيديو والصورة -->
+        <section class="featured-section" aria-labelledby="featured-heading">
+            <h2 id="featured-heading" class="sr-only">المحتوى المميز</h2>
+            <article class="image-section">
+                <div class="image-placeholder" role="img" aria-label="صورة تمثل تقرير الاستثمارات التكنولوجية">
+                    صورة: تقرير الاستثمارات التكنولوجية
+                </div>
+                <div class="image-caption">
+                    <h2>تقرير: ارتفاع الاستثمارات في قطاع التكنولوجيا بنسبة 15%</h2>
+                    <p>تحليل شامل لأحدث التطورات في أسواق الاستثمار التكنولوجي</p>
+                </div>
+            </article>
+            <article class="video-section">
+                <div class="video-placeholder" role="img" aria-label="فيديو مقابلة مع رئيس مجلس الإدارة">
+                    فيديو: مقابلة مع رئيس مجلس الإدارة
+                </div>
+                <div class="video-overlay">
+                    <h2 class="video-title">مقابلة حصرية مع رئيس مجلس إدارة شركة التقنية العالمية</h2>
+                    <p>نقاش حول مستقبل الذكاء الاصطناعي في عالم الأعمال</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- العنوان والعناوين الفرعية -->
+        <section class="headline-section" aria-labelledby="main-headline">
+            <h2 id="main-headline" class="main-headline">توقعات بنمو الاقتصاد العالمي رغم التحديات الجيوسياسية</h2>
+            <div class="sub-headlines">
+                <article class="sub-headline">
+                    <h3>ارتفاع أسعار النفط يؤثر على قطاع النقل</h3>
+                    <p>تحليل تأثيرات ارتفاع أسعار الطاقة على القطاعات الاقتصادية المختلفة</p>
+                </article>
+                <article class="sub-headline">
+                    <h3>البنك المركزي يعلن عن سياسات نقدية جديدة</h3>
+                    <p>تغييرات في أسعار الفائدة لمواجهة التضخم المتصاعد</p>
+                </article>
+                <article class="sub-headline">
+                    <h3>شركات التكنولوجيا تعلن عن أرباح قياسية</h3>
+                    <p>نتائج مالية إيجابية رغم التحديات في سلاسل التوريد العالمية</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- شريط الأخبار - ثابت -->
+        <section class="news-ticker" aria-label="أسعار السوق">
+            <div class="ticker-container">
+                <div class="ticker-item">الدولار الأمريكي: <span>3.75 ريال</span></div>
+                <div class="ticker-item">اليورو: <span>4.12 ريال</span></div>
+                <div class="ticker-item">الذهب: <span>215 ريال/جرام</span></div>
+                <div class="ticker-item">النفط: <span>85 دولار/برميل</span></div>
+                <div class="ticker-item">مؤشر السوق: <span>+1.2%</span></div>
+            </div>
+        </section>
+
+        <!-- قسم الجرائد والأخبار -->
+        <section class="news-grid" aria-labelledby="news-heading">
+            <h2 id="news-heading" class="sr-only">أحدث الأخبار</h2>
+            <article class="news-card">
+                <div class="image-placeholder-small" role="img" aria-label="صورة تمثل اندماج الشركات">
+                    صورة: اندماج الشركات
+                </div>
+                <div class="news-content">
+                    <span class="news-category">الأسواق</span>
+                    <h3 class="news-title">اندماج شركتين عملاقتين في قطاع التجزئة</h3>
+                    <p>صفقة تاريخية بقيمة 25 مليار دولار من المتوقع أن تغير خريطة قطاع التجزئة العالمي</p>
+                    <div class="news-date">15 أكتوبر 2023</div>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="image-placeholder-small" role="img" aria-label="صورة تمثل الذكاء الاصطناعي">
+                    صورة: الذكاء الاصطناعي
+                </div>
+                <div class="news-content">
+                    <span class="news-category">التكنولوجيا</span>
+                    <h3 class="news-title">ثورة في الذكاء الاصطناعي تحول قطاع الخدمات المالية</h3>
+                    <p>تقنيات جديدة تمكن البنوك من تقديم خدمات مخصصة بشكل غير مسبوق</p>
+                    <div class="news-date">14 أكتوبر 2023</div>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="image-placeholder-small" role="img" aria-label="صورة تمثل الطاقة المتجددة">
+                    صورة: الطاقة المتجددة
+                </div>
+                <div class="news-content">
+                    <span class="news-category">الطاقة</span>
+                    <h3 class="news-title">استثمارات ضخمة في الطاقة المتجددة بالشرق الأوسط</h3>
+                    <p>مشاريع طموحة تهدف لتحقيق التحول نحو الطاقة النظيفة بحلول 2030</p>
+                    <div class="news-date">13 أكتوبر 2023</div>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="image-placeholder-small" role="img" aria-label="صورة تمثل العقارات">
+                    صورة: العقارات
+                </div>
+                <div class="news-content">
+                    <span class="news-category">العقارات</span>
+                    <h3 class="news-title">انتعاش سوق العقارات التجارية بعد فترة ركود</h3>
+                    <p>مؤشرات إيجابية تشير إلى عودة النشاط الاستثماري في القطاع العقاري</p>
+                    <div class="news-date">12 أكتوبر 2023</div>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="image-placeholder-small" role="img" aria-label="صورة تمثل السياحة">
+                    صورة: السياحة
+                </div>
+                <div class="news-content">
+                    <span class="news-category">السياحة</span>
+                    <h3 class="news-title">قطاع السياحة يعود لمستويات ما قبل الجائحة</h3>
+                    <p>ارتفاع ملحوظ في أعداد السياح مع عودة حركة السفر العالمية</p>
+                    <div class="news-date">11 أكتوبر 2023</div>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="image-placeholder-small" role="img" aria-label="صورة تمثل الزراعة">
+                    صورة: الزراعة
+                </div>
+                <div class="news-content">
+                    <span class="news-category">الزراعة</span>
+                    <h3 class="news-title">تطوير تقنيات الزراعة الذكية لمواجهة التغير المناخي</h3>
+                    <p>ابتكارات تكنولوجية تساهم في تحسين إنتاجية المحاصيل مع تقليل استهلاك المياه</p>
+                    <div class="news-date">10 أكتوبر 2023</div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="footer-container">
+            <section class="footer-section">
+                <h3>عن الجريدة</h3>
+                <ul class="footer-links">
+                    <li><a href="#">عن الشركة</a></li>
+                    <li><a href="#">فريق التحرير</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                    <li><a href="#">الإعلانات</a></li>
+                </ul>
+            </section>
+            <section class="footer-section">
+                <h3>الأقسام</h3>
+                <ul class="footer-links">
+                    <li><a href="#">الأخبار</a></li>
+                    <li><a href="#">الرأي</a></li>
+                    <li><a href="#">الاقتصاد</a></li>
+                    <li><a href="#">التكنولوجيا</a></li>
+                </ul>
+            </section>
+            <section class="footer-section">
+                <h3>الخدمات</h3>
+                <ul class="footer-links">
+                    <li><a href="#">الاشتراكات</a></li>
+                    <li><a href="#">التطبيقات</a></li>
+                    <li><a href="#">النشرة البريدية</a></li>
+                    <li><a href="#">الأرشيف</a></li>
+                </ul>
+            </section>
+            <section class="footer-section">
+                <h3>تابعونا</h3>
+                <ul class="footer-links">
+                    <li><a href="#">تويتر</a></li>
+                    <li><a href="#">فيسبوك</a></li>
+                    <li><a href="#">إنستغرام</a></li>
+                    <li><a href="#">يوتيوب</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="copyright">
+            <p>© 2025 المجلة الفكرية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript المحسن -->
+    <script>
+        // تحميل الخطوط بشكل غير متزامن
+        function loadFonts() {
+            const link = document.createElement('link');
+            link.href = 'https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap';
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+        }
+
+        // تحميل الخطوط بعد تحميل الصفحة
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadFonts);
+        } else {
+            loadFonts();
+        }
+
+        // تحسينات الأداء
+        document.addEventListener('DOMContentLoaded', function() {
+            // إضافة lazy loading للصور (لو كانت موجودة)
+            const images = document.querySelectorAll('[data-src]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                images.forEach(img => imageObserver.observe(img));
+            } else {
+                // Fallback للمتصفحات القديمة
+                images.forEach(img => {
+                    img.src = img.dataset.src;
+                });
+            }
+
+            // تحسين قابلية الوصول
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.setAttribute('tabindex', '-1');
+                        target.focus();
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // إضافة ARIA labels للبحث
+            const searchBtn = document.querySelector('.search-icon');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    // محاكاة فتح البحث
+                    const searchInput = document.createElement('input');
+                    searchInput.type = 'text';
+                    searchInput.placeholder = 'ابحث في الموقع...';
+                    searchInput.setAttribute('aria-label', 'بحث في الموقع');
+                    searchInput.style.cssText = 'position:absolute;top:60px;right:20px;padding:10px;border-radius:4px;border:1px solid #ccc;min-width:200px;';
+                    
+                    document.body.appendChild(searchInput);
+                    searchInput.focus();
+                    
+                    searchInput.addEventListener('blur', function() {
+                        document.body.removeChild(searchInput);
+                    });
+                });
+            }
+        });
+
+        // منع تحميل الموارد غير الضرورية
+        window.addEventListener('load', function() {
+            // تأخير تحميل بعض الموارد غير الحرجة
+            setTimeout(() => {
+                // هنا يمكن إضافة أي موارد غير حرجة
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

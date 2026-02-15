@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملفي الشخصي - Iraqi Scholars Research</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            padding: 10px;
+        }
+
+        .profile-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #0b2344 0%, #07234a 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .profile-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-content {
+            padding: 30px 20px;
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .profile-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eba337;
+        }
+
+        .profile-section-title i {
+            color: #eba337;
+            font-size: 1.2rem;
+        }
+
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #eba337;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .avatar-upload {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #eba337;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .avatar-upload:hover {
+            background: #d4891f;
+            transform: scale(1.1);
+        }
+
+        #avatarInput {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #eba337;
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            background: #f9f9f9;
+            text-align: right;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+            text-align: right;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #eba337 0%, #d4891f 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(235, 163, 55, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-back {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            flex: 1;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: #e8e8e8;
+        }
+
+        .success-message,
+        .error-message {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success-message i {
+            font-size: 1.2rem;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-message i {
+            font-size: 1.2rem;
+        }
+
+        .success-message.show,
+        .error-message.show {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-box {
+            background: #f0f8ff;
+            border-left: 4px solid #0b2344;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .info-box i {
+            color: #0b2344;
+            margin-left: 8px;
+        }
+
+        .delete-section {
+            padding: 20px;
+            background: #fff5f5;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .delete-section h3 {
+            color: #721c24;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delete-section p {
+            color: #721c24;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .delete-section i {
+            color: #dc3545;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading i {
+            font-size: 2rem;
+            color: #eba337;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal h2 {
+            color: #dc3545;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                border-radius: 10px;
+            }
+
+            .profile-header {
+                padding: 30px 20px;
+            }
+
+            .profile-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .modal {
+                max-width: 90%;
+            }
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #0b2344;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #eba337;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <a href="#" class="back-link" onclick="goBack(event)">
+                <i class="fas fa-arrow-right"></i>
+                العودة
+            </a>
+            <a href="index.html" class="back-link" onclick="event.preventDefault(); window.location.href='index.html';">
+                <i class="fas fa-home"></i>
+                الرئيسية
+            </a>
+        </div>
+
+        
+
+        <div class="profile-content">
+            <div id="loadingIndicator" class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>جارٍ الحفظ...</p>
+            </div>
+
+            <div id="profileContent">
+                <!-- Avatar Section -->
+                <div class="avatar-section">
+                    <div class="avatar-container">
+                        <img id="profileAvatar" src="https://placehold.co/120x120/eba337/ffffff?text=User" alt="صورة المستخدم" class="avatar">
+                        <div class="avatar-upload" onclick="document.getElementById('avatarInput').click()" title="تغيير الصورة">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    <input type="file" id="avatarInput" accept="image/*" onchange="handleAvatarUpload(event)">
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">انقر على الكاميرا لتغيير الصورة</p>
+                </div>
+
+                <!-- Personal Information Section -->
+                <div class="profile-section">
+                    <div class="profile-section-title">
+                        <i class="fas fa-user"></i>
+                        المعلومات الشخصية
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        <input type="text" id="fullName" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="profile-section">
+                    <div class="profile-section-title">
+                        <i class="fas fa-phone"></i>
+                        معلومات الاتصال
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" placeholder="بريدك الإلكتروني" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" placeholder="أدخل رقم هاتفك" value="">
+                    </div>
+                </div>
+
+                <!-- Professional Information Section -->
+                <div class="profile-section">
+                    <div class="profile-section-title">
+                        <i class="fas fa-briefcase"></i>
+                        المعلومات المهنية
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">عن نفسك / تخصصك</label>
+                        <textarea id="bio" placeholder="اخبرنا عن تخصصك واهتماماتك البحثية..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="affiliation">الانتماء / المؤسسة</label>
+                        <input type="text" id="affiliation" placeholder="اسم الجامعة أو المؤسسة">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">موقع الويب الشخصي</label>
+                        <input type="url" id="website" placeholder="https://example.com">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button class="btn-primary" onclick="saveProfile()">
+                        <i class="fas fa-save"></i>
+                        حفظ التغييرات
+                    </button>
+                    <button class="btn-secondary" onclick="resetForm()">
+                        <i class="fas fa-undo"></i>
+                        إلغاء التغييرات
+                    </button>
+                </div>
+
+                <!-- Delete Account Section -->
+                <div class="delete-section">
+                    <h3>
+                        <i class="fas fa-trash-alt"></i>
+                        منطقة الخطر
+                    </h3>
+                    <p>حذف حسابك بشكل دائم. لا يمكن التراجع عن هذا الإجراء.</p>
+                    <button class="btn-danger" style="width: 100%;" onclick="confirmDelete()">
+                        <i class="fas fa-trash-alt"></i>
+                        حذف الحساب نهائياً
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal">
+            <h2>تأكيد الحذف</h2>
+            <p>هل أنت متأكد من رغبتك في حذف حسابك؟ سيؤدي هذا إلى حذف جميع بيانات حسابك بشكل دائم.</p>
+            <div class="modal-buttons">
+                <button class="btn-secondary" onclick="closeDeleteModal()">إلغاء</button>
+                <button class="btn-danger" onclick="deleteProfile()">حذف الحساب</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let originalData = {};
+
+        function goBack(event) {
+            event.preventDefault();
+            const userRole = localStorage.getItem('userRole');
+            if (userRole === 'author' || userRole === 'admin') {
+                window.location.href = 'author-dashboard.html';
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+        let avatarBase64 = null;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = localStorage.getItem('userData');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            loadProfileData();
+        });
+
+        function loadProfileData() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            
+            // Set form values
+            document.getElementById('fullName').value = userData.name || '';
+            document.getElementById('email').value = userData.email || '';
+            document.getElementById('phone').value = userData.whatsapp_number || '';
+            document.getElementById('bio').value = userData.bio || '';
+            document.getElementById('affiliation').value = userData.affiliation || '';
+            document.getElementById('website').value = userData.website || '';
+
+            // Set avatar
+            if (userData.avatar) {
+                document.getElementById('profileAvatar').src = userData.avatar;
+            } else {
+                document.getElementById('profileAvatar').src = `https://placehold.co/120x120/eba337/ffffff?text=${userData.name?.charAt(0) || 'U'}`;
+            }
+
+            // Store original data
+            originalData = {
+                name: userData.name,
+                email: userData.email,
+                phone: userData.whatsapp_number,
+                bio: userData.bio,
+                affiliation: userData.affiliation,
+                website: userData.website,
+                avatar: userData.avatar
+            };
+        }
+
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    avatarBase64 = e.target.result;
+                    document.getElementById('profileAvatar').src = avatarBase64;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveProfile() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+
+            // Validate
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const bio = document.getElementById('bio').value.trim();
+            const affiliation = document.getElementById('affiliation').value.trim();
+            const website = document.getElementById('website').value.trim();
+
+            if (!fullName || fullName.length < 3) {
+                alert('الاسم يجب أن يكون 3 أحرف على الأقل');
+                return;
+            }
+
+            // Show loading
+            loadingIndicator.classList.add('show');
+
+            // Get user data
+            const userData = JSON.parse(localStorage.getItem('userData'));
+
+            // Prepare update data
+            const updateData = {
+                name: fullName,
+                whatsapp_number: phone,
+                bio: bio,
+                affiliation: affiliation,
+                website: website
+            };
+
+            if (avatarBase64) {
+                updateData.avatar = avatarBase64;
+                updateData.profile_image_url = avatarBase64;
+            }
+
+            // Make API call to update user
+            fetch(`${API_BASE_URL}/users/${userData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-Role': userData.role || 'guest'
+                },
+                body: JSON.stringify(updateData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.error || `HTTP Error: ${response.status}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                loadingIndicator.classList.remove('show');
+
+                if (data.error) {
+                    alert(data.error || 'حدث خطأ في حفظ البيانات');
+                } else {
+                    // Update localStorage
+                    userData.name = fullName;
+                    userData.whatsapp_number = phone;
+                    userData.bio = bio;
+                    userData.affiliation = affiliation;
+                    userData.website = website;
+                    if (avatarBase64) {
+                        userData.avatar = avatarBase64;
+                    }
+                    localStorage.setItem('userData', JSON.stringify(userData));
+
+                    // Reset avatar upload
+                    avatarBase64 = null;
+                    document.getElementById('avatarInput').value = '';
+
+                    // Show success alert
+                    alert('تم حفظ التغييرات بنجاح!');
+
+                    // Update original data
+                    originalData = {
+                        name: fullName,
+                        email: userData.email,
+                        phone: phone,
+                        bio: bio,
+                        affiliation: affiliation,
+                        website: website,
+                        avatar: userData.avatar
+                    };
+                }
+            })
+            .catch(error => {
+                console.error('Error updating profile:', error);
+                loadingIndicator.classList.remove('show');
+                alert(`خطأ: ${error.message || 'فشل الاتصال بالخادم'}`);
+            });
+        }
+
+        function resetForm() {
+            document.getElementById('fullName').value = originalData.name || '';
+            document.getElementById('phone').value = originalData.phone || '';
+            document.getElementById('bio').value = originalData.bio || '';
+            document.getElementById('affiliation').value = originalData.affiliation || '';
+            document.getElementById('website').value = originalData.website || '';
+            
+            if (originalData.avatar) {
+                document.getElementById('profileAvatar').src = originalData.avatar;
+            }
+            
+            avatarBase64 = null;
+            document.getElementById('avatarInput').value = '';
+        }
+
+        function showError(message) {
+            alert(message);
+        }
+
+        function confirmDelete() {
+            document.getElementById('deleteModal').classList.add('show');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('show');
+        }
+
+        function deleteProfile() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const userData = JSON.parse(localStorage.getItem('userData'));
+
+            loadingIndicator.classList.add('show');
+            closeDeleteModal();
+
+            fetch(`${API_BASE_URL}/users/${userData.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-Role': userData.role || 'guest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                loadingIndicator.classList.remove('show');
+
+                // Clear localStorage
+                localStorage.removeItem('userData');
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('userRole');
+
+                // Redirect to home
+                alert('تم حذف الحساب بنجاح. جارٍ إعادة التوجيه...');
+                window.location.href = 'index.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                loadingIndicator.classList.remove('show');
+                alert('فشل حذف الحساب');
+            });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+    </script>
+</body>
+</html>

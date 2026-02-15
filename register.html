@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد - Iraqi Scholars Research</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f4ec 0%, #f8f4ec 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-header {
+            background: linear-gradient(135deg, #0b2344 0%, #07234a 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .register-header img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .register-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .register-content {
+            padding: 40px 30px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: -1;
+        }
+
+        .progress-step:last-child::after {
+            display: none;
+        }
+
+        .progress-step.completed::after {
+            background: #eba337;
+        }
+
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .progress-circle {
+            background: #eba337;
+            color: white;
+            border-color: #eba337;
+        }
+
+        .progress-step.completed .progress-circle {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Role Selection Step */
+        .role-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .role-option {
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+        }
+
+        .role-option:hover {
+            border-color: #eba337;
+            background: #fff9f3;
+            transform: translateY(-5px);
+        }
+
+        .role-option.selected {
+            border-color: #eba337;
+            background: #fffaf0;
+            box-shadow: 0 5px 15px rgba(235, 163, 55, 0.2);
+        }
+
+        .role-option i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #07234a;
+            display: block;
+        }
+
+        .role-option.selected i {
+            color: #eba337;
+        }
+
+        .role-option span {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #eba337;
+            box-shadow: 0 0 0 3px rgba(235, 163, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #eba337 0%, #d4891f 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(235, 163, 55, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .register-footer p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .register-footer a {
+            color: #eba337;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #eba337;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Password visibility toggle */
+        .password-group {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            cursor: pointer;
+            color: #07234a;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .password-toggle:hover {
+            color: #eba337;
+        }
+
+        .password-group input {
+            padding-left: 45px;
+        }
+
+        /* Terms checkbox */
+        .terms-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .terms-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .terms-group label {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .terms-group a {
+            color: #eba337;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .register-container {
+                margin: 20px;
+            }
+
+            .role-options {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .register-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .register-content {
+                padding: 30px 20px;
+            }
+
+            .progress-indicator {
+                margin-bottom: 20px;
+            }
+
+            .progress-step::after {
+                top: 17px;
+            }
+
+            .progress-circle {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <h1>إنشاء حساب جديد</h1>
+            <p>انضم إلى مجتمع الباحثين العراقيين</p>
+        </div>
+
+        <div class="register-content">
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-step active" id="progressStep1">
+                    <div class="progress-circle">1</div>
+                    <div class="progress-label">نوع الحساب</div>
+                </div>
+                <div class="progress-step" id="progressStep2">
+                    <div class="progress-circle">2</div>
+                    <div class="progress-label">البيانات الأساسية</div>
+                </div>
+                <div class="progress-step" id="progressStep3">
+                    <div class="progress-circle">3</div>
+                    <div class="progress-label">كلمة المرور</div>
+                </div>
+            </div>
+
+            <!-- Step 1: Role Selection -->
+            <div class="step active" id="roleStep">
+                <h2 style="text-align: center; margin-bottom: 25px; color: #333; font-size: 1.2rem;">
+                    اختر نوع الحساب
+                </h2>
+                <div class="role-options">
+                    <div class="role-option" onclick="selectRole('author')">
+                        <i class="fas fa-pen-fancy"></i>
+                        <span>كاتب</span>
+                    </div>
+                    <div class="role-option" onclick="selectRole('verified')">
+                        <i class="fas fa-eye"></i>
+                        <span>قارئ</span>
+                    </div>
+                    <div class="role-option" onclick="selectRole('admin')">
+                        <i class="fas fa-user-shield"></i>
+                        <span>مسؤول</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Basic Information -->
+            <div class="step" id="basicInfoStep">
+                <h2 style="text-align: center; margin-bottom: 25px; color: #333; font-size: 1.2rem;">
+                    البيانات الأساسية
+                </h2>
+
+                <form id="basicInfoForm" onsubmit="nextStep(event, 'basicInfoStep', 'passwordStep')">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">البريد الإلكتروني</label>
+                        <input type="email" id="registerEmail" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <div class="error-message" id="registerEmailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">نبذة عن نفسك (اختياري)</label>
+                        <textarea id="bio" name="bio" placeholder="اخبرنا عن تخصصك واهتماماتك البحثية..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">رقم واتس أب (اختياري)</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+964 7XX XXX XXXX">
+                    </div>
+
+                    <div class="loading" id="basicInfoLoading">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 10px; color: #666;">جارٍ التحقق...</p>
+                    </div>
+
+                    <div class="error-message" id="basicInfoError"></div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-right"></i>
+                            رجوع
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            التالي
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Password and Terms -->
+            <div class="step" id="passwordStep">
+                <h2 style="text-align: center; margin-bottom: 25px; color: #333; font-size: 1.2rem;">
+                    كلمة المرور والشروط
+                </h2>
+
+                <form id="passwordForm" onsubmit="handleRegister(event)">
+                    <div class="form-group password-group">
+                        <label for="registerPassword">كلمة المرور</label>
+                        <input type="password" id="registerPassword" name="password" placeholder="أدخل كلمة مرور قوية" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="error-message" id="registerPasswordError"></div>
+                    </div>
+
+                    <div class="form-group password-group">
+                        <label for="confirmPassword">تأكيد كلمة المرور</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="أعد كتابة كلمة المرور" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+
+                    <div class="terms-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">
+                            أوافق على <a href="#">شروط الخدمة</a> و <a href="#">سياسة الخصوصية</a>
+                        </label>
+                    </div>
+
+                    <div class="loading" id="registerLoading">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 10px; color: #666;">جارٍ إنشاء الحساب...</p>
+                    </div>
+
+                    <div class="error-message" id="registerError"></div>
+                    <div class="success-message" id="registerSuccess"></div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="previousStep()">
+                            <i class="fas fa-arrow-right"></i>
+                            رجوع
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="registerBtn">
+                            إنشاء الحساب
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="register-footer">
+                <p>هل لديك حساب بالفعل؟ <a href="login.html">سجل دخولك</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let selectedRole = null;
+        let formData = {};
+
+        // Select role function
+        function selectRole(role) {
+            selectedRole = role;
+            
+            // Update UI
+            document.querySelectorAll('.role-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.closest('.role-option').classList.add('selected');
+
+            // Move to next step
+            setTimeout(() => {
+                document.getElementById('roleStep').classList.remove('active');
+                document.getElementById('basicInfoStep').classList.add('active');
+                updateProgress(2);
+            }, 300);
+        }
+
+        // Update progress indicator
+        function updateProgress(step) {
+            for (let i = 1; i <= 3; i++) {
+                const progressStep = document.getElementById(`progressStep${i}`);
+                if (i < step) {
+                    progressStep.classList.add('completed');
+                    progressStep.classList.remove('active');
+                } else if (i === step) {
+                    progressStep.classList.add('active');
+                    progressStep.classList.remove('completed');
+                } else {
+                    progressStep.classList.remove('active', 'completed');
+                }
+            }
+        }
+
+        // Previous step
+        function previousStep() {
+            const currentStep = document.querySelector('.step.active');
+            const previousStep = currentStep.previousElementSibling;
+
+            if (previousStep && previousStep.classList.contains('step')) {
+                currentStep.classList.remove('active');
+                previousStep.classList.add('active');
+                
+                if (previousStep.id === 'roleStep') {
+                    updateProgress(1);
+                    selectedRole = null;
+                    document.querySelectorAll('.role-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                } else if (previousStep.id === 'basicInfoStep') {
+                    updateProgress(2);
+                }
+            }
+        }
+
+        // Next step with validation
+        function nextStep(e, fromStep, toStep) {
+            e.preventDefault();
+
+            // Validate basic info
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('registerEmailError').textContent = '';
+            document.getElementById('basicInfoError').textContent = '';
+
+            let hasError = false;
+
+            if (!name || name.length < 3) {
+                document.getElementById('nameError').textContent = 'الاسم يجب أن يكون 3 أحرف على الأقل';
+                document.getElementById('nameError').classList.add('show');
+                hasError = true;
+            }
+
+            if (!email || !email.includes('@')) {
+                document.getElementById('registerEmailError').textContent = 'الرجاء إدخال بريد إلكتروني صحيح';
+                document.getElementById('registerEmailError').classList.add('show');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Store data
+            formData.name = name;
+            formData.email = email;
+            formData.bio = document.getElementById('bio').value;
+            formData.whatsapp = document.getElementById('whatsapp').value;
+
+            // Move to next step
+            document.getElementById(fromStep).classList.remove('active');
+            document.getElementById(toStep).classList.add('active');
+            updateProgress(3);
+        }
+
+        // Toggle password visibility
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const button = event.target.closest('.password-toggle');
+            const icon = button.querySelector('i');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Handle register
+        async function handleRegister(e) {
+            e.preventDefault();
+
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Clear previous errors
+            document.getElementById('registerPasswordError').textContent = '';
+            document.getElementById('confirmPasswordError').textContent = '';
+            document.getElementById('registerError').textContent = '';
+            document.getElementById('registerSuccess').textContent = '';
+
+            // Validation
+            let hasError = false;
+
+            if (!password || password.length < 6) {
+                document.getElementById('registerPasswordError').textContent = 'كلمة المرور يجب أن تكون أكثر من 6 أحرف';
+                document.getElementById('registerPasswordError').classList.add('show');
+                hasError = true;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'كلمات المرور غير متطابقة';
+                document.getElementById('confirmPasswordError').classList.add('show');
+                hasError = true;
+            }
+
+            if (!terms) {
+                document.getElementById('registerError').textContent = 'يجب أن تقبل شروط الخدمة';
+                document.getElementById('registerError').classList.add('show');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Show loading state
+            document.getElementById('registerLoading').classList.add('show');
+            document.getElementById('registerBtn').disabled = true;
+
+            try {
+                // Prepare user data
+                const userData = {
+                    name: formData.name,
+                    email: formData.email,
+                    password_hash: password,
+                    role: selectedRole === 'verified' ? 'guest' : selectedRole,
+                    bio: formData.bio || null,
+                    whatsapp_number: formData.whatsapp || null,
+                    membership_type: 'free',
+                    is_verified: false
+                };
+
+                // Create user
+                const response = await fetch(`${API_BASE_URL}/users/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-User-Role': selectedRole || 'guest'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'فشل إنشاء الحساب');
+                }
+
+                // Store user data in localStorage
+                const storedUserData = {
+                    id: data.id,
+                    name: data.name,
+                    email: data.email,
+                    role: selectedRole,
+                    userId: data.id,
+                    loginTime: new Date().toISOString()
+                };
+
+                localStorage.setItem('userData', JSON.stringify(storedUserData));
+                localStorage.setItem('authToken', `user_${data.id}_${Date.now()}`);
+                localStorage.setItem('userRole', selectedRole);
+
+                // Show success message
+                document.getElementById('registerSuccess').textContent = 'تم إنشاء الحساب بنجاح! جارٍ إعادة التوجيه...';
+                document.getElementById('registerSuccess').classList.add('show');
+
+                // Redirect
+                setTimeout(() => {
+                    if (selectedRole === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else if (selectedRole === 'author') {
+                        window.location.href = 'author-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 1500);
+
+            } catch (error) {
+                console.error('Registration error:', error);
+                document.getElementById('registerError').textContent = error.message || 'حدث خطأ في إنشاء الحساب';
+                document.getElementById('registerError').classList.add('show');
+                document.getElementById('registerLoading').classList.remove('show');
+                document.getElementById('registerBtn').disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
